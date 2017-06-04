@@ -1,4 +1,24 @@
-<?php
+<?php 
+
+/**
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * 
+ * Module Download Statistics
+ *
+ * Log file downloads done by the content elements Download and Downloads, and 
+ * show statistics in the backend. 
+ *
+ *
+ * This is the data container array for table tl_dlstats_blocker.
+ * 
+ * PHP version 5
+ * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @author     Glen Langer (BugBuster)
+ * @package    DLStats
+ * @license    LGPL
+ * @filesource
+ * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
+ */
 
 /**
  * Table tl_dlstats_blocker

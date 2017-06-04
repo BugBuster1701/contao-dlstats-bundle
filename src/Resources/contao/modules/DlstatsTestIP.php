@@ -1,4 +1,21 @@
-<?php
+<?php 
+
+/**
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * 
+ * TestIP Helper Modul for Download Statistics
+ *
+ * 
+ * PHP version 5
+ * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @author     Glen Langer (BugBuster)
+ * @author     Peter Koch (acenes) 2007-2009
+ * @package    DLStats
+ * @license    LGPL
+ * @filesource
+ * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
+ */
+
 /**
  * Run in a custom namespace, so the class can be replaced
  */

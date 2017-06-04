@@ -1,16 +1,16 @@
 <?php
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Module Download Statistics
  *
  * PHP version 5
- * @copyright  Glen Langer 2011..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    GLDLStats
+ * @package    DLStats
  * @license    LGPL
  * @filesource
- * @see	       https://github.com/BugBuster1701/dlstats
+ * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
 /**
@@ -21,9 +21,9 @@ namespace BugBuster\DLStats;
 /**
  * Class ModuleDlstatsStatistics
  *
- * @copyright  Glen Langer 2011..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    GLDLStats
+ * @package    DLStats
  */
 class ModuleDlstatsStatistics extends \BackendModule
 {
