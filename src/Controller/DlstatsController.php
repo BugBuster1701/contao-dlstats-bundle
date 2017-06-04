@@ -10,18 +10,18 @@
 
 namespace BugBuster\DlstatsBundle\Controller;
 
-use BugBuster\Dlstats\BackendDlstats;
+use BugBuster\DLStats\BackendDlstats;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Handles the Visitors back end routes.
+ * Handles the dlstats back end routes.
  *
  * @copyright  Glen Langer 2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  *
- * @Route("/visitors", defaults={"_scope" = "backend", "_token_check" = true})
+ * @Route("/dlstats", defaults={"_scope" = "backend", "_token_check" = true})
  */
 class DlstatsController extends Controller
 {
@@ -30,7 +30,7 @@ class DlstatsController extends Controller
      *
      * @return Response
      *
-     * @Route("/details", name="visitors_backend_details")
+     * @Route("/details", name="dlstats_backend_details")
      */
     public function detailsAction()
     {
