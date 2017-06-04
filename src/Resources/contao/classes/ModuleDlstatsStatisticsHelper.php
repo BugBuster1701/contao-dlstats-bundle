@@ -41,7 +41,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
     {
         $this->import('BackendUser', 'User');
         parent::__construct();
-        $this->loadLanguageFile('default'); // for $GLOBALS['TL_LANG']['MONTHS'][..]
+        \System::loadLanguageFile('default'); // for $GLOBALS['TL_LANG']['MONTHS'][..]
     }
     
     
@@ -119,7 +119,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
 		</tr>
 		<tr>
 			<td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_download'].':</span> </td>
-			<td>'.$this->parseDate($GLOBALS['TL_CONFIG']['datimFormat'], $arrDlstats['tstamp']).'</td>
+			<td>'.\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $arrDlstats['tstamp']).'</td>
 			<td><span class="tl_label" style="padding-left: 16px; margin-right: 6px;">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl'].':</span></td>
 			<td>'.$arrDlstats['downloads'].'</td>
 		</tr>
@@ -167,7 +167,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         if ($intRows>0)
         {
             $languages = array();
-            include_once TL_ROOT . '/system/config/languages.php';
+            include_once TL_ROOT . '/vendor/contao/core-bundle/src/Resources/contao/config/languages.php'; // '/system/config/languages.php';
             $languages['unknown'] = 'unknown language';
             
             while ($objDetails->next())
@@ -190,7 +190,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
                 }
                 
                 $this->TemplatePartial->DlstatsDetailList .=  '<div class="dlstatdetaillist">
-	<span class="dlstats-timestamp dlstats-left">'.$this->parseDate($GLOBALS['TL_CONFIG']['datimFormat'], $objDetails->tstamp).'</span>
+	<span class="dlstats-timestamp dlstats-left">'.\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objDetails->tstamp).'</span>
 	<span class="dlstats-ip        dlstats-left">'.$objDetails->ip.'<br>'.$objDetails->domain.'</span>
 	<span class="dlstats-hostalias dlstats-left">'.$objDetails->page_host.'<br>'.$page_alias.'</span>
 	<span class="dlstats-username  dlstats-left"><span class="dlstats-wb">'.$un.'</span><br>'.$objDetails->browser_lang.'</span>

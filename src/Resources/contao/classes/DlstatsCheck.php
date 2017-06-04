@@ -79,24 +79,17 @@ class DlstatsCheck extends \System
                 $_SESSION["TL_INFO"] = array();
             }
     
-            // required extensions
-            $arrRequiredExtensions = array(
-                    'BotDetection' => 'botdetection'
-            );
+            $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
             
-            // check for required extensions
-            foreach ($arrRequiredExtensions as $key => $val)
+            if ( !in_array( 'BugBusterBotdetectionBundle', $bundles ) )
             {
-                if (!in_array($val, \Config::getInstance()->getActiveModules() ))
+                $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array('botdetection' => 'Please install the required extension <strong>contao-botdetection-bundle</strong> for the extension contao-dlstats-bundle.'));
+            }
+            else 
+            {
+                if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
                 {
-                    $_SESSION["TL_INFO"] = array_merge($_SESSION["TL_INFO"], array($val => 'Please install the required extension <strong>' . $key . '</strong> for the extension dlstats.'));
-                }
-                else
-                {
-                    if (is_array($_SESSION["TL_INFO"]) && key_exists($val, $_SESSION["TL_INFO"]))
-                    {
-                        unset($_SESSION["TL_INFO"][$val]);
-                    }
+                    unset($_SESSION["TL_INFO"]['botdetection']);
                 }
             }
         }

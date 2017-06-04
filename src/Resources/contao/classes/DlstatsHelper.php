@@ -19,6 +19,7 @@
  * Run in a custom namespace, so the class can be replaced
  */
 namespace BugBuster\DLStats;
+use BugBuster\BotDetection\ModuleBotDetection;
 
 /**
  * Class DlstatsHelper
@@ -193,9 +194,11 @@ class DlstatsHelper extends \Controller
 	 */
 	public function checkBot()
 	{
-	    if (!in_array('botdetection', \Config::getInstance()->getActiveModules() ))
-	    {
-	        //botdetection Modul fehlt, trotzdem zählen, Meldung kommt bereits per Hook
+	    $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
+	    
+		if ( !in_array( 'BugBusterBotdetectionBundle', $bundles ) )
+		{
+	        //BotdetectionBundle fehlt, trotzdem zählen, Meldung kommt bereits per Hook
 	        return false; //fake: no bots found
 	    }
 	    if ( isset($GLOBALS['TL_CONFIG']['dlstatDisableBotdetection']) &&
@@ -204,30 +207,14 @@ class DlstatsHelper extends \Controller
 	        //botdetection ist disabled for dlstats
 	        return false; //fake: no bots founds
 	    }
-	    // Import Helperclass ModuleBotDetection
-	    $this->ModuleBotDetection = new \BotDetection\ModuleBotDetection();
-	
-	    //Call BD_CheckBotAgent
-	    $test01 = $this->ModuleBotDetection->BD_CheckBotAgent();
-	    if ($test01 === true)
+	    
+	    $ModuleBotDetection = new ModuleBotDetection();
+	    if ($ModuleBotDetection->checkBotAllTests())
 	    {
 	        $this->BOT_Filter = true;
-	        return $this->BOT_Filter;
+	        return true;
 	    }
-	    //Call BD_CheckBotIP
-	    $test02 = $this->ModuleBotDetection->BD_CheckBotIP();
-	    if ($test02 === true)
-	    {
-	        $this->BOT_Filter = true;
-	        return $this->BOT_Filter;
-	    }
-	    //Call BD_CheckBotAgentAdvanced
-	    $test03 = $this->ModuleBotDetection->BD_CheckBotAgentAdvanced();
-	    if ($test03 !== false)
-	    {
-	        $this->BOT_Filter = true;
-	        return $test03; // Bot Name
-	    }
+	    
 	    // No Bots found
 	    return false;
 	}
@@ -665,7 +652,7 @@ class DlstatsHelper extends \Controller
 	    \Database::getInstance()
             	    ->prepare("INSERT IGNORE INTO tl_dlstats_blocker %s")
             	    ->set($arrSet)
-            	    ->executeUncached();
+            	    ->execute();
 	}
 	
 	protected function getBlockingStatus($UserIP = false, $filename = false)
@@ -686,7 +673,7 @@ class DlstatsHelper extends \Controller
                                 WHERE
                                     CURRENT_TIMESTAMP - INTERVAL ? SECOND > dlstats_tstamp
                                 ")
-                    ->executeUncached(10);
+                    ->execute(10);
 	    
 	    $IPHash = bin2hex(sha1($UserIP,true)); // sha1 20 Zeichen, bin2hex 40 zeichen
 	    //Test ob Blocking gesetzt ist
@@ -700,7 +687,7 @@ class DlstatsHelper extends \Controller
                                         AND 
                                             dlstats_filename = ?
                                         ")
-                            ->executeUncached($IPHash, $filename);
+                            ->execute($IPHash, $filename);
 	    if ($objBlockingIP->numRows < 1)
 	    {
 	        return false;

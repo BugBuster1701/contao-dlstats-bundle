@@ -18,6 +18,8 @@
  * Run in a custom namespace, so the class can be replaced
  */
 namespace BugBuster\DLStats;
+use Psr\Log\LogLevel;
+use Contao\CoreBundle\Monolog\ContaoContext;
 
 /**
  * Class ModuleDlstatsTag 
@@ -62,9 +64,14 @@ class ModuleDlstatsTag extends \Frontend
 			}
 		}
 		$this->loadLanguageFile('tl_dlstats');
-		if (! isset($arrTag[2]))
+		if (!isset($arrTag[2]))
 		{
-			$this->log($GLOBALS['TL_LANG']['tl_dlstats']['no_key'], 'ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR);
+			\System::getContainer()
+    			->get('monolog.logger.contao')
+    			->log(LogLevel::ERROR,
+    			    $GLOBALS['TL_LANG']['tl_dlstats']['no_key'],
+    			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR)));
+			
 			return false; // da fehlt was
 		}
 		// filename with article alias?
@@ -89,7 +96,12 @@ class ModuleDlstatsTag extends \Frontend
 			return $objDlstats->downloads;
 		}
 		// Tag is wrong 
-		$this->log($GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'], 'ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR);
+		\System::getContainer()
+    		->get('monolog.logger.contao')
+    		->log(LogLevel::ERROR,
+    		    $GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'],
+    		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR)));
+		
 		return false; // wrong tag
 	} //function
 } // class
