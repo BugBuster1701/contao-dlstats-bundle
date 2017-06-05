@@ -1,5 +1,5 @@
 
-<div class="tl_formbody_edit" style="padding-top:18px">
+<div class="tl_listing_container list_view">
   <table class="tl_listing">
     <tbody>
       <tr>
@@ -17,9 +17,9 @@
 <?php else: ?>
 <hr>
 <?php endif; ?>
-<p><?php echo $this->getMessages(false); ?></p>
+<div class="tl_message"><?= $this->messages ?></div>
 <?php if ($this->totalDownloads == 0) : ?>
-	<div class="tl_formbody_edit">
+	<div class="tl_listing_container list_view">
 		<table summary="Table lists records" class="tl_listing">
 		<tbody>
 		<tr>
@@ -29,7 +29,7 @@
 		</table>
 	</div>
 <?php else: ?>
-	<div class="tl_formbody_edit">
+	<div class="tl_listing_container list_view">
 		<table summary="Table lists records" class="tl_listing">
 		<tbody>
 		<tr>
@@ -55,7 +55,7 @@
 		</table>
 	</div>
 	<?php if (count($this->arrStatMonth) > 0) : ?>
-	<div class="tl_formbody_edit">
+	<div class="tl_listing_container list_view">
 		<div class="tl_listing">
 			<div class="mod_dlstatstatistics_be_year">
 				<table summary="Table lists records" class="mod_dlstatstatistics_be_table">
@@ -94,7 +94,7 @@
 	<?php endif; //arrStatMonth ?>
 	<div style="clear:left;"></div><hr>
 	<!-- Top 20 Begin -->
-	<div class="tl_formbody_edit">
+	<div class="tl_listing_container list_view">
 		<div class="limit_height h110 block">
 			<table summary="Table lists records" class="tl_listing">
 				<tbody>
@@ -137,7 +137,7 @@
 	<!-- Top 20 End   -->
 	<div style="clear:left;"></div><hr>
 	<!-- Last Downlods Top 20 Begin -->
-	<div class="tl_formbody_edit">
+	<div class="tl_listing_container list_view">
 		<div class="limit_height h110 block">
 			<table summary="Table lists records" class="tl_listing">
 				<tbody>
@@ -187,7 +187,7 @@
 	<div style="clear:left;"></div><hr>
 
 	<!-- Last 30 Calendar Days Begin -->
-	<div class="tl_formbody_edit">
+	<div class="tl_listing_container list_view">
 		<div class="limit_height h110 block">
 			<table summary="Table lists records" class="tl_listing">
 				<tbody>
@@ -228,10 +228,6 @@
 		</div>
 	</div>
 	<!-- Last 30 Calendar Days End -->
-
-
-
-
 <?php endif; //no_data ?>
 <div style="clear:left;"></div><hr>
 <div class="mod_dlstatstatistics_be_version">

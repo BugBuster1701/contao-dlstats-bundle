@@ -83,6 +83,7 @@ class ModuleDlstatsStatistics extends \BackendModule
         $this->Template->status_detailed = $this->getStatusDetailed();
         $this->Template->status_anonymization = $this->getStatusAnonymization();
         $this->Template->boolDetails = $this->boolDetails;
+        $this->Template->messages    = \Message::generateUnwrapped() . \Backend::getSystemMessages();
 
         $this->Template->theme  = $this->getTheme();
 
