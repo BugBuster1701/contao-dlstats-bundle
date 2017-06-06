@@ -46,14 +46,9 @@ $GLOBALS['BE_MOD']['content']['dlstats'] = array
  * HOOKS
  * -------------------------------------------------------------------------
  */
-$GLOBALS['TL_HOOKS']['parseBackendTemplate'][]  = array('BugBuster\DLStats\DlstatsCheck', 'checkExtensions');
-$GLOBALS['TL_HOOKS']['postDownload'][] = array('BugBuster\DLStats\Dlstats', 'logDownload');
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
+$GLOBALS['TL_HOOKS']['parseBackendTemplate'][]  = array('BugBuster\DLStats\DlstatsCheck',     'checkExtensions');
+$GLOBALS['TL_HOOKS']['postDownload'][]          = array('BugBuster\DLStats\Dlstats',          'logDownload');
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
 
 
-/**
- * -------------------------------------------------------------------------
- * FRONT END MODULES ONLY FOR DEBUGGING 
- * -------------------------------------------------------------------------
- */
-//$GLOBALS['FE_MOD']['DlstatTestDebug']['testip'] = 'DLStats\DlstatsTestIP';
+
