@@ -20,7 +20,7 @@
 <div class="tl_message"><?= $this->messages ?></div>
 <?php if ($this->totalDownloads == 0) : ?>
 	<div class="tl_listing_container list_view">
-		<table summary="Table lists records" class="tl_listing">
+		<table class="tl_listing">
 		<tbody>
 		<tr>
 		    <td class="tl_folder_tlist"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_data']; ?></td>
@@ -30,7 +30,7 @@
 	</div>
 <?php else: ?>
 	<div class="tl_listing_container list_view">
-		<table summary="Table lists records" class="tl_listing">
+		<table class="tl_listing">
 		<tbody>
 		<tr>
 		    <td style="width: 340px; padding-left: 2px;"                     class="tl_folder_tlist"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['name']; ?></td>
@@ -58,7 +58,7 @@
 	<div class="tl_listing_container list_view">
 		<div class="tl_listing">
 			<div class="mod_dlstatstatistics_be_year">
-				<table summary="Table lists records" class="mod_dlstatstatistics_be_table">
+				<table class="mod_dlstatstatistics_be_table">
 				  	<tbody>
 				    <tr>
 						<td class="tl_folder_tlist" style="width:     120px; padding-left:   2px; text-align: left;"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period']; ?></td>
@@ -74,7 +74,7 @@
 				</table>
 			</div>
 			<div class="mod_dlstatstatistics_be_month">
-				<table summary="Table lists records" class="mod_dlstatstatistics_be_table" style="margin-left: auto;">
+				<table class="mod_dlstatstatistics_be_table" style="margin-left: auto;">
 				  	<tbody>
 				    <tr>
 						<td class="tl_folder_tlist" style="width:     120px; padding-left:   2px; text-align: left;"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period']; ?></td>
@@ -94,16 +94,16 @@
 	<?php endif; //arrStatMonth ?>
 	<div style="clear:left;"></div><hr>
 	<!-- Top 20 Begin -->
-	<div class="tl_listing_container list_view">
+	<div class="tl_content tl_listing_container list_view dlstats_toggler">
 		<div class="limit_height h110 block">
-			<table summary="Table lists records" class="tl_listing">
+			<table class="tl_listing">
 				<tbody>
 				    <tr>
 						<td class="tl_folder_tlist" style="padding-left: 2px; text-align: center;"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20']; ?></td>
 					</tr>
 				</tbody>
 			</table>
-			<table summary="Table lists records" id="table_top20dl" class="tl_listing sortable">
+			<table id="table_top20dl" class="tl_listing sortable">
 				<thead>
 					<tr>
 					    <th style="width: 250px; padding-left: 2px; text-align: left;"   class="tl_folder_tlist"><?php echo $GLOBALS['TL_LANG']['MSC']['filePath']; ?></th>
@@ -137,16 +137,16 @@
 	<!-- Top 20 End   -->
 	<div style="clear:left;"></div><hr>
 	<!-- Last Downlods Top 20 Begin -->
-	<div class="tl_listing_container list_view">
+	<div class="tl_content tl_listing_container list_view dlstats_toggler">
 		<div class="limit_height h110 block">
-			<table summary="Table lists records" class="tl_listing">
+			<table class="tl_listing">
 				<tbody>
 				    <tr>
 						<td class="tl_folder_tlist" style="padding-left: 2px; text-align: center;"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_20_downloads']; ?></td>
 					</tr>
 				</tbody>
 			</table>
-			<table summary="Table lists records" class="tl_listing sortable">
+			<table class="tl_listing sortable">
 				<thead>
 					<tr>
 					    <th style="width: 250px; padding-left: 2px; text-align: left;"   class="tl_folder_tlist"><?php echo $GLOBALS['TL_LANG']['MSC']['filePath']; ?></th>
@@ -187,16 +187,16 @@
 	<div style="clear:left;"></div><hr>
 
 	<!-- Last 30 Calendar Days Begin -->
-	<div class="tl_listing_container list_view">
+	<div class="tl_content tl_listing_container list_view dlstats_toggler">
 		<div class="limit_height h110 block">
-			<table summary="Table lists records" class="tl_listing">
+			<table class="tl_listing">
 				<tbody>
 				    <tr>
-						<td class="tl_folder_tlist" style="padding-left: 2px; text-align: center;" colspan="4"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_30_calendar_days']; ?></td>
+						<td class="tl_folder_tlist" style="padding-left: 2px; text-align: center;"><?php echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_30_calendar_days']; ?></td>
 					</tr>
 				</tbody>
 			</table>
-			<table summary="Table lists records" class="tl_listing sortable">
+			<table class="tl_listing sortable">
 				<thead>
 					<tr>
 						<th style="width: 250px; padding-left: 2px; text-align: left;"   class="tl_folder_tlist"><?php echo $GLOBALS['TL_LANG']['MSC']['filePath']; ?></th>

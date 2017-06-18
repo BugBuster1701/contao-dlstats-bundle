@@ -82,3 +82,16 @@ table th.sort-up:after {
   border-bottom:none;
   border-width:4px 4px 0;
 }
+
+/* Limit Toggler */
+.dlstats_toggler {
+	border-bottom: 0 none;
+	padding: 0;
+}
+
+.dlstats_toggler .limit_toggler button span {
+	color: green;
+	font-weight: bold;
+}
+
+
