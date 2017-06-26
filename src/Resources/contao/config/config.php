@@ -21,7 +21,7 @@
  */
 
 define('DLSTATS_VERSION', '1.0');
-define('DLSTATS_BUILD'  , '0');
+define('DLSTATS_BUILD'  , '1');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings
@@ -34,7 +34,7 @@ $GLOBALS['TL_CONFIG']['dlstatLastDownloads'] = 20;
  * BACK END MODULES
  * -------------------------------------------------------------------------
  */
-$GLOBALS['BE_MOD']['content']['dlstats'] = array
+$GLOBALS['BE_MOD']['system']['dlstats'] = array
 (
         'callback'   => 'BugBuster\DLStats\ModuleDlstatsStatistics',
         'icon'       => 'bundles/bugbusterdlstats/icon.png',
