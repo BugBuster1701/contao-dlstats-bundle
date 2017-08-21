@@ -24,7 +24,7 @@ use Contao\CoreBundle\Monolog\ContaoContext;
 /**
  * Class ModuleDlstatsTag 
  *
- * @copyright  Glen Langer 2012
+ * @copyright  Glen Langer 2011..2017
  * @author     Glen Langer 
  * @package    DLStats
  * @license    LGPL 
@@ -55,7 +55,7 @@ class ModuleDlstatsTag extends \Frontend
 	 */
 	public function dlstatsReplaceInsertTags($strTag)
 	{
-		$arrTag = trimsplit('::', $strTag);
+		$arrTag = \StringUtil::trimsplit('::', $strTag);
 		if ($arrTag[0] != 'dlstats')
 		{
 			if ($arrTag[0] != 'cache_dlstats')
