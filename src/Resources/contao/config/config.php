@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
  * 
  * Module Download Statistics
  *
@@ -12,7 +12,7 @@
  * Module configuration file.
  * 
  * PHP version 5
- * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    DLStats
  * @license    LGPL
@@ -21,7 +21,7 @@
  */
 
 define('DLSTATS_VERSION', '1.0');
-define('DLSTATS_BUILD'  , '1');
+define('DLSTATS_BUILD'  , '2');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings

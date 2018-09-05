@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
  *
  * Module Download Statistics
  * Check the required extensions 
  * 
- * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    DLStats
  * @license    LGPL
@@ -22,7 +22,7 @@ namespace BugBuster\DLStats;
 /**
  * Class DlstatsCheck
  *
- * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    DLStats
  */

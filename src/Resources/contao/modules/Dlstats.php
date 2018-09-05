@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
  * 
  * Modul Download Statistics
  *
@@ -10,7 +10,7 @@
  *
  * 
  * PHP version 5
- * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @author     Peter Koch (acenes) 2007-2009
  * @package    DLStats
@@ -28,7 +28,7 @@ use BugBuster\DLStats\DlstatsHelper;
 /**
  * Class Dlstats
  * 
- * @copyright  Glen Langer 2011..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    DLStats
  * @license    LGPL
