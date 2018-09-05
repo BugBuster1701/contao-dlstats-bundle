@@ -11,9 +11,9 @@
 namespace BugBuster\DlstatsBundle\Controller;
 
 use BugBuster\DLStats\BackendDlstats;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Handles the dlstats back end routes.
