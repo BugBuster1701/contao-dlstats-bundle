@@ -165,7 +165,7 @@ class DlstatsHelper extends \Controller
 	public function checkBE()
 	{
 	    $strCookie = 'BE_USER_AUTH';
-	    $hash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . $strCookie);
+	    $hash = sha1(session_id() . (!\Config::get('privacyAnonymizeIp') ? \Environment::get('ip') : '') . $strCookie);
 	    if (\Input::cookie($strCookie) == $hash)
 	    {
 	        $objSession = \Database::getInstance()
@@ -175,7 +175,7 @@ class DlstatsHelper extends \Controller
 	        if ($objSession->numRows &&
 	            $objSession->sessionID == session_id() &&
 	            //$objSession->ip == $this->Environment->ip &&
-	            ($GLOBALS['TL_CONFIG']['disableIpCheck'] || $objSession->ip == \Environment::get('ip')) &&
+	            (\Config::get('privacyAnonymizeIp') || $objSession->ip == \Environment::get('ip')) &&
 	            ($objSession->tstamp + $GLOBALS['TL_CONFIG']['sessionTimeout']) > time())
 	        {
 	            $this->BE_Filter = true;

@@ -123,7 +123,7 @@ class Dlstats extends DlstatsHelper
             $username = '';
     		$strCookie = 'FE_USER_AUTH';
 
-    		$hash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? $this->IP : '') . $strCookie);
+    		$hash = sha1(session_id() . (!\Config::get('privacyAnonymizeIp') ? $this->IP : '') . $strCookie);
     		if (\Input::cookie($strCookie) == $hash)
     		{
     			$qs = \Database::getInstance()->prepare("SELECT pid, tstamp, sessionID, ip 
@@ -131,7 +131,7 @@ class Dlstats extends DlstatsHelper
                                               ->execute($hash, $strCookie);
     			if ($qs->next() && 
     				$qs->sessionID == session_id() && 
-    				($GLOBALS['TL_CONFIG']['disableIpCheck'] || $qs->ip == $this->IP) && 
+    				(\Config::get('privacyAnonymizeIp') || $qs->ip == $this->IP) && 
     				($qs->tstamp + $GLOBALS['TL_CONFIG']['sessionTimeout']) > time())
     			{
     				$qm = \Database::getInstance()->prepare("SELECT `username` 
