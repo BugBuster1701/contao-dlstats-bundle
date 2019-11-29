@@ -7,7 +7,6 @@
  * PHP version 5
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  * @filesource
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -16,6 +15,7 @@
 /**
  * Run in a custom namespace, so the class can be replaced
  */
+
 namespace BugBuster\DLStats;
 
 /**
@@ -23,7 +23,6 @@ namespace BugBuster\DLStats;
  *
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  */
 class ModuleDlstatsStatistics extends \BackendModule
 {
@@ -50,22 +49,22 @@ class ModuleDlstatsStatistics extends \BackendModule
     {
         parent::__construct();
 
-        if ( isset($GLOBALS['TL_CONFIG']['dlstatTopDownloads'])
-         && intval($GLOBALS['TL_CONFIG']['dlstatTopDownloads']) >0)
+        if (isset($GLOBALS['TL_CONFIG']['dlstatTopDownloads'])
+         && (int) ($GLOBALS['TL_CONFIG']['dlstatTopDownloads']) >0)
         {
-            $this->intTopDownloadLimit = intval($GLOBALS['TL_CONFIG']['dlstatTopDownloads']);
+            $this->intTopDownloadLimit = (int) ($GLOBALS['TL_CONFIG']['dlstatTopDownloads']);
         }
-        if ( isset($GLOBALS['TL_CONFIG']['dlstatLastDownloads'])
-         && intval($GLOBALS['TL_CONFIG']['dlstatLastDownloads']) >0)
+        if (isset($GLOBALS['TL_CONFIG']['dlstatLastDownloads'])
+         && (int) ($GLOBALS['TL_CONFIG']['dlstatLastDownloads']) >0)
         {
-            $this->intLastDownloadLimit = intval($GLOBALS['TL_CONFIG']['dlstatLastDownloads']);
+            $this->intLastDownloadLimit = (int) ($GLOBALS['TL_CONFIG']['dlstatLastDownloads']);
         }
 
-        if (\Input::get('act',true)=='zero')
+        if (\Input::get('act', true)=='zero')
         {
             $this->setZero();
         }
-        if (\Input::get('act',true)=='delete')
+        if (\Input::get('act', true)=='delete')
         {
             $this->deleteCounter();
         }
@@ -96,7 +95,7 @@ class ModuleDlstatsStatistics extends \BackendModule
         $this->Template->arrCalendarDayDownloads = $this->getCalendarDayDownloads($this->intCalendarDaysLimit);
 
         $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20']   =
-            sprintf($GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20']  , $this->intTopDownloadLimit);
+            sprintf($GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20'], $this->intTopDownloadLimit);
         $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_20_downloads'] =
             sprintf($GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_20_downloads'], $this->intLastDownloadLimit);
         $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_30_calendar_days'] =
@@ -115,7 +114,8 @@ class ModuleDlstatsStatistics extends \BackendModule
     {
         \Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstatdets")->execute();
         \Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstats")->execute();
-        return ;
+
+        return;
     }
 
     /**
@@ -123,15 +123,16 @@ class ModuleDlstatsStatistics extends \BackendModule
      */
     protected function deleteCounter()
     {
-        if ( is_null( \Input::get('dlstatsid',true) ) )
+        if (\is_null(\Input::get('dlstatsid', true)))
         {
-            return ;
+            return;
         }
         \Database::getInstance()->prepare("DELETE FROM tl_dlstatdets WHERE pid=?")
-                                ->execute(\Input::get('dlstatsid',true));
+                                ->execute(\Input::get('dlstatsid', true));
         \Database::getInstance()->prepare("DELETE FROM tl_dlstats    WHERE  id=?")
-                                ->execute(\Input::get('dlstatsid',true));
-        return ;
+                                ->execute(\Input::get('dlstatsid', true));
+
+        return;
     }
 
     /**
@@ -140,12 +141,13 @@ class ModuleDlstatsStatistics extends \BackendModule
      */
     protected function getStatusCounting()
     {
-        if ( isset($GLOBALS['TL_CONFIG']['dlstats'])
+        if (isset($GLOBALS['TL_CONFIG']['dlstats'])
          && (bool) $GLOBALS['TL_CONFIG']['dlstats'] === true
            )
         {
             return '<span class="tl_green">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_activated'].'</span>';
         }
+
         return '<span class="tl_red">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'].'</span>';
     }
 
@@ -155,7 +157,7 @@ class ModuleDlstatsStatistics extends \BackendModule
      */
     protected function getStatusDetailed()
     {
-        if ( isset($GLOBALS['TL_CONFIG']['dlstats'])
+        if (isset($GLOBALS['TL_CONFIG']['dlstats'])
          && (bool) $GLOBALS['TL_CONFIG']['dlstats'] === true
           && isset($GLOBALS['TL_CONFIG']['dlstatdets'])
          && (bool) $GLOBALS['TL_CONFIG']['dlstatdets'] === true
@@ -164,6 +166,7 @@ class ModuleDlstatsStatistics extends \BackendModule
             return '<span class="tl_green">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_activated'].'</span>';
         }
         $this->boolDetails = false;
+
         return '<span class="">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'].'</span>';
     }
 
@@ -173,12 +176,13 @@ class ModuleDlstatsStatistics extends \BackendModule
      */
     protected function getStatusAnonymization()
     {
-        if ( isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp'])
+        if (isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp'])
          && (bool) $GLOBALS['TL_CONFIG']['privacyAnonymizeIp'] === true
         )
         {
             return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_activated'];
         }
+
         return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'];
     }
 
@@ -203,9 +207,9 @@ class ModuleDlstatsStatistics extends \BackendModule
         {
             while ($objMonth->next())
             {
-                $Y = substr($objMonth->YM, 0,4);
-                $M = (int)substr($objMonth->YM, -2);
-                $arrMonth[] = array($Y.' '.$GLOBALS['TL_LANG']['MONTHS'][($M - 1)], $this->getFormattedNumber($objMonth->SUMDL,0) );
+                $Y = substr($objMonth->YM, 0, 4);
+                $M = (int) substr($objMonth->YM, -2);
+                $arrMonth[] = array($Y.' '.$GLOBALS['TL_LANG']['MONTHS'][($M - 1)], $this->getFormattedNumber($objMonth->SUMDL, 0));
             }
         }
 
@@ -234,7 +238,7 @@ class ModuleDlstatsStatistics extends \BackendModule
             while ($objYear->next())
             {
                 // Y, formatierte Zahl, unformatierte Zahl
-                $arrYear[] = array($objYear->Y, $this->getFormattedNumber($objYear->SUMDL,0),$objYear->SUMDL );
+                $arrYear[] = array($objYear->Y, $this->getFormattedNumber($objYear->SUMDL, 0), $objYear->SUMDL);
             }
         }
 
@@ -256,7 +260,7 @@ class ModuleDlstatsStatistics extends \BackendModule
         $intRows = $objTODL->numRows;
         if ($intRows>0)
         {
-            $totalDownloads = $this->getFormattedNumber($objTODL->TOTALDOWNLOADS,0);
+            $totalDownloads = $this->getFormattedNumber($objTODL->TOTALDOWNLOADS, 0);
         }
 
         return $totalDownloads;
@@ -264,7 +268,7 @@ class ModuleDlstatsStatistics extends \BackendModule
 
     /**
      * Get Startdate of detailed logging
-     * @return string    Date
+     * @return string Date
      */
     protected function getStartDate()
     {
@@ -285,8 +289,8 @@ class ModuleDlstatsStatistics extends \BackendModule
 
     /**
      * Get TOP Downloadlist
-     * @param number $limit    optional
-     * @return array    $arrTopDownloads
+     * @param  number $limit optional
+     * @return array  $arrTopDownloads
      */
     protected function getTopDownloads($limit=20)
     {
@@ -302,12 +306,7 @@ class ModuleDlstatsStatistics extends \BackendModule
             while ($objTopDownloads->next())
             {
                 $c4d = $this->check4details($objTopDownloads->id);
-                $arrTopDownloads[] = array( $objTopDownloads->filename
-                                          , $this->getFormattedNumber($objTopDownloads->downloads,0)
-                                          , \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objTopDownloads->tstamp)
-                                          , $objTopDownloads->id
-                                          , $c4d
-                                          , $objTopDownloads->downloads //no formatted number for sorting
+                $arrTopDownloads[] = array($objTopDownloads->filename, $this->getFormattedNumber($objTopDownloads->downloads, 0), \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objTopDownloads->tstamp), $objTopDownloads->id, $c4d, $objTopDownloads->downloads //no formatted number for sorting
                                           , $objTopDownloads->tstamp //for sorting
                                           );
             }
@@ -318,8 +317,8 @@ class ModuleDlstatsStatistics extends \BackendModule
 
     /**
      * Get Last Downloadslist
-     * @param numbner $limit    optional
-     * @return array    $arrLastDownloads
+     * @param  numbner $limit optional
+     * @return array   $arrLastDownloads
      */
     protected function getLastDownloads($limit=20)
     {
@@ -344,13 +343,7 @@ class ModuleDlstatsStatistics extends \BackendModule
                     $viewDate = $newDate;
                 }
                 $c4d = $this->check4details($objLastDownloads->id);
-                $arrLastDownloads[] = array( \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objLastDownloads->tstamp)
-                                           , $objLastDownloads->filename
-                                           , $this->getFormattedNumber($objLastDownloads->downloads,0)
-                                           , $viewDate
-                                           , $objLastDownloads->id
-                                           , $c4d
-                                           , $objLastDownloads->downloads // for sorting
+                $arrLastDownloads[] = array(\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objLastDownloads->tstamp), $objLastDownloads->filename, $this->getFormattedNumber($objLastDownloads->downloads, 0), $viewDate, $objLastDownloads->id, $c4d, $objLastDownloads->downloads // for sorting
                                            , $objLastDownloads->tstamp // for sorting
                                            );
                 $oldDate = $newDate;
@@ -362,7 +355,7 @@ class ModuleDlstatsStatistics extends \BackendModule
 
     /**
      * Get Number of Logged Details
-     * @param number $id    pid of file
+     * @param  number $id pid of file
      * @return number
      */
     protected function check4details($id)
@@ -371,19 +364,20 @@ class ModuleDlstatsStatistics extends \BackendModule
                                                      FROM `tl_dlstatdets`
                                                      WHERE `pid`=?")
                                           ->execute($id);
+
         return $objC4D->num;
     }
 
     /**
      * Get Calendar Day Downloads
      *
-     * @param number $limit optional
-     * @return array $arrCalendarDayDownloads
+     * @param  number $limit optional
+     * @return array  $arrCalendarDayDownloads
      */
     protected function getCalendarDayDownloads($limit=30)
     {
         $arrCalendarDayDownloads = array();
-        $CalendarDays = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d")-$limit, date("Y") ) );
+        $CalendarDays = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d")-$limit, date("Y")));
         $objCalendarDayDownloads = \Database::getInstance()
                                     ->prepare("SELECT dl.`id`
                                                     , FROM_UNIXTIME(det.`tstamp`,GET_FORMAT(DATE,'ISO')) as datum
@@ -398,16 +392,10 @@ class ModuleDlstatsStatistics extends \BackendModule
 
         while ($objCalendarDayDownloads->next())
         {
-            $viewDate = \Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], strtotime($objCalendarDayDownloads->datum) );
+            $viewDate = \Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], strtotime($objCalendarDayDownloads->datum));
             $c4d = $this->check4details($objCalendarDayDownloads->id);
             $arrCalendarDayDownloads[] = array(
-                                      $viewDate
-                                    , $objCalendarDayDownloads->filename
-                                    , $this->getFormattedNumber($objCalendarDayDownloads->downloads,0)
-                                    , $objCalendarDayDownloads->id
-                                    , $c4d
-                                    , $objCalendarDayDownloads->downloads
-                                    , strtotime($objCalendarDayDownloads->datum)
+                                      $viewDate, $objCalendarDayDownloads->filename, $this->getFormattedNumber($objCalendarDayDownloads->downloads, 0), $objCalendarDayDownloads->id, $c4d, $objCalendarDayDownloads->downloads, strtotime($objCalendarDayDownloads->datum)
                                 );
         }
 
@@ -418,26 +406,28 @@ class ModuleDlstatsStatistics extends \BackendModule
      * Hook: addStatisticPanelLine
      * Search for registered DLSTATS HOOK: addStatisticPanelLine
      *
-     * @return    string    HTML5 sourcecode | false
-     * <code>
-     * <!-- output minimum -->
-     * <div class="tl_panel">
-     *  <!-- <p>hello world</p> -->
-     * </div>
-     * </code>
+     * @return string HTML5 sourcecode | false
+     *                <code>
+     *                <!-- output minimum -->
+     *                <div class="tl_panel">
+     *                <!-- <p>hello world</p> -->
+     *                </div>
+     *                </code>
      */
     protected function addStatisticPanelLineHook()
     {
-        if (    isset($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine'])
-          && is_array($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine']))
+        if (isset($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine'])
+          && \is_array($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine']))
         {
             foreach ($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine'] as $callback)
             {
                 $this->import($callback[0]);
                 $result[] = $this->{$callback[0]}->{$callback[1]}();
             }
+
             return $result;
         }
+
         return false;
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
@@ -14,14 +14,13 @@
  * PHP version 5
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  * @filesource
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
-define('DLSTATS_VERSION', '1.0');
-define('DLSTATS_BUILD'  , '6');
+\define('DLSTATS_VERSION', '1.0');
+\define('DLSTATS_BUILD', '6');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings
@@ -49,6 +48,4 @@ $GLOBALS['BE_MOD']['system']['dlstats'] = array
 $GLOBALS['TL_HOOKS']['parseBackendTemplate'][]  = array('BugBuster\DLStats\DlstatsCheck',     'checkExtensions');
 $GLOBALS['TL_HOOKS']['postDownload'][]          = array('BugBuster\DLStats\Dlstats',          'logDownload');
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
-
-
 

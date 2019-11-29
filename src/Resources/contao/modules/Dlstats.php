@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
@@ -13,7 +13,6 @@
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @author     Peter Koch (acenes) 2007-2009
- * @package    DLStats
  * @license    LGPL
  * @filesource
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -22,6 +21,7 @@
 /**
  * Run in a custom namespace, so the class can be replaced
  */
+
 namespace BugBuster\DLStats;
 use BugBuster\DLStats\DlstatsHelper; 
 
@@ -30,7 +30,6 @@ use BugBuster\DLStats\DlstatsHelper;
  * 
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  */
 class Dlstats extends DlstatsHelper
@@ -58,13 +57,13 @@ class Dlstats extends DlstatsHelper
 
 	/**
 	 * Log the download over $GLOBALS['TL_HOOKS']['postDownload']
-	 * @param	string	$fileName	Filename, Hook Parameter
+	 * @param  string $fileName Filename, Hook Parameter
 	 * @return void
 	 */
 	public function logDownload($fileName)
 	{
 		$this->_filename = $fileName;
-		
+
 		if (isset($GLOBALS['TL_CONFIG']['dlstats']) && 
            (bool) $GLOBALS['TL_CONFIG']['dlstats'] === true)
 		{
@@ -114,14 +113,14 @@ class Dlstats extends DlstatsHelper
 	    //Host / Page ID ermitteln
 	    $pageId = $GLOBALS['objPage']->id; // ID der grad aufgerufenden Seite.
 	    $pageHost = \Environment::get('host'); // Host der grad aufgerufenden Seite.
-	    
+
 	    if (isset($GLOBALS['TL_CONFIG']['dlstatdets']) 
 	           && (bool) $GLOBALS['TL_CONFIG']['dlstatdets'] === true
 	       )
 	    {
 	        //Maximum details for year & month statistic
             $username = '';
-			
+
 			if (true === $this->isContao48())
 			{
 				$container = \System::getContainer();
@@ -148,7 +147,6 @@ class Dlstats extends DlstatsHelper
 					$username = $this->User->username;
 				}
 			}
-
 
     		\Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
             						->set(array('tstamp'    => time(), 

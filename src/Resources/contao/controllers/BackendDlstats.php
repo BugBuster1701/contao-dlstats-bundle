@@ -3,16 +3,14 @@
 /**
  * @copyright  Glen Langer 2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    Dlstats
  * @license    LGPL-3.0+
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
 namespace BugBuster\DLStats;
 
-use Symfony\Component\HttpFoundation\Response;
 use BugBuster\DLStats\ModuleDlstatsStatisticsHelper;
-
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Back end dlstats wizard.
@@ -43,7 +41,6 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 		\System::loadLanguageFile('tl_dlstatstatistics_stat');
 	}
 
-
 	/**
 	 * Run the controller and parse the template
 	 *
@@ -59,26 +56,25 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 		$objTemplate->title         = \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['systemMessages']);
 		$objTemplate->charset       = \Config::get('characterSet');
 
-		
-		if ( is_null( \Input::get('action'   ,true) ) ||
-		     is_null( \Input::get('dlstatsid',true) ) )
+		if (\is_null(\Input::get('action', true)) ||
+		     \is_null(\Input::get('dlstatsid', true)))
 		{
 		    $objTemplate->messages = '<p class="tl_error">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'].'</p>';
+
 		    return $objTemplate->getResponse();
 		}
-		
-		
-		switch (\Input::get('action',true))
+
+		switch (\Input::get('action', true))
 		{
-		    case 'TopLastDownloads' :
-		        $DetailFunction = 'getDlstatsDetails'.\Input::get('action',true);
-		        $objTemplate->messages = $this->$DetailFunction( \Input::get('action',true), \Input::get('dlstatsid',true) );
+		    case 'TopLastDownloads':
+		        $DetailFunction = 'getDlstatsDetails'.\Input::get('action', true);
+		        $objTemplate->messages = $this->$DetailFunction(\Input::get('action', true), \Input::get('dlstatsid', true));
 		        break;
 		    default:
 		        $objTemplate->messages = '<p class="tl_error">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'].'</p>';
 		        break;
 		}
-		
+
 		return $objTemplate->getResponse();
 	}
 }

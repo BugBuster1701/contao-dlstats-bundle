@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
@@ -8,7 +8,6 @@
  * PHP version 5
  * @copyright  Glen Langer 2012..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  * @filesource
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -17,6 +16,7 @@
 /**
  * Run in a custom namespace, so the class can be replaced
  */
+
 namespace BugBuster\DLStats;
 
 /**
@@ -24,7 +24,6 @@ namespace BugBuster\DLStats;
  *
  * @copyright  Glen Langer 2012..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  */
 class ModuleDlstatsStatisticsHelper extends \BackendModule
 {
@@ -33,7 +32,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
      * @var object
      */
     protected static $instance = null;
-    
+
     /**
      * Constructor
      */
@@ -43,11 +42,10 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         parent::__construct();
         \System::loadLanguageFile('default'); // for $GLOBALS['TL_LANG']['MONTHS'][..]
     }
-    
-    
+
     protected function compile()
     {
-    
+
     }
     /**
      * Return the current object instance (Singleton)
@@ -57,23 +55,24 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
     {
         if (self::$instance === null)
         {
-            self::$instance = new ModuleDlstatsStatisticsHelper();
+            self::$instance = new self();
         }
-    
+
         return self::$instance;
     }
-    
+
     protected function getDlstats($dlstatsid)
     {
         $objDlstats = \Database::getInstance()->prepare("SELECT *
                                                  FROM `tl_dlstats`
                                                  WHERE `id`=?")
                                               ->execute($dlstatsid);
+
         return array('tstamp'    => $objDlstats->tstamp,
                      'filename'  => $objDlstats->filename,
                      'downloads' => $objDlstats->downloads);
     }
-    
+
     protected function getDlstatsMonth($dlstatsid)
     {
         $arrMonth = array();
@@ -93,24 +92,24 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         {
             while ($objMonth->next())
             {
-                $Y = substr($objMonth->YM, 0,4);
-                $M = (int)substr($objMonth->YM, -2);
-                $arrMonth[] = array($Y.' '.$GLOBALS['TL_LANG']['MONTHS'][($M - 1)], $this->getFormattedNumber($objMonth->SUMDL,0) );
+                $Y = substr($objMonth->YM, 0, 4);
+                $M = (int) substr($objMonth->YM, -2);
+                $arrMonth[] = array($Y.' '.$GLOBALS['TL_LANG']['MONTHS'][($M - 1)], $this->getFormattedNumber($objMonth->SUMDL, 0));
             }
         }
 
         return $arrMonth;
     }
-    
-    protected function getDlstatsDetailsTopLastDownloads($action,$dlstatsid)
+
+    protected function getDlstatsDetailsTopLastDownloads($action, $dlstatsid)
     {
         $arrDlstats      = $this->getDlstats($dlstatsid);
         $arrDlstatsMonth = $this->getDlstatsMonth($dlstatsid);
-        
+
         $this->TemplatePartial = new \BackendTemplate('mod_dlstats_be_partial_details');
-        
+
         $this->TemplatePartial->DlstatsDetailList  = '<div class="tl_header" style="width:800px">'."\n";
-        
+
         $this->TemplatePartial->DlstatsDetailList .= '<table class="tl_header_table">
 	<tbody>
 		<tr>
@@ -131,7 +130,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
             <td>&nbsp;</td>
 		</tr>
 ';
-	foreach ($arrDlstatsMonth AS $Month)
+	foreach ($arrDlstatsMonth as $Month)
 		{
 			$this->TemplatePartial->DlstatsDetailList .= '<tr>
 			    <td>&nbsp;</td>
@@ -169,7 +168,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
             $languages = array();
             include_once TL_ROOT . '/vendor/contao/core-bundle/src/Resources/contao/config/languages.php'; 
             $languages['unknown'] = 'unknown language';
-            
+
             while ($objDetails->next())
             {
                 if ($objDetails->username == '')
@@ -183,12 +182,12 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
                 //Alias Name holen über ID
                 $page_alias = $this->getPageAliasById($objDetails->page_id);
                 // Kürzel in Name übersetzen
-              
-                if (array_key_exists($objDetails->browser_lang, $languages))
+
+                if (\array_key_exists($objDetails->browser_lang, $languages))
                 {
                     $objDetails->browser_lang = $languages[$objDetails->browser_lang];
                 }
-                
+
                 $this->TemplatePartial->DlstatsDetailList .=  '<div class="dlstatdetaillist">
 	<span class="dlstats-timestamp dlstats-left">'.\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objDetails->tstamp).'</span>
 	<span class="dlstats-ip        dlstats-left">'.$objDetails->ip.'<br>'.$objDetails->domain.'</span>
@@ -198,12 +197,12 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
 ';
             }
         }
-        
+
         $this->TemplatePartial->DlstatsDetailList .= '</div>'."\n";
-        
+
         return $this->TemplatePartial->parse();
     }
-    
+
     protected function getPageAliasById($page_id)
     {
         if ($page_id == 0) 
@@ -228,5 +227,5 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
             return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound'];
         }
     }
-    
+
 }

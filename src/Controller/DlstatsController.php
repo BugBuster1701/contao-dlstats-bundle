@@ -1,11 +1,15 @@
 <?php
 
-/**
- * @copyright  Glen Langer 2018 <http://contao.ninja>
+declare(strict_types=1);
+
+/*
+ * This file is part of a BugBuster Contao Bundle
+ *
+ * @copyright  Glen Langer 2008..2019 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    Visitors
- * @license    LGPL-3.0+
- * @see	       https://github.com/BugBuster1701/contao-visitors-bundle
+ * @package    Contao Download Statistics Bundle (Dlstats)
+ * @license    LGPL-3.0-or-later
+ * @see        https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
 namespace BugBuster\DlstatsBundle\Controller;
@@ -19,7 +23,6 @@ use Symfony\Component\Routing\Annotation\Route;
  * Handles the dlstats back end routes.
  *
  * @copyright  Glen Langer 2018 <http://contao.ninja>
- * @author     Glen Langer (BugBuster)
  *
  * @Route("/dlstats", defaults={"_scope" = "backend", "_token_check" = true})
  */
