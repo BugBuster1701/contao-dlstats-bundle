@@ -24,7 +24,6 @@
 
 namespace BugBuster\DLStats;
 use BugBuster\DLStats\DlstatsHelper; 
-use Contao\FrontendUser;
 
 /**
  * Class Dlstats
@@ -128,7 +127,7 @@ class Dlstats extends DlstatsHelper
 				$authorizationChecker = $container->get('security.authorization_checker');
 				if ($authorizationChecker->isGranted('ROLE_MEMBER'))
 				{
-					$this->import(FrontendUser::class, 'User');
+					$this->import('FrontendUser', 'User');
 					$username = $this->User->username;
 				}
 			}
