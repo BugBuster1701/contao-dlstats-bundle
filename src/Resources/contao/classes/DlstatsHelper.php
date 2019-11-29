@@ -20,6 +20,7 @@
  */
 namespace BugBuster\DLStats;
 use BugBuster\BotDetection\ModuleBotDetection;
+use Jean85\PrettyVersions;
 
 /**
  * Class DlstatsHelper
@@ -694,5 +695,42 @@ class DlstatsHelper extends \Controller
 	    }
 	    return true;	    
 	}
+
+	/**
+	 * Check if contao/cor-bundle >= 4.8.0
+	 * 
+	 * @return boolean
+	 */
+	protected function isContao48()
+	{
+	    //Thanks fritzmg for this hint
+	    // get the Contao version
+	    $version = PrettyVersions::getVersion('contao/core-bundle');
+	    // check for Contao >=4.5
+	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.8'))
+	    {
+	        return true;
+	    }
+	    return false;
+	}
+
+	/**
+	 * Check if contao/cor-bundle >= 4.5.0
+	 * 
+	 * @return boolean
+	 */
+	protected function isContao45()
+	{
+	    //Thanks fritzmg for this hint
+	    // get the Contao version
+	    $version = PrettyVersions::getVersion('contao/core-bundle');
+	    // check for Contao >=4.5
+	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.5'))
+	    {
+	        return true;
+	    }
+	    return false;
+	}
+
 }
 

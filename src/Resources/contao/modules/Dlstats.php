@@ -121,28 +121,34 @@ class Dlstats extends DlstatsHelper
 	    {
 	        //Maximum details for year & month statistic
             $username = '';
-    		$strCookie = 'FE_USER_AUTH';
+			
+			if (true === $this->isContao48())
+			{
+				$container = \System::getContainer();
+				$authorizationChecker = $container->get('security.authorization_checker');
+				if ($authorizationChecker->isGranted('ROLE_MEMBER'))
+				{
+					$this->import(FrontendUser::class, 'User');
+					$username = $this->User->username;
+				}
+			}
+			if (true === $this->isContao45())
+			{
+				if (\System::getContainer()->get('contao.security.token_checker')->hasFrontendUser())
+				{
+					$this->import('FrontendUser', 'User');
+					$username = $this->User->username;
+				}
+			}
+			else 
+			{
+				if (FE_USER_LOGGED_IN)
+				{
+					$this->import('FrontendUser', 'User');
+					$username = $this->User->username;
+				}
+			}
 
-    		$hash = sha1(session_id() . (!\Config::get('privacyAnonymizeIp') ? $this->IP : '') . $strCookie);
-    		if (\Input::cookie($strCookie) == $hash)
-    		{
-    			$qs = \Database::getInstance()->prepare("SELECT pid, tstamp, sessionID, ip 
-                                                         FROM `tl_session` WHERE `hash`=? AND `name`=?")
-                                              ->execute($hash, $strCookie);
-    			if ($qs->next() && 
-    				$qs->sessionID == session_id() && 
-    				(\Config::get('privacyAnonymizeIp') || $qs->ip == $this->IP) && 
-    				($qs->tstamp + $GLOBALS['TL_CONFIG']['sessionTimeout']) > time())
-    			{
-    				$qm = \Database::getInstance()->prepare("SELECT `username` 
-                                                             FROM `tl_member` WHERE id=?")
-                                                  ->execute($qs->pid);
-    				if ($qm->next())
-    				{
-    					$username = $qm->username;
-    				}
-    			} // if
-    		} // if
 
     		\Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
             						->set(array('tstamp'    => time(), 
