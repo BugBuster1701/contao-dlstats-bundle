@@ -7,8 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="system/themes/<?= $this->getTheme(); ?>/basic.css" media="screen">
 <link rel="stylesheet" type="text/css" href="system/themes/<?= $this->getTheme(); ?>/main.css" media="screen">
-<!--[if IE]><link rel="stylesheet" href="system/themes/default/iefixes.css"><![endif]-->
-<!--[if lt IE 9]><script src="assets/html5shiv/<?= HTML5SHIV; ?>/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" type="text/css" href="bundles/bugbusterdlstats/style.css" media="all">
 </head>
 <body id="top">
