@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
@@ -8,7 +8,6 @@
  * PHP version 5
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  * @filesource
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -17,16 +16,16 @@
 /**
  * Run in a custom namespace, so the class can be replaced
  */
+
 namespace BugBuster\DLStats;
-use Psr\Log\LogLevel;
 use Contao\CoreBundle\Monolog\ContaoContext;
+use Psr\Log\LogLevel;
 
 /**
  * Class ModuleDlstatsTag 
  *
  * @copyright  Glen Langer 2011..2018
  * @author     Glen Langer 
- * @package    DLStats
  * @license    LGPL 
  */
 class ModuleDlstatsTag extends \Frontend
@@ -49,9 +48,8 @@ class ModuleDlstatsTag extends \Frontend
 	 * {{cache_dlstats::totaldownloads::<?php echo $file['href']; ?>}}
 	 * </code>
 	 * 
-	 * @param string    $strTag Insert-Tag
-	 * @return mixed    integer on downloads, false on wrong Insert-Tag or wrong parameters
-	 * @access public
+	 * @param  string $strTag Insert-Tag
+	 * @return mixed  integer on downloads, false on wrong Insert-Tag or wrong parameters
 	 */
 	public function dlstatsReplaceInsertTags($strTag)
 	{
@@ -71,7 +69,7 @@ class ModuleDlstatsTag extends \Frontend
     			->log(LogLevel::ERROR,
     			    $GLOBALS['TL_LANG']['tl_dlstats']['no_key'],
     			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR)));
-			
+
 			return false; // da fehlt was
 		}
 		// filename with article alias?
@@ -93,6 +91,7 @@ class ModuleDlstatsTag extends \Frontend
 				return 0;
 			}
 			$objDlstats->next();
+
 			return $objDlstats->downloads;
 		}
 		// Tag is wrong 
@@ -101,7 +100,7 @@ class ModuleDlstatsTag extends \Frontend
     		->log(LogLevel::ERROR,
     		    $GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'],
     		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR)));
-		
+
 		return false; // wrong tag
 	} //function
 } // class

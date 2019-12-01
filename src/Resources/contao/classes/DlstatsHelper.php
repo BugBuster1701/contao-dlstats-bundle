@@ -9,7 +9,6 @@
  * PHP version 5
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  * @filesource
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -18,15 +17,16 @@
 /**
  * Run in a custom namespace, so the class can be replaced
  */
+
 namespace BugBuster\DLStats;
 use BugBuster\BotDetection\ModuleBotDetection;
+use Jean85\PrettyVersions;
 
 /**
  * Class DlstatsHelper
  * 
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    DLStats
  * @license    LGPL
  */
 class DlstatsHelper extends \Controller
@@ -67,12 +67,12 @@ class DlstatsHelper extends \Controller
 	 * @var boolen
 	 */
 	protected $DL_LOG = true;
-	
+
 	/**
 	 * Browser language
 	 * @var string
 	 */
-	protected $_lang  = null;
+	protected $_lang;
 
 	/**
 	 * Initialize the object
@@ -91,7 +91,6 @@ class DlstatsHelper extends \Controller
 	 * Set DL_LOG, true: logging OK (default), false not OK
 	 * 
 	 * @return void
-	 * @access protected
 	 */
 	public function setDlLog()
 	{
@@ -99,7 +98,7 @@ class DlstatsHelper extends \Controller
 		{
 			$this->DL_LOG = false;
 		}
-	
+
 	}
 
 	/**
@@ -108,7 +107,6 @@ class DlstatsHelper extends \Controller
 	 *
 	 * @param string   User IP, optional for tests
 	 * @return boolean true when bot found over IP
-	 * @access protected
 	 */
 	public function checkIP($UserIP = false)
 	{
@@ -136,6 +134,7 @@ class DlstatsHelper extends \Controller
 	    	    if ($this->checkIPv4($this->IP) === true)
 	    	    {
 	    	        $this->IP_Filter = true;
+
 	    	        return $this->IP_Filter;
 	    	    }
 	    	    break;
@@ -143,29 +142,31 @@ class DlstatsHelper extends \Controller
 	    	    if ($this->checkIPv6($this->IP) === true)
 	    	    {
 	    	        $this->IP_Filter = true;
+
 	    	        return $this->IP_Filter;
 	    	    }
 	    	    break;
 	    	default:
 	    	    $this->IP_Filter = false;
+
 	    	    return $this->IP_Filter;
 	    	    break;
 	    }
 	    $this->IP_Filter = false;
+
 	    return $this->IP_Filter;
 	}
-	
+
 	/**
 	 * BE Login Check
 	 * basiert auf Frontend.getLoginStatus
 	 *
 	 * @return boolean
-	 * @access protected
 	 */
 	public function checkBE()
 	{
 	    $strCookie = 'BE_USER_AUTH';
-	    $hash = sha1(session_id() . (!$GLOBALS['TL_CONFIG']['disableIpCheck'] ? \Environment::get('ip') : '') . $strCookie);
+	    $hash = sha1(session_id() . (!\Config::get('privacyAnonymizeIp') ? \Environment::get('ip') : '') . $strCookie);
 	    if (\Input::cookie($strCookie) == $hash)
 	    {
 	        $objSession = \Database::getInstance()
@@ -175,105 +176,106 @@ class DlstatsHelper extends \Controller
 	        if ($objSession->numRows &&
 	            $objSession->sessionID == session_id() &&
 	            //$objSession->ip == $this->Environment->ip &&
-	            ($GLOBALS['TL_CONFIG']['disableIpCheck'] || $objSession->ip == \Environment::get('ip')) &&
+	            (\Config::get('privacyAnonymizeIp') || $objSession->ip == \Environment::get('ip')) &&
 	            ($objSession->tstamp + $GLOBALS['TL_CONFIG']['sessionTimeout']) > time())
 	        {
 	            $this->BE_Filter = true;
+
 	            return $this->BE_Filter;
 	        }
 	    }
 	    $this->BE_Filter = false;
+
 	    return $this->BE_Filter;
 	}
-	
+
 	/**
 	 * Bot Check
 	 *
-	 * @return mixed    true or string if Bot found, false if not
-	 * @access protected
+	 * @return mixed true or string if Bot found, false if not
 	 */
 	public function checkBot()
 	{
 	    $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
-	    
-		if ( !in_array( 'BugBusterBotdetectionBundle', $bundles ) )
+
+		if (!\in_array('BugBusterBotdetectionBundle', $bundles))
 		{
 	        //BotdetectionBundle fehlt, trotzdem zählen, Meldung kommt bereits per Hook
 	        return false; //fake: no bots found
 	    }
-	    if ( isset($GLOBALS['TL_CONFIG']['dlstatDisableBotdetection']) &&
-            (bool) $GLOBALS['TL_CONFIG']['dlstatDisableBotdetection'] === true )
+	    if (isset($GLOBALS['TL_CONFIG']['dlstatDisableBotdetection']) &&
+            (bool) $GLOBALS['TL_CONFIG']['dlstatDisableBotdetection'] === true)
 	    {
 	        //botdetection ist disabled for dlstats
 	        return false; //fake: no bots founds
 	    }
-	    
+
 	    $ModuleBotDetection = new ModuleBotDetection();
 	    if ($ModuleBotDetection->checkBotAllTests())
 	    {
 	        $this->BOT_Filter = true;
+
 	        return true;
 	    }
-	    
+
 	    // No Bots found
 	    return false;
 	}
-	
+
 	/**
 	 * Set _lang over Environment::get('httpAcceptLanguage')
 	 * 
-	 * @return boolean     true
+	 * @return boolean true
 	 */
 	public function dlstatsSetLang()
 	{
 	    $array = \Environment::get('httpAcceptLanguage');
 
 	    $this->_lang = str_replace('-', '_', $array[0]);
-	     
-	    if(empty($this->_lang) || strlen($this->_lang) < 2)
+
+	    if(empty($this->_lang) || \strlen($this->_lang) < 2)
 	    {
 	        $this->_lang = 'unknown';
 	    }
+
 	    return true;
 	}
-	
+
 	/**
 	 * Get _lang 
 	 * 
 	 * @return string
 	 */
 	public function dlstatsGetLang() { return $this->_lang; }
-	
+
 	/**
 	 * Get IP_Version
 	 * 
 	 * @return string
 	 */
 	public function dlstatsGetIpVersion() { return $this->IP_Version; }
-	
+
 	/**
 	 * Get IP
 	 * 
 	 * @return string
 	 */
 	public function dlstatsGetIp() { return $this->IP; }
-	
-	
+
 	public function checkMultipleDownload($fileName)
 	{
 	    return $this->getBlockingStatus($this->IP, $fileName);
 	}
-	
+
 	//////////////////////// protected functions \\\\\\\\\\\\\\\\\\\\\\\\
-	
+
 	/**
 	 * IP =  IPv4 or IPv6 ?
 	 *
-	 * @param string $ip	IP Address (IPv4 or IPv6)
-	 * @return mixed		false: no valid IPv4 and no valid IPv6
-	 * 						"IPv4" : IPv4 Address
-	 * 						"IPv6" : IPv6 Address
-	 * @access protected
+	 * @param  string $ip IP Address (IPv4 or IPv6)
+	 * @return mixed  false: no valid IPv4 and no valid IPv6
+	 *                   "IPv4" : IPv4 Address
+	 *                   "IPv6" : IPv6 Address
 	 */
 	protected function checkIPVersion($UserIP = false)
 	{
@@ -281,51 +283,58 @@ class DlstatsHelper extends \Controller
 		if (ip2long($UserIP) !== false)
 		{
 			$this->IP_Version = "IPv4";
+
 			return $this->IP_Version;
 		}
-		
+
 		// Test for IPv6
 		if (substr_count($UserIP, ":") < 2)
 		{
 			$this->IP_Version = false;
+
 			return false; 
 		}
 		// ::1 or 2001::0db8
 		if (substr_count($UserIP, "::") > 1)
 		{
 			$this->IP_Version = false;
+
 			return false; // one allowed
 		}
 		$groups = explode(':', $UserIP);
-		$num_groups = count($groups);
+		$num_groups = \count($groups);
 		if (($num_groups > 8) || ($num_groups < 3))
 		{
 			$this->IP_Version = false;
+
 			return false;
 		}
 		$empty_groups = 0;
 		foreach ($groups as $group)
 		{
 			$group = trim($group);
-			if (! empty($group) && ! (is_numeric($group) && ($group == 0)))
+			if (!empty($group) && !(is_numeric($group) && ($group == 0)))
 			{
-				if (! preg_match('#([a-fA-F0-9]{0,4})#', $group))
+				if (!preg_match('#([a-fA-F0-9]{0,4})#', $group))
 				{
 					$this->IP_Version = false;
+
 					return false;
 				}
 			}
 			else
 			{
-				++ $empty_groups;
+				++$empty_groups;
 			}
 		}
 		if ($empty_groups < $num_groups)
 		{
 			$this->IP_Version = "IPv6";
+
 			return $this->IP_Version;
 		}
 		$this->IP_Version = false;
+
 		return false; // no (valid) IP Address
 	}
 
@@ -334,7 +343,6 @@ class DlstatsHelper extends \Controller
 	 * 
 	 * @param string   User IP
 	 * @return boolean true when own IP found in localconfig definitions
-	 * @access protected
 	 */
 	protected function checkIPv6($UserIP = false)
 	{
@@ -349,7 +357,7 @@ class DlstatsHelper extends \Controller
 			foreach ($GLOBALS['DLSTATS']['BOT_IPV6'] as $lineleft)
 			{
 				$network = explode("/", trim($lineleft));
-				if (! isset($network[1]))
+				if (!isset($network[1]))
 				{
 					$network[1] = 128;
 				}
@@ -359,6 +367,7 @@ class DlstatsHelper extends \Controller
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -367,7 +376,6 @@ class DlstatsHelper extends \Controller
 	 * 
 	 * @param string   User IP
 	 * @return boolean true when own IP found in localconfig definitions
-	 * @access protected
 	 */
 	protected function checkIPv4($UserIP = false)
 	{
@@ -382,7 +390,7 @@ class DlstatsHelper extends \Controller
 			foreach ($GLOBALS['DLSTATS']['BOT_IPV4'] as $lineleft)
 			{
 				$network = explode("/", trim($lineleft));
-				if (! isset($network[1]))
+				if (!isset($network[1]))
 				{
 					$network[1] = 32;
 				}
@@ -392,17 +400,17 @@ class DlstatsHelper extends \Controller
 				}
 			}
 		}
+
 		return false;
 	}
 
 	/**
 	 * Helperfunction, if IPv4 in NET_ADDR/NET_MASK
 	 *
-	 * @param string $ip		IPv4 Address
-	 * @param string $net_addr	Network, optional
-	 * @param int    $net_mask	Mask, optional
+	 * @param  string  $ip       IPv4 Address
+	 * @param  string  $net_addr Network, optional
+	 * @param  int     $net_mask Mask, optional
 	 * @return boolean
-	 * @access protected
 	 */
 	protected function dlstatsIPv4InNetwork($ip, $net_addr = 0, $net_mask = 0)
 	{
@@ -417,15 +425,15 @@ class DlstatsHelper extends \Controller
 		//php.net/ip2long : jwadhams1 at yahoo dot com
 		$ip_binary_string  = sprintf("%032b", ip2long($ip));
 		$net_binary_string = sprintf("%032b", ip2long($net_addr));
-		return (substr_compare($ip_binary_string, $net_binary_string, 0, $net_mask) === 0);
+
+		return substr_compare($ip_binary_string, $net_binary_string, 0, $net_mask) === 0;
 	}
 
 	/**
 	 * Helperfunction, Replace '::' with appropriate number of ':0'
 	 *
-	 * @param string $Ip	IP Address
-	 * @return string		IP Address expanded
-	 * @access protected
+	 * @param  string $Ip IP Address
+	 * @return string IP Address expanded
 	 */
 	protected function dlstatsIPv6ExpandNotation($Ip)
 	{
@@ -433,6 +441,7 @@ class DlstatsHelper extends \Controller
 			$Ip = str_replace('::', str_repeat(':0', 8 - substr_count($Ip, ':')) . ':', $Ip);
 		if (strpos($Ip, ':') === 0)
 			$Ip = '0' . $Ip;
+
 		return $Ip;
 	}
 
@@ -442,10 +451,9 @@ class DlstatsHelper extends \Controller
 	 * Optionally split in to two parts.
 	 *
 	 * @see http://stackoverflow.com/questions/420680/
-	 * @param string $Ip			IP Address
-	 * @param int $DatabaseParts	1 = one part, 2 = two parts (array)
-	 * @return mixed				string      / array
-	 * @access protected
+	 * @param  string $Ip            IP Address
+	 * @param  int    $DatabaseParts 1 = one part, 2 = two parts (array)
+	 * @return mixed  string      / array
 	 */
 	protected function dlstatsIPv6ToLong($Ip, $DatabaseParts = 1)
 	{
@@ -456,7 +464,7 @@ class DlstatsHelper extends \Controller
 			$Ip[0] .= str_pad(base_convert($Parts[$i], 16, 2), 16, 0, STR_PAD_LEFT);
 		for ($i = 4; $i < 8; $i++)
 			$Ip[1] .= str_pad(base_convert($Parts[$i], 16, 2), 16, 0, STR_PAD_LEFT);
-		
+
 		if ($DatabaseParts == 2)
 			return array(base_convert($Ip[0], 2, 10), base_convert($Ip[1], 2, 10));
 		else
@@ -466,11 +474,10 @@ class DlstatsHelper extends \Controller
 	/**
 	 * Helperfunction, if IPv6 in NET_ADDR/PREFIX
 	 *
-	 * @param string $UserIP        IP Address
-	 * @param string $net_addr      NET_ADDR
-	 * @param integer $net_mask     PREFIX
+	 * @param  string  $UserIP   IP Address
+	 * @param  string  $net_addr NET_ADDR
+	 * @param  integer $net_mask PREFIX
 	 * @return boolean
-	 * @access protected
 	 */
 	protected function dlstatsIPv6InNetwork($UserIP, $net_addr = 0, $net_mask = 0)
 	{
@@ -484,24 +491,21 @@ class DlstatsHelper extends \Controller
 		$Ip = array('', '');
 		for ($i = 0; $i < 8; $i++)
 			$Ip[0] .= str_pad(base_convert($Parts[$i], 16, 2), 16, 0, STR_PAD_LEFT);
-		
+
 		// NetAddr to bin
 		$net_addr = $this->dlstatsIPv6ExpandNotation($net_addr);
 		$Parts = explode(':', $net_addr);
 		for ($i = 0; $i < 8; $i++)
 			$Ip[1] .= str_pad(base_convert($Parts[$i], 16, 2), 16, 0, STR_PAD_LEFT);
-		
+
 		// compare the IPs
-		return (substr_compare($Ip[0], $Ip[1], 0, $net_mask) === 0);
+		return substr_compare($Ip[0], $Ip[1], 0, $net_mask) === 0;
 	}
-
-
 
 	/**
 	 * dlstatsAnonymizeIP - Anonymize the last byte(s) of visitors IP addresses, if enabled
 	 * 
-	 * @return mixed     string = IP Address anonymized, false for "no IP"
-	 * @access protected
+	 * @return mixed string = IP Address anonymized, false for "no IP"
 	 */
 	protected function dlstatsAnonymizeIP()
 	{
@@ -516,11 +520,11 @@ class DlstatsHelper extends \Controller
 			return ($this->IP === false) ? '0.0.0.0' : $this->IP;
 		}
 		// Anonymization is enabled, set default anonymization power
-		if ( !isset($GLOBALS['TL_CONFIG']['dlstatAnonymizeIP4']) )
+		if (!isset($GLOBALS['TL_CONFIG']['dlstatAnonymizeIP4']))
 		{
 		    $GLOBALS['TL_CONFIG']['dlstatAnonymizeIP4'] = 1;
 		}
-		if ( !isset($GLOBALS['TL_CONFIG']['dlstatAnonymizeIP6']) )
+		if (!isset($GLOBALS['TL_CONFIG']['dlstatAnonymizeIP6']))
 		{
 		    $GLOBALS['TL_CONFIG']['dlstatAnonymizeIP6'] = 2;
 		}
@@ -533,6 +537,7 @@ class DlstatsHelper extends \Controller
 				{
 				    $arrIP[2] = 0;
 				}
+
 				return implode('.', $arrIP);
 				break;
 			case "IPv6":
@@ -547,6 +552,7 @@ class DlstatsHelper extends \Controller
 				{
 				    $arrIP[4] = 0;
 				}
+
 				return implode(':', $arrIP);
 				break;
 			default:
@@ -557,8 +563,7 @@ class DlstatsHelper extends \Controller
 	/**
 	 * dlstatsAnonymizeDomain - Anonymize the Domain of visitors, if enabled
 	 *
-	 * @return string     Domain anonymized, if DNS entry exists
-	 * @access protected
+	 * @return string Domain anonymized, if DNS entry exists
 	 */
 	protected function dlstatsAnonymizeDomain()
 	{
@@ -571,6 +576,7 @@ class DlstatsHelper extends \Controller
 		{
 			// Anonymize is disabled
 			$domain = gethostbyaddr($this->IP);
+
 			return ($domain == $this->IP) ? '' : $domain;
 		}
 		// Anonymize is enabled
@@ -580,14 +586,15 @@ class DlstatsHelper extends \Controller
 		    $arrURL = explode('.', $domain);
 		    $tld  = array_pop($arrURL);
 		    $host = array_pop($arrURL);
-			return (strlen($host)) ? $host . '.' . $tld : $tld;
+
+			return (\strlen($host)) ? $host . '.' . $tld : $tld;
 		}
 		else
 		{
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Get User IP
 	 * 
@@ -598,38 +605,38 @@ class DlstatsHelper extends \Controller
         $UserIP = \Environment::get('ip');
         if (strpos($UserIP, ',') !== false) //first IP
         {
-            $UserIP = trim( substr($UserIP, 0, strpos($UserIP, ',') ) );
+            $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
         }
-        if ( true === $this->dlstatsIsPrivateIP($UserIP) &&
+        if (true === $this->dlstatsIsPrivateIP($UserIP) &&
              false === empty($_SERVER['HTTP_X_FORWARDED_FOR'])
 	       ) 
         {
         	//second try
             $HTTPXFF = $_SERVER['HTTP_X_FORWARDED_FOR'];
             $_SERVER['HTTP_X_FORWARDED_FOR'] = '';
-            
+
             $UserIP = \Environment::get('ip');
             if (strpos($UserIP, ',') !== false) //first IP
             {
-                $UserIP = trim( substr($UserIP, 0, strpos($UserIP, ',') ) );
+                $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
             }
             $_SERVER['HTTP_X_FORWARDED_FOR'] = $HTTPXFF;
         }
+
         return $UserIP;
 	}
-    
+
 	/**
 	 * Check if an IP address is from private or reserved ranges.
 	 * 
-	 * @param string $UserIP
-	 * @return boolean         true = private/reserved
+	 * @param  string  $UserIP
+	 * @return boolean true = private/reserved
 	 */
 	protected function dlstatsIsPrivateIP($UserIP = false)
 	{
 	    return !filter_var($UserIP, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
 	}
 
-	
 	protected function setBlockingIP($UserIP = false, $filename = false)
 	{
 	    if ($UserIP === false)
@@ -640,8 +647,8 @@ class DlstatsHelper extends \Controller
 	    {
 	    	$filename = 'no_filename';
 	    }
-	    $IPHash = bin2hex(sha1($UserIP,true)); // sha1 20 Zeichen, bin2hex 40 zeichen
-	   
+	    $IPHash = bin2hex(sha1($UserIP, true)); // sha1 20 Zeichen, bin2hex 40 zeichen
+
 	    // Insert
 	    $arrSet = array
 	    (
@@ -654,7 +661,7 @@ class DlstatsHelper extends \Controller
             	    ->set($arrSet)
             	    ->execute();
 	}
-	
+
 	protected function getBlockingStatus($UserIP = false, $filename = false)
 	{
 	    if ($UserIP === false)
@@ -665,7 +672,7 @@ class DlstatsHelper extends \Controller
 	    {
 	        $filename = 'no_filename';
 	    }
-	    
+
 	    //Delete All Old Blocker Entries (>10s)
 	    \Database::getInstance()
             	    ->prepare("DELETE FROM
@@ -674,8 +681,8 @@ class DlstatsHelper extends \Controller
                                     CURRENT_TIMESTAMP - INTERVAL ? SECOND > dlstats_tstamp
                                 ")
                     ->execute(10);
-	    
-	    $IPHash = bin2hex(sha1($UserIP,true)); // sha1 20 Zeichen, bin2hex 40 zeichen
+
+	    $IPHash = bin2hex(sha1($UserIP, true)); // sha1 20 Zeichen, bin2hex 40 zeichen
 	    //Test ob Blocking gesetzt ist
 	    $objBlockingIP = \Database::getInstance()
                             ->prepare("SELECT
@@ -692,7 +699,47 @@ class DlstatsHelper extends \Controller
 	    {
 	        return false;
 	    }
+
 	    return true;	    
 	}
+
+	/**
+	 * Check if contao/cor-bundle >= 4.8.0
+	 * 
+	 * @return boolean
+	 */
+	protected function isContao48()
+	{
+	    //Thanks fritzmg for this hint
+	    // get the Contao version
+	    $version = PrettyVersions::getVersion('contao/core-bundle');
+	    // check for Contao >=4.5
+	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.8'))
+	    {
+	        return true;
+	    }
+
+	    return false;
+	}
+
+	/**
+	 * Check if contao/cor-bundle >= 4.5.0
+	 * 
+	 * @return boolean
+	 */
+	protected function isContao45()
+	{
+	    //Thanks fritzmg for this hint
+	    // get the Contao version
+	    $version = PrettyVersions::getVersion('contao/core-bundle');
+	    // check for Contao >=4.5
+	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.5'))
+	    {
+	        return true;
+	    }
+
+	    return false;
+	}
+
 }
 
