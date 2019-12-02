@@ -19,8 +19,8 @@
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
-\define('DLSTATS_VERSION', '1.0');
-\define('DLSTATS_BUILD', '6');
+\define('DLSTATS_VERSION', '1.1');
+\define('DLSTATS_BUILD', '0');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings

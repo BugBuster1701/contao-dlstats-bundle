@@ -526,7 +526,7 @@ class ModuleDlstatsStatistics extends \BackendModule
             $where_file = ' AND `tl_dlstats`.`id`="'.$this->filenameid.'"';
         }
         $sql = "SELECT 
-                FROM_UNIXTIME(`tl_dlstatdets`.tstamp, GET_FORMAT(DATETIME,'ISO')) AS YM,
+                `tl_dlstatdets`.`tstamp`,
                 `filename`,
                 `username`
                 FROM `tl_dlstats`
@@ -537,7 +537,8 @@ class ModuleDlstatsStatistics extends \BackendModule
                                                    ->execute();
         while ($objAllDownloads->next())
         {
-            $AllDownloads[] = [$objAllDownloads->YM, $objAllDownloads->filename, $objAllDownloads->username];
+            $viewDate = \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objAllDownloads->tstamp);
+            $AllDownloads[] = [$viewDate, $objAllDownloads->filename, $objAllDownloads->username, $objAllDownloads->tstamp];
         }
 
         return $AllDownloads;

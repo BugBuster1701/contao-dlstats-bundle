@@ -306,7 +306,7 @@
 				<tr>
 					<td class="tl_file_list"><?= $alldownload['1'] ?></td>
 					<td class="tl_file_list"><?= $alldownload['2'] ?></td>
-					<td class="tl_file_list"><?= $alldownload['0'] ?></td>
+					<td data-sort="<?= $alldownload[3]; ?>" class="tl_file_list"><?= $alldownload['0'] ?></td>
 					<td class="tl_file_list">&nbsp;</td>
 				</tr>
 			<?php endforeach; ?>
