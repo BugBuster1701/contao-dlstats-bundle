@@ -519,7 +519,7 @@ class ModuleDlstatsStatistics extends \BackendModule
         }
         if ($this->filenameid > 0) 
         {
-            $where_file = ' AND `filename`="'.$this->filenameid.'"';
+            $where_file = ' AND `tl_dlstats`.`id`="'.$this->filenameid.'"';
         }
         $sql = "SELECT 
                 FROM_UNIXTIME(`tl_dlstatdets`.tstamp, GET_FORMAT(DATETIME,'ISO')) AS YM,
