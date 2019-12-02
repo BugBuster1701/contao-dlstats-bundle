@@ -229,6 +229,7 @@
 	</div>
 	<!-- Last 30 Calendar Days End -->
 	<?php if ($this->boolDetails) :?>
+	<div style="clear:left;"></div><hr>
 	<div class="tl_listing_container list_view">
 		<form method="post" class="info" id="dlstatsdetail_statistik" action="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=getfilterstatistik">
 		<input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN; ?>">
@@ -250,19 +251,19 @@
 		</tr>
 		<tr>
 			<td style="padding-left: 2px;" class="tl_file_list">
-					<select class="tl_select" name="filenameid">
-							<?php foreach ($this->arrFilenames as $arrFilename): ?>
-								<?php if ($arrFilename['filenameid']==$this->filenameid) : ?>
-							<option selected="selected" value="<?= $arrFilename['filenameid']; ?>"><?= $arrFilename['filename']; ?></option>
-								<?php else: ?>
-							<option value="<?= $arrFilename['filenameid']; ?>"><?= $arrFilename['filename']; ?></option>
-								<?php endif; ?>
-							<?php endforeach; ?>
-					</select>
+				<select class="tl_select" name="filenameid">
+					<?php foreach ($this->arrFilenames as $arrFilename): ?>
+						<?php if ($arrFilename['filenameid']==$this->filenameid) : ?>
+					<option selected="selected" value="<?= $arrFilename['filenameid']; ?>"><?= $arrFilename['filename']; ?></option>
+						<?php else: ?>
+					<option value="<?= $arrFilename['filenameid']; ?>"><?= $arrFilename['filename']; ?></option>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</select>
 			</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
 				<select class="tl_select" name="username">
-						<?php foreach ($this->arrUsernames as $arrUsername): ?>
+					<?php foreach ($this->arrUsernames as $arrUsername): ?>
 						<?php $value=$arrUsername; ?>
 						<?php if ($arrUsername == '---00---')     { $value=$arrUsername; $arrUsername='--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---'; } ?>
 						<?php if ($arrUsername == '---anonym---') { $value=$arrUsername; $arrUsername='>'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['without_login'].'<'; } ?>
@@ -271,15 +272,15 @@
 						<?php else: ?>
 					<option value="<?= $value; ?>"><?= $arrUsername; ?></option>
 						<?php endif; ?>
-						<?php endforeach; ?>
+					<?php endforeach; ?>
 				</select>
 			</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
 				<input class="tl_img_submit" type="image" style="top:0px;"
-				value="<?= \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>" 
-				title="<?= \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>" 
-				src="system/themes/<?= $this->theme; ?>/images/reload.gif" 
-				name="filter"></td>
+					value="<?= \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>" 
+					title="<?= \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>" 
+					src="system/themes/<?= $this->theme; ?>/images/reload.gif" 
+					name="filter"></td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">&nbsp;</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">&nbsp;</td>
 		</tr>
@@ -310,9 +311,6 @@
 		<?php endif; ?>
 	</div>
 	<?php endif; ?>
-
-
-
 <?php endif; //no_data ?>
 <div style="clear:left;"></div><hr>
 <div class="mod_dlstatstatistics_be_version">
