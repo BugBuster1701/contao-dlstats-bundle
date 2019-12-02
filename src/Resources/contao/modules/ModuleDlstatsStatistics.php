@@ -513,6 +513,10 @@ class ModuleDlstatsStatistics extends \BackendModule
         {
             return $AllDownloads;
         }
+        if ($this->username == '---anonym---') 
+        {
+            $where_user = ' AND `username`=""';
+        }
         if ($this->username != '---00---' && $this->username != '---anonym---') 
         {
             $where_user = ' AND `username`="'.$this->username.'"';
@@ -526,7 +530,7 @@ class ModuleDlstatsStatistics extends \BackendModule
                 `filename`,
                 `username`
                 FROM `tl_dlstats`
-                inner JOIN  `tl_dlstatdets` on `tl_dlstats`.`id`= `tl_dlstatdets`.`pid`
+                INNER JOIN  `tl_dlstatdets` on `tl_dlstats`.`id`= `tl_dlstatdets`.`pid`
                 WHERE 1 ".$where_user." ".$where_file." 
                 ORDER BY 1,2,3";
         $objAllDownloads = \Database::getInstance()->prepare($sql)
