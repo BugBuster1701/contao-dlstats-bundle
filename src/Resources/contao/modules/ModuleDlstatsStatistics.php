@@ -480,7 +480,7 @@ class ModuleDlstatsStatistics extends \BackendModule
     protected function getAllFilenames()
     {
         $Filenames = [];
-        $Filenames[] = ['filenameid' => 0, 'filename' => '---keine Auswahl---'];
+        $Filenames[] = ['filenameid' => 0, 'filename' => '--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---'];
         $objFilenames = \Database::getInstance()->prepare("SELECT
                                                             `id`,`filename` AS filenames
                                                            FROM `tl_dlstats`

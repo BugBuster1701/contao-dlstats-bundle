@@ -264,7 +264,7 @@
 				<select class="tl_select" name="username">
 						<?php foreach ($this->arrUsernames as $arrUsername): ?>
 						<?php $value=$arrUsername; ?>
-						<?php if ($arrUsername == '---00---')     { $value=$arrUsername; $arrUsername='---'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].'---'; } ?>
+						<?php if ($arrUsername == '---00---')     { $value=$arrUsername; $arrUsername='--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---'; } ?>
 						<?php if ($arrUsername == '---anonym---') { $value=$arrUsername; $arrUsername='>'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['without_login'].'<'; } ?>
 						<?php if ($value == $this->username) : ?>
 					<option selected="selected" value="<?= $value; ?>"><?= $arrUsername; ?></option>
@@ -282,11 +282,6 @@
 				name="filter"></td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">&nbsp;</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">&nbsp;</td>
-		</tr>
-		<tr>
-			<td colspan="5">
-				&nbsp;
-			</td>
 		</tr>
 		</tbody>
 		</table>
