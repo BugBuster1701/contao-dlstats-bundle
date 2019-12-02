@@ -42,6 +42,9 @@ class ModuleDlstatsStatistics extends \BackendModule
     protected $intLastDownloadLimit = 20;
     protected $intCalendarDaysLimit = 30;
 
+    protected $filenameid = 0;
+    protected $username   = '---';
+
     /**
      * Constructor
      */
@@ -67,6 +70,14 @@ class ModuleDlstatsStatistics extends \BackendModule
         if (\Input::get('act', true)=='delete')
         {
             $this->deleteCounter();
+        }
+        if ( (int) \Input::post('filenameid', true) > 0)
+        {
+            $this->filenameid = (int) \Input::post('filenameid', true);
+        }
+        if ( strlen(\Input::post('username', true)) > 0)
+        {
+            $this->username = \Input::post('username', true);
         }
     }
 
@@ -104,6 +115,15 @@ class ModuleDlstatsStatistics extends \BackendModule
         $this->Template->dlstats_version  = $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['modname'] . ' ' . DLSTATS_VERSION .'.'. DLSTATS_BUILD;
 
         $this->Template->dlstats_hook_panels = $this->addStatisticPanelLineHook();
+
+        if ($this->boolDetails)
+        {
+            $this->Template->arrUsernames = $this->getAllUsernames();
+            $this->Template->arrFilenames = $this->getAllFilenames();
+            $this->Template->filenameid   = $this->filenameid;
+            $this->Template->username     = $this->username;
+            $this->Template->alldownloads = $this->getAllDownloadsFiltered();
+        }
 
     }
 
@@ -429,5 +449,93 @@ class ModuleDlstatsStatistics extends \BackendModule
         }
 
         return false;
+    }
+
+    /**
+     * Get Usernames of detailed logging
+     * @return array usernames
+     */
+    protected function getAllUsernames()
+    {
+        $Usernames = ['---00---'];
+        $objUsernames = \Database::getInstance()->prepare("SELECT
+                                                           DISTINCT `username` AS usernames
+                                                           FROM `tl_dlstatdets`
+                                                           WHERE 1
+                                                           ORDER BY 1")
+                                                ->execute();
+        while ($objUsernames->next())
+        {
+            if ('' == $objUsernames->usernames) { $objUsernames->usernames = '---anonym---';}
+            $Usernames[] = $objUsernames->usernames;
+        }
+
+        return $Usernames;
+    }
+
+    /**
+     * Get Filenames of logging
+     * @return array id,filename
+     */
+    protected function getAllFilenames()
+    {
+        $Filenames = [];
+        $Filenames[] = ['filenameid' => 0, 'filename' => '---keine Auswahl---'];
+        $objFilenames = \Database::getInstance()->prepare("SELECT
+                                                            `id`,`filename` AS filenames
+                                                           FROM `tl_dlstats`
+                                                           WHERE 1
+                                                           ORDER BY 2")
+                                                ->execute();
+        while ($objFilenames->next())
+        {
+            $Filenames[] = ['filenameid' => $objFilenames->id, 'filename' => $objFilenames->filenames];
+        }
+
+        return $Filenames;
+    }
+
+    protected function getAllDownloadsFiltered()
+    {
+        /*  SELECT 
+            FROM_UNIXTIME(`tl_dlstatdets`.tstamp, '%Y-%m-%d %H:%s') AS YM,
+            filename,
+            username
+            FROM `tl_dlstats`
+            inner JOIN  `tl_dlstatdets` on `tl_dlstats`.`id`= `tl_dlstatdets`.`pid`
+            WHERE 1
+            ORDER BY 1,2,3
+        */
+        $AllDownloads = [];
+        $where_user = "";
+        $where_file = "";
+        if ($this->username == '---00---' && $this->filenameid == 0) 
+        {
+            return $AllDownloads;
+        }
+        if ($this->username != '---00---' && $this->username != '---anonym---') 
+        {
+            $where_user = ' AND `username`="'.$this->username.'"';
+        }
+        if ($this->filenameid > 0) 
+        {
+            $where_file = ' AND `filename`="'.$this->filenameid.'"';
+        }
+        $sql = "SELECT 
+                FROM_UNIXTIME(`tl_dlstatdets`.tstamp, GET_FORMAT(DATETIME,'ISO')) AS YM,
+                `filename`,
+                `username`
+                FROM `tl_dlstats`
+                inner JOIN  `tl_dlstatdets` on `tl_dlstats`.`id`= `tl_dlstatdets`.`pid`
+                WHERE 1 ".$where_user." ".$where_file." 
+                ORDER BY 1,2,3";
+        $objAllDownloads = \Database::getInstance()->prepare($sql)
+                                                   ->execute();
+        while ($objAllDownloads->next())
+        {
+            $AllDownloads[] = [$objAllDownloads->YM, $objAllDownloads->filename, $objAllDownloads->username];
+        }
+
+        return $AllDownloads;
     }
 }
