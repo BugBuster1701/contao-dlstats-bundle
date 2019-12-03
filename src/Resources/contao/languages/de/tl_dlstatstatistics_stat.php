@@ -8,12 +8,13 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2017-06-05T23:49:02+02:00
+ * last-updated: 2019-12-02T01:28:08+01:00
  */
 
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound']         = 'Alias nicht gefunden';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['browserlang']           = 'Browser Sprache';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['clientside']            = 'Client-Seite';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['detail_filter']         = 'Detailstatistik mit Filter';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads']             = 'Downloads';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20']       = 'Downloads TOP %s';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['filename']              = 'Dateiname';
