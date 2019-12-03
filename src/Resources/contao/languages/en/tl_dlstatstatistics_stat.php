@@ -15,6 +15,7 @@
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound']        = 'Alias not found';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['browserlang']          = 'Browser language';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['clientside']           = 'Client side';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['detail_filter']        = 'Detailed statistics with filter';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads']            = 'Downloads';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20']      = 'Downloads TOP %s';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['filename']             = 'Filename';

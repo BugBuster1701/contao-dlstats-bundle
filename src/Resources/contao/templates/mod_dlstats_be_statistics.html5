@@ -236,7 +236,7 @@
 		<table class="tl_listing">
 			<tbody>
 				<tr>
-					<td class="tl_folder_tlist" style="padding-left: 2px; text-align: center;">Detailstatistik Filter</td>
+					<td class="tl_folder_tlist" style="padding-left: 2px; text-align: center;"><?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['detail_filter']; ?></td>
 				</tr>
 			</tbody>
 		</table>
