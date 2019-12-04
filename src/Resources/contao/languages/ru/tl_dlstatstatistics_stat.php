@@ -4,16 +4,17 @@
  * or to help to maintain an existing one, please register at transifex.com.
  *
  * @link http://help.transifex.com/intro/translating.html
- * @link https://www.transifex.com/projects/p/contao-dlstats/language/ru/
+ * @link https://www.transifex.com/projects/p/contao-dlstats-bundle/language/ru/
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2015-07-31T00:51:43+02:00
+ * last-updated: 2017-06-05T23:49:02+02:00
  */
 
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound']         = 'Алиас не найден';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['browserlang']           = 'Язык браузера';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['clientside']            = 'На стороне клиента';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['detail_filter']         = 'Подробная статистика с фильтром';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads']             = 'Загрузок';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads_top20']       = 'ТОП %s загрузок';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['filename']              = 'Имя файла';
@@ -26,6 +27,7 @@ $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_download']         = 'По
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['modname']               = 'Модуль статистики загрузок';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['name']                  = 'Статистика загрузок';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_data']               = 'Нет статистики данных.';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection']          = 'нет выбора.';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period']                = 'Период';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset']                 = 'Сброс';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['serverside']            = 'На стороне сервера';
@@ -40,6 +42,7 @@ $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl']              = 'За
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl_month']        = 'Количество загрузок за последние 4 месяца';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['tstamp']                = 'Дата / время';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['username']              = 'Пользователь / Язык';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['without_login']         = 'без логина';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter']       = 'Поврежден или неправильный параметр';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']                  = 'Статистика загрузок будет обнулена.';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm']          = 'Вы хотите сбросить статистику загрузок?';
