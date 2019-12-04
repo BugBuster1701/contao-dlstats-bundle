@@ -71,11 +71,11 @@ class ModuleDlstatsStatistics extends \BackendModule
         {
             $this->deleteCounter();
         }
-        if ( (int) \Input::post('filenameid', true) > 0)
+        if ((int) \Input::post('filenameid', true) > 0)
         {
             $this->filenameid = (int) \Input::post('filenameid', true);
         }
-        if ( strlen(\Input::post('username', true)) > 0)
+        if (\strlen(\Input::post('username', true)) > 0)
         {
             $this->username = \Input::post('username', true);
         }
@@ -457,7 +457,7 @@ class ModuleDlstatsStatistics extends \BackendModule
      */
     protected function getAllUsernames()
     {
-        $Usernames = ['---00---'];
+        $Usernames = array('---00---');
         $objUsernames = \Database::getInstance()->prepare("SELECT
                                                            DISTINCT `username` AS usernames
                                                            FROM `tl_dlstatdets`
@@ -479,8 +479,8 @@ class ModuleDlstatsStatistics extends \BackendModule
      */
     protected function getAllFilenames()
     {
-        $Filenames = [];
-        $Filenames[] = ['filenameid' => 0, 'filename' => '--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---'];
+        $Filenames = array();
+        $Filenames[] = array('filenameid' => 0, 'filename' => '--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---');
         $objFilenames = \Database::getInstance()->prepare("SELECT
                                                             `id`,`filename` AS filenames
                                                            FROM `tl_dlstats`
@@ -489,7 +489,7 @@ class ModuleDlstatsStatistics extends \BackendModule
                                                 ->execute();
         while ($objFilenames->next())
         {
-            $Filenames[] = ['filenameid' => $objFilenames->id, 'filename' => $objFilenames->filenames];
+            $Filenames[] = array('filenameid' => $objFilenames->id, 'filename' => $objFilenames->filenames);
         }
 
         return $Filenames;
@@ -506,7 +506,7 @@ class ModuleDlstatsStatistics extends \BackendModule
             WHERE 1
             ORDER BY 1,2,3
         */
-        $AllDownloads = [];
+        $AllDownloads = array();
         $where_user = "";
         $where_file = "";
         if ($this->username == '---00---' && $this->filenameid == 0) 
@@ -538,7 +538,7 @@ class ModuleDlstatsStatistics extends \BackendModule
         while ($objAllDownloads->next())
         {
             $viewDate = \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objAllDownloads->tstamp);
-            $AllDownloads[] = [$viewDate, $objAllDownloads->filename, $objAllDownloads->username, $objAllDownloads->tstamp];
+            $AllDownloads[] = array($viewDate, $objAllDownloads->filename, $objAllDownloads->username, $objAllDownloads->tstamp);
         }
 
         return $AllDownloads;
