@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace BugBuster\DlstatsBundle\Controller;
 
 use BugBuster\DLStats\BackendDlstats;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("/dlstats", defaults={"_scope" = "backend", "_token_check" = true})
  */
-class DlstatsController extends Controller
+class DlstatsController extends AbstractController
 {
     /**
      * Renders the alerts content.
