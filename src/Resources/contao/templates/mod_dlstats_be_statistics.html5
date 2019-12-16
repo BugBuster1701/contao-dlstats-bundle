@@ -232,6 +232,7 @@
 	<div style="clear:left;"></div>
 	<?php if ($this->dlstats_hook_section4): ?>
 	<?php foreach ($this->dlstats_hook_section4 as $section4 ): ?>
+	<hr>
 		<?php echo $section4 ; ?>
     <?php endforeach; ?>
 	<?php endif; ?>
