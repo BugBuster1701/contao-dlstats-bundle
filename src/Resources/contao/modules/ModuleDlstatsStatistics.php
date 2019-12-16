@@ -24,7 +24,7 @@ namespace BugBuster\DLStats;
  * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
-class ModuleDlstatsStatistics extends \BackendModule
+class ModuleDlstatsStatistics extends \Contao\BackendModule
 {
     /**
      * Template
@@ -114,7 +114,9 @@ class ModuleDlstatsStatistics extends \BackendModule
 
         $this->Template->dlstats_version  = $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['modname'] . ' ' . DLSTATS_VERSION .'.'. DLSTATS_BUILD;
 
-        $this->Template->dlstats_hook_panels = $this->addStatisticPanelLineHook();
+        $this->Template->dlstats_hook_panels   = $this->addStatisticPanelLineHook();
+
+        $this->Template->dlstats_hook_section4 = $this->addSectionAfterSection4Hook();
 
         if ($this->boolDetails)
         {
@@ -440,6 +442,35 @@ class ModuleDlstatsStatistics extends \BackendModule
           && \is_array($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine']))
         {
             foreach ($GLOBALS['TL_DLSTATS_HOOKS']['addStatisticPanelLine'] as $callback)
+            {
+                $this->import($callback[0]);
+                $result[] = $this->{$callback[0]}->{$callback[1]}();
+            }
+
+            return $result;
+        }
+
+        return false;
+    }
+
+    /**
+     * Hook: addSectionAfterSection4Hook
+     * Search for registered DLSTATS HOOK: addSectionAfterSection4
+     *
+     * @return string HTML5 sourcecode | false
+     *                <code>
+     *                <!-- output minimum -->
+     *                <div class="tl_listing_container list_view">
+     *                <p>hello world</p>
+     *                </div>
+     *                </code>
+     */
+    protected function addSectionAfterSection4Hook()
+    {
+        if (isset($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection4'])
+          && \is_array($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection4']))
+        {
+            foreach ($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection4'] as $callback)
             {
                 $this->import($callback[0]);
                 $result[] = $this->{$callback[0]}->{$callback[1]}();
