@@ -19,7 +19,7 @@
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
-\define('DLSTATS_VERSION', '1.1');
+\define('DLSTATS_VERSION', '1.2');
 \define('DLSTATS_BUILD', '0');
 
 /**
@@ -45,7 +45,6 @@ $GLOBALS['BE_MOD']['system']['dlstats'] = array
  * HOOKS
  * -------------------------------------------------------------------------
  */
-$GLOBALS['TL_HOOKS']['parseBackendTemplate'][]  = array('BugBuster\DLStats\DlstatsCheck',     'checkExtensions');
 $GLOBALS['TL_HOOKS']['postDownload'][]          = array('BugBuster\DLStats\Dlstats',          'logDownload');
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
 
