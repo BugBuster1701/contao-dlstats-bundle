@@ -118,6 +118,8 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
 
         $this->Template->dlstats_hook_section4 = $this->addSectionAfterSection4Hook();
 
+        $this->Template->dlstats_hook_section5 = $this->addSectionAfterSection5Hook();
+
         if ($this->boolDetails)
         {
             $this->Template->arrUsernames = $this->getAllUsernames();
@@ -471,6 +473,35 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
           && \is_array($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection4']))
         {
             foreach ($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection4'] as $callback)
+            {
+                $this->import($callback[0]);
+                $result[] = $this->{$callback[0]}->{$callback[1]}();
+            }
+
+            return $result;
+        }
+
+        return false;
+    }
+
+    /**
+     * Hook: addSectionAfterSection5Hook
+     * Search for registered DLSTATS HOOK: addSectionAfterSection5
+     *
+     * @return string HTML5 sourcecode | false
+     *                <code>
+     *                <!-- output minimum -->
+     *                <div class="tl_listing_container list_view">
+     *                <p>hello world</p>
+     *                </div>
+     *                </code>
+     */
+    protected function addSectionAfterSection5Hook()
+    {
+        if (isset($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection5'])
+          && \is_array($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection5']))
+        {
+            foreach ($GLOBALS['TL_DLSTATS_HOOKS']['addSectionAfterSection5'] as $callback)
             {
                 $this->import($callback[0]);
                 $result[] = $this->{$callback[0]}->{$callback[1]}();

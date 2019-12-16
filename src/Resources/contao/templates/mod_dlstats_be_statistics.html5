@@ -321,6 +321,13 @@
 	</div>
 	<?php endif; ?>
 	<!-- Section 5 End -->
+	<div style="clear:left;"></div>
+	<?php if ($this->dlstats_hook_section5): ?>
+	<?php foreach ($this->dlstats_hook_section5 as $section5 ): ?>
+	<hr>
+		<?php echo $section5 ; ?>
+    <?php endforeach; ?>
+	<?php endif; ?>
 <?php endif; //no_data ?>
 <div style="clear:left;"></div><hr>
 <div class="mod_dlstatstatistics_be_version">
