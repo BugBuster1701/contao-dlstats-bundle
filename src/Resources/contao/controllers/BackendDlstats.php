@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright  Glen Langer 2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2018..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL-3.0+
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -10,6 +10,7 @@
 namespace BugBuster\DLStats;
 
 use BugBuster\DLStats\ModuleDlstatsStatisticsHelper;
+use Contao\CoreBundle\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -34,7 +35,11 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 		$this->import('BackendUser', 'User');
 		parent::__construct();
 
-		$this->User->authenticate();
+		//$this->User->authenticate(); //deprecated
+		if (false === \System::getContainer()->get('contao.security.token_checker')->hasBackendUser()) 
+		{
+			throw new AccessDeniedException('Access denied');
+		}
 
 		\System::loadLanguageFile('default');
 		\System::loadLanguageFile('modules');
@@ -49,12 +54,12 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 	public function run()
 	{
 		/** @var BackendTemplate|object $objTemplate */
-		$objTemplate = new \BackendTemplate('mod_dlstats_be_stat_details');
-		$objTemplate->theme         = \Backend::getTheme();
-		$objTemplate->base          = \Environment::get('base');
-		$objTemplate->language      = $GLOBALS['TL_LANGUAGE'];
-		$objTemplate->title         = \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['systemMessages']);
-		$objTemplate->charset       = \Config::get('characterSet');
+		$objTemplate            = new \BackendTemplate('mod_dlstats_be_stat_details');
+		$objTemplate->theme     = \Backend::getTheme();
+		$objTemplate->base      = \Environment::get('base');
+		$objTemplate->language  = $GLOBALS['TL_LANGUAGE'];
+		$objTemplate->title     = \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['systemMessages']);
+		$objTemplate->charset   = \Config::get('characterSet');
 
 		if (\is_null(\Input::get('action', true)) ||
 		     \is_null(\Input::get('dlstatsid', true)))

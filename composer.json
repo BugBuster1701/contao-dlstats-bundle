@@ -1,7 +1,7 @@
 {
 	"name":"bugbuster/contao-dlstats-bundle",
 	"description":"Contao 4 dlstats Bundle",
-	"keywords":["contao","dlstats","bundle"],
+	"keywords":["contao","dlstats","bundle","statistics"],
 	"type":"contao-bundle",
 	"homepage":"http://contao.ninja",
 	"license":"LGPL-3.0-or-later",
@@ -21,7 +21,7 @@
 	},
 	"require":{
 		"php": "^7.1",
-		"contao/core-bundle": "~4.4",
+		"contao/core-bundle": "~4.5",
 		"bugbuster/contao-botdetection-bundle":">=0.2.1,<2",
 		"composer/semver": "^1.0",
 		"jean85/pretty-package-versions": "^1.0"

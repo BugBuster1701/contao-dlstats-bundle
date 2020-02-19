@@ -12,7 +12,7 @@
  * Module configuration file.
  * 
  * PHP version 5
- * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  * @filesource
@@ -20,7 +20,7 @@
  */
 
 \define('DLSTATS_VERSION', '1.2');
-\define('DLSTATS_BUILD', '1');
+\define('DLSTATS_BUILD', '2');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings
