@@ -185,7 +185,7 @@
 	</div>
 	<!-- Last Downlods Top 20 End   -->
 	<div style="clear:left;"></div><hr>
-
+	<!-- Section 4 Start -->
 	<!-- Last 30 Calendar Days Begin -->
 	<div class="tl_content tl_listing_container list_view dlstats_toggler">
 		<div class="limit_height h110 block">
@@ -228,8 +228,17 @@
 		</div>
 	</div>
 	<!-- Last 30 Calendar Days End -->
+	<!-- Section 4 End -->
+	<div style="clear:left;"></div>
+	<?php if ($this->dlstats_hook_section4): ?>
+	<?php foreach ($this->dlstats_hook_section4 as $section4 ): ?>
+	<hr>
+		<?php echo $section4 ; ?>
+    <?php endforeach; ?>
+	<?php endif; ?>
+	<!-- Section 5 Start -->
 	<?php if ($this->boolDetails) :?>
-	<div style="clear:left;"></div><hr>
+	<hr>
 	<div class="tl_listing_container list_view">
 		<form method="post" class="info" id="dlstatsdetail_statistik" action="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=getfilterstatistik">
 		<input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN; ?>">
@@ -310,6 +319,14 @@
 		</table>
 		<?php endif; ?>
 	</div>
+	<?php endif; ?>
+	<!-- Section 5 End -->
+	<div style="clear:left;"></div>
+	<?php if ($this->dlstats_hook_section5): ?>
+	<?php foreach ($this->dlstats_hook_section5 as $section5 ): ?>
+	<hr>
+		<?php echo $section5 ; ?>
+    <?php endforeach; ?>
 	<?php endif; ?>
 <?php endif; //no_data ?>
 <div style="clear:left;"></div><hr>
