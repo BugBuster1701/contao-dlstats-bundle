@@ -49,4 +49,4 @@ $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']                 = 'The s
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm']         = 'Do you really want to reset the statistic counters?';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']  = 'Do you really want to delete this counter?';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']          = 'Delete this counter.';
-
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']    = 'Reset the statistics is not allowed for this counter.';

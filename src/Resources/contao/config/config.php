@@ -19,8 +19,8 @@
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
-\define('DLSTATS_VERSION', '1.2');
-\define('DLSTATS_BUILD', '2');
+\define('DLSTATS_VERSION', '1.3');
+\define('DLSTATS_BUILD', '0');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings
@@ -48,3 +48,11 @@ $GLOBALS['BE_MOD']['system']['dlstats'] = array
 $GLOBALS['TL_HOOKS']['postDownload'][]          = array('BugBuster\DLStats\Dlstats',          'logDownload');
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
 
+
+/**
+ * CSS
+ */
+if (\defined('TL_MODE') && TL_MODE == 'BE')
+{
+    $GLOBALS['TL_CSS'][] = 'bundles/bugbusterdlstats/dlstatssystem_be.css';
+}

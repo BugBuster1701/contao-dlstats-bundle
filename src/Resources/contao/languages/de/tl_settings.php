@@ -33,3 +33,9 @@ $GLOBALS['TL_LANG']['tl_settings']['dlstats']['anonip6']['3']        = 'Blöcke:
 $GLOBALS['TL_LANG']['tl_settings']['dlstats']['anonip6']['4']        = 'Blöcke: 4';
 $GLOBALS['TL_LANG']['tl_settings']['dlstats_legend']                 = 'Downloadstatistik';
 
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected']['0']  = 'Aktivierung des Schutzes vor Rücksetzung der Statistik';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected']['1']  = 'Die Rücksetzung der Downloadstatistik nur den folgenden Benutzergruppen im Backend erlauben.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins']['0']     = 'Administratoren';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins']['1']     = 'Administratoren haben uneingeschränkten Zugriff auf alle Downloadstatistiken.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups']['0']     = 'Erlaubte Benutzergruppen';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups']['1']     = 'Hier können Sie festlegen, welche Benutzergruppen die Downloadstatistik im Backend auf 0 setzen dürfen.';
