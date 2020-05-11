@@ -57,6 +57,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
      */
     public function __construct()
     {
+        $this->import('BackendUser', 'User');
         parent::__construct();
 
         if (isset($GLOBALS['TL_CONFIG']['dlstatTopDownloads'])
