@@ -168,6 +168,10 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
      */
     protected function deleteCounter()
     {
+        if (false === $this->boolAllowReset)
+	    {
+	        return ;
+	    }
         if (\is_null(\Input::get('dlstatsid', true)))
         {
             return;
