@@ -8,7 +8,7 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2019-12-02T01:28:08+01:00
+ * last-updated: 2019-12-05T00:13:55+01:00
  */
 
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound']         = 'Alias nicht gefunden';
@@ -30,6 +30,7 @@ $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_data']               = 'Kein
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection']          = 'keine Auswahl';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period']                = 'Zeitraum';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset']                 = 'Rücksetzung';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']     = 'Das Zurücksetzen der Statistik ist für diesen Zähler nicht erlaubt.';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['serverside']            = 'Server-Seite';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']            = 'Details des Datensatzes anzeigen';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['startdate']             = 'Detailerfassung seit';

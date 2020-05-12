@@ -8,7 +8,7 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2017-06-05T23:49:02+02:00
+ * last-updated: 2019-12-05T00:13:55+01:00
  */
 
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound']         = 'Алиас не найден';
@@ -30,6 +30,7 @@ $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_data']               = 'Не
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection']          = 'нет выбора.';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period']                = 'Период';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset']                 = 'Сброс';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']     = 'Сброс статистики для этого счетчика не допускается.';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['serverside']            = 'На стороне сервера';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']            = 'Показать подробные сведения о записи';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['startdate']             = 'Подробное журналирование с';

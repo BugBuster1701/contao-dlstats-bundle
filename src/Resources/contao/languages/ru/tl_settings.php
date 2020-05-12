@@ -4,13 +4,12 @@
  * or to help to maintain an existing one, please register at transifex.com.
  *
  * @link http://help.transifex.com/intro/translating.html
- * @link https://www.transifex.com/projects/p/contao-dlstats/language/ru/
+ * @link https://www.transifex.com/projects/p/contao-dlstats-bundle/language/ru/
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2015-07-01T22:43:29+02:00
+ * last-updated: 2017-06-05T23:49:02+02:00
  */
-
 
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['0']        = 'Уровень анонимности для IPv4';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'Вы можете изменить уровень анонимности для IPv4. Функция \'Анонимизировать IP-адреса\' в панели настроек Contao должна быть включена.';
@@ -20,6 +19,12 @@ $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['0'] = 'Откл
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['1'] = 'Отключить фильтрацию обнаружения ботов модулем Bot Detection';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatLastDownloads']['0']       = 'Количество элементов в последних загрузках';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatLastDownloads']['1']       = 'Количество элементов в последних загрузках';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins']['0']     = 'Администраторы';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins']['1']     = 'Администраторы имеют неограниченный доступ к статистике загрузки.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups']['0']     = 'Разрешенные группы пользователей';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups']['1']     = 'Вы можете выбрать, какие группы будут разрешены для сброса статистики загрузки.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected']['0']  = 'Активация защиты от сброса статистики';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected']['1']  = 'Разрешить сброс статистики загрузки только для определенных групп пользователей.';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatTopDownloads']['0']        = 'Количество элементов в ТОП загрузок';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatTopDownloads']['1']        = 'Количество элементов в ТОП загрузок';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatdets']['0']                = 'Включить детализированную статистику загрузок';

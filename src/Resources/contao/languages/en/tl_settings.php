@@ -33,3 +33,9 @@ $GLOBALS['TL_LANG']['tl_settings']['dlstats']['anonip6']['3']        = 'Groups: 
 $GLOBALS['TL_LANG']['tl_settings']['dlstats']['anonip6']['4']        = 'Groups: 4';
 $GLOBALS['TL_LANG']['tl_settings']['dlstats_legend']                 = 'Download statistics';
 
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected']['0']  = 'Activation of the protection against the statistic reset';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected']['1']  = 'Allow resetting the download statistic only certain user groups only.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins']['0']     = 'Administrators';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins']['1']     = 'Administrators have unlimited access to the download statistic.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups']['0']     = 'Allowed user groups';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups']['1']     = 'Here you can choose which groups will be allowed to resetting the download statistic.';

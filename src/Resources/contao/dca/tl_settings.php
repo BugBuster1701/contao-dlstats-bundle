@@ -11,7 +11,7 @@
  * Extends module tl_settings.
  * 
  * PHP version 5
- * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2011..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  * @filesource
@@ -23,7 +23,12 @@
  */
 $GLOBALS['TL_DCA']['tl_settings']['palettes']['__selector__'][]	= 'dlstats'; 
 $GLOBALS['TL_DCA']['tl_settings']['palettes']['default']	   .= ';{dlstats_legend},dlstats'; 
-$GLOBALS['TL_DCA']['tl_settings']['subpalettes']['dlstats']		= 'dlstatdets,dlstatDisableBotdetection,dlstatAnonymizeIP4,dlstatAnonymizeIP6,dlstatTopDownloads,dlstatLastDownloads'; 
+$GLOBALS['TL_DCA']['tl_settings']['subpalettes']['dlstats']		= 'dlstatdets,dlstatDisableBotdetection
+                                                                    ,dlstatAnonymizeIP4,dlstatAnonymizeIP6
+                                                                    ,dlstatTopDownloads,dlstatLastDownloads
+                                                                    ,dlstatStatresetProtected
+                                                                    ,dlstatStatresetGroups,dlstatStatresetAdmins
+                                                                    '; 
 
 /**
  * Add field
@@ -83,4 +88,30 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatLastDownloads'] = array
         'inputType'	=> 'text',
         'default'	=> '20',
         'eval'		=> array('mandatory'=>true, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'w50')
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetProtected'] = array
+(
+	'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected'],
+	'inputType'	=> 'checkbox',
+	'eval'		=> array('submitOnChange'=>true, 'tl_class'=>'clr')
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetGroups'] = array
+(
+        'label'		 => &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups'],
+        'inputType'	 => 'checkbox',
+        'foreignKey' => 'tl_user_group.name',
+        'eval'       => array('multiple'=>true, 'tl_class'=>'dlstats_left20')
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetAdmins'] = array
+(
+        'label'		 => &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins'],
+        'inputType'	 => 'checkbox',
+        'eval'       => array('disabled'=>true, 'tl_class'=>'dlstats_left20'),
+        'load_callback' => array
+        (
+            function ($data) { return '1'; }
+        )
 );
