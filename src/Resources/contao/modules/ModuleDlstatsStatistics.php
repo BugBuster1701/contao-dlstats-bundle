@@ -46,11 +46,10 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected $username   = '---';
 
     /**
-	 * is user allowed to reset the statistic
-	 * @var bool
-	 */
+     * is user allowed to reset the statistic
+     * @var bool
+     */
     protected $boolAllowReset = true;
-    
 
     /**
      * Constructor
@@ -155,7 +154,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     {
         if (false === $this->boolAllowReset)
 	    {
-	        return ;
+	        return;
 	    }
         \Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstatdets")->execute();
         \Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstats")->execute();
@@ -170,7 +169,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     {
         if (false === $this->boolAllowReset)
 	    {
-	        return ;
+	        return;
 	    }
         if (\is_null(\Input::get('dlstatsid', true)))
         {
@@ -631,31 +630,31 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         return $AllDownloads;
     }
 
-    /**
+	/**
 	 * Check if User member of group in downlaod statistik groups for reset
 	 *
 	 * @param   string  serialized array
-	 * @return  bool    true / false
+	 * @return bool true / false
 	 */
 	protected function isUserInDownloadStatGroups($dlstats_reset_groups)
 	{
-	    if ( true === $this->User->isAdmin )
+	    if (true === $this->User->isAdmin)
 	    {
 	        //Debug log_message('Ich bin Admin', 'dlstats_debug.log');
 	        return true; // Admin darf immer
 	    }
-	    
+
 	    //Schutz aktiviert, Einschränkungen vorhanden?
-	    if (0 == strlen($dlstats_reset_groups))
+	    if (0 == \strlen($dlstats_reset_groups))
 	    {
 	        //Debug log_message('dlstats_stat_groups ist leer', 'dlstats_debug.log');
 	        return false; // nicht gefiltert, also darf keiner außer Admin
 	    }
-	     
+
 	    //mit isMemberOf ermitteln, ob user Member einer der erlaubten Gruppen ist
 	    foreach (\Contao\StringUtil::deserialize($dlstats_reset_groups) as $id => $groupid)
 	    {
-	        if ( true === $this->User->isMemberOf($groupid) )
+	        if (true === $this->User->isMemberOf($groupid))
 	        {
 	            //Debug log_message('Ich bin in der richtigen Gruppe', 'dlstats_debug.log');
 	            return true; // User is Member of allowed groups

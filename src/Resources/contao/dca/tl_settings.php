@@ -112,6 +112,6 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetAdmins'] = array
         'eval'       => array('disabled'=>true, 'tl_class'=>'dlstats_left20'),
         'load_callback' => array
         (
-            function($data) { return '1'; }
+            function ($data) { return '1'; }
         )
 );
