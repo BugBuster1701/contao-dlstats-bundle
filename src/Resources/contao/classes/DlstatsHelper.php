@@ -167,45 +167,20 @@ class DlstatsHelper extends \Controller
 	 */
 	public function checkBE()
 	{
-		if (true === $this->isContao45())
+		if (false === self::$_BackendUser)
 		{
-			if (false === self::$_BackendUser)
+			$objTokenChecker = \System::getContainer()->get('contao.security.token_checker');
+			if ($objTokenChecker->hasBackendUser())
 			{
-				$objTokenChecker = \System::getContainer()->get('contao.security.token_checker');
-				if ($objTokenChecker->hasBackendUser())
-				{
-					self::$_BackendUser = true;
-					$this->BE_Filter = true;
-					return true;
-				}
-				return false;
+				self::$_BackendUser = true;
+				$this->BE_Filter = true;
+				return true;
 			}
-			$this->BE_Filter = true;
-			return true;
+			return false;
 		}
+		$this->BE_Filter = true;
+		return true;
 
-	    $strCookie = 'BE_USER_AUTH';
-	    $hash = sha1(session_id() . (!\Config::get('privacyAnonymizeIp') ? \Environment::get('ip') : '') . $strCookie);
-	    if (\Input::cookie($strCookie) == $hash)
-	    {
-	        $objSession = \Database::getInstance()
-                	        ->prepare("SELECT * FROM tl_session WHERE hash=? AND name=?")
-                	        ->limit(1)
-                	        ->execute($hash, $strCookie);
-	        if ($objSession->numRows &&
-	            $objSession->sessionID == session_id() &&
-	            //$objSession->ip == $this->Environment->ip &&
-	            (\Config::get('privacyAnonymizeIp') || $objSession->ip == \Environment::get('ip')) &&
-	            ($objSession->tstamp + $GLOBALS['TL_CONFIG']['sessionTimeout']) > time())
-	        {
-	            $this->BE_Filter = true;
-
-	            return $this->BE_Filter;
-	        }
-	    }
-	    $this->BE_Filter = false;
-
-	    return $this->BE_Filter;
 	}
 
 	/**
