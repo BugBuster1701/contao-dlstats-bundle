@@ -14,7 +14,6 @@
 	],
 	"support":{
 		"issues":"https://github.com/BugBuster1701/contao-dlstats-bundle/issues",
-		"irc":"irc://irc.freenode.org/contao.dev",
 		"source":"https://github.com/BugBuster1701/contao-dlstats-bundle",
 		"wiki":"http://de.contaowiki.org/Dlstats",
 		"forum":"https://community.contao.org/de/forumdisplay.php?119"
@@ -50,8 +49,8 @@
   	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.2.x-dev",
-			"dev-develop": "1.3.x-dev"
+			"dev-master": "1.3.x-dev",
+			"dev-develop": "1.4.x-dev"
 		},
 		"contao": {
 			"transifex": {
