@@ -56,7 +56,6 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
      */
     public function __construct()
     {
-        $this->import('BackendUser', 'User');
         parent::__construct();
 
         if (isset($GLOBALS['TL_CONFIG']['dlstatTopDownloads'])
@@ -638,7 +637,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
 	 */
 	protected function isUserInDownloadStatGroups($dlstats_reset_groups)
 	{
-	    if (true === $this->User->isAdmin)
+	    if (\Contao\BackendUser::getInstance()->isAdmin)
 	    {
 	        //Debug log_message('Ich bin Admin', 'dlstats_debug.log');
 	        return true; // Admin darf immer
@@ -654,7 +653,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
 	    //mit isMemberOf ermitteln, ob user Member einer der erlaubten Gruppen ist
 	    foreach (\Contao\StringUtil::deserialize($dlstats_reset_groups) as $id => $groupid)
 	    {
-	        if (true === $this->User->isMemberOf($groupid))
+            if (\Contao\BackendUser::getInstance()->isMemberOf($groupid))
 	        {
 	            //Debug log_message('Ich bin in der richtigen Gruppe', 'dlstats_debug.log');
 	            return true; // User is Member of allowed groups
