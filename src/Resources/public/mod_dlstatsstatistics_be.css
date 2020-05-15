@@ -94,4 +94,6 @@ table th.sort-up:after {
 	font-weight: bold;
 }
 
-
+.dlstats_toggler .sortable tr td:last-child {
+  padding-bottom: 12px;
+}
