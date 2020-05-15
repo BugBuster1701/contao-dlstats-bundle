@@ -174,11 +174,14 @@ class DlstatsHelper extends \Controller
 			{
 				self::$_BackendUser = true;
 				$this->BE_Filter = true;
+
 				return true;
 			}
+
 			return false;
 		}
 		$this->BE_Filter = true;
+
 		return true;
 
 	}
