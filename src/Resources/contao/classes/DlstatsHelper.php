@@ -701,7 +701,7 @@ class DlstatsHelper extends \Controller
 	}
 
 	/**
-	 * Check if contao/cor-bundle >= 4.8.0
+	 * Check if contao/core-bundle >= 4.8.0
 	 * 
 	 * @return boolean
 	 */
@@ -710,7 +710,7 @@ class DlstatsHelper extends \Controller
 	    //Thanks fritzmg for this hint
 	    // get the Contao version
 	    $version = PrettyVersions::getVersion('contao/core-bundle');
-	    // check for Contao >=4.5
+	    // check for Contao >=4.8
 	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.8'))
 	    {
 	        return true;
@@ -720,7 +720,7 @@ class DlstatsHelper extends \Controller
 	}
 
 	/**
-	 * Check if contao/cor-bundle >= 4.5.0
+	 * Check if contao/core-bundle >= 4.5.0
 	 * 
 	 * @return boolean
 	 */
