@@ -165,8 +165,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         $intRows = $objDetails->numRows;
         if ($intRows>0)
         {
-            $languages = array();
-            include_once TL_ROOT . '/vendor/contao/core-bundle/src/Resources/contao/config/languages.php'; 
+            $languages = \Contao\System::getLanguages(); 
             $languages['unknown'] = 'unknown language';
 
             while ($objDetails->next())
