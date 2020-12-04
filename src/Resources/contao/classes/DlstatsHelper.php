@@ -709,7 +709,11 @@ class DlstatsHelper extends \Controller
 	{
 	    //Thanks fritzmg for this hint
 	    // get the Contao version
-	    $version = PrettyVersions::getVersion('contao/core-bundle');
+	    try {
+	        $version = PrettyVersions::getVersion('contao/core-bundle');
+	    } catch (\OutOfBoundsException $e) {
+	        $version = PrettyVersions::getVersion('contao/contao');
+	    }
 	    // check for Contao >=4.8
 	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.8'))
 	    {
@@ -728,7 +732,11 @@ class DlstatsHelper extends \Controller
 	{
 	    //Thanks fritzmg for this hint
 	    // get the Contao version
-	    $version = PrettyVersions::getVersion('contao/core-bundle');
+	    try {
+	        $version = PrettyVersions::getVersion('contao/core-bundle');
+	    } catch (\OutOfBoundsException $e) {
+	        $version = PrettyVersions::getVersion('contao/contao');
+	    }
 	    // check for Contao >=4.5
 	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.5'))
 	    {
