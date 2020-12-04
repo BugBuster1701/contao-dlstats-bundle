@@ -8,7 +8,7 @@
  *
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  *
- * last-updated: 2017-06-05T23:49:02+02:00
+ * last-updated: 2019-12-21T21:39:14+01:00
  */
 
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['aliasnotfound']         = 'エイリアスがありません';
@@ -30,6 +30,7 @@ $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_data']               = '統�
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection']          = '選択なし';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period']                = '期間';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset']                 = 'リセット';
+$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']     = 'このカウンターには統計のリセットは許可していません。';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['serverside']            = 'サーバー側';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']            = 'レコードの詳細を表示';
 $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['startdate']             = '統計の開始';
