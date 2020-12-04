@@ -15,7 +15,7 @@
 	"support":{
 		"issues":"https://github.com/BugBuster1701/contao-dlstats-bundle/issues",
 		"source":"https://github.com/BugBuster1701/contao-dlstats-bundle",
-		"wiki":"http://de.contaowiki.org/Dlstats",
+		"docs":"https://docs.contao.ninja/books/user-guide_dlstats",
 		"forum":"https://community.contao.org/de/forumdisplay.php?119"
 	},
 	"require":{
