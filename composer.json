@@ -19,19 +19,18 @@
 		"forum":"https://community.contao.org/de/forumdisplay.php?119"
 	},
 	"require":{
-		"php": "^7.1",
-		"contao/core-bundle": "~4.5",
-		"bugbuster/contao-botdetection-bundle":">=0.2.1,<2",
-		"composer/semver": "^1.0 || ^2.0 || ^3.0",
-		"jean85/pretty-package-versions": "^1.0"
+		"php": "^7.2 || ^8.0",
+		"contao/core-bundle": "~4.9",
+		"bugbuster/contao-botdetection-bundle":">=1.7.0,<2",
+		"composer/semver": "^3.0",
+		"jean85/pretty-package-versions": "^1.5"
 	},
 	"require-dev": {
 		"contao/manager-plugin": "^2.0",
 		"friendsofphp/php-cs-fixer": "^2.12"
 	},
 	"conflict": {
-		"contao/manager-plugin": "<2.0 || >=3.0",
-		"symfony/symfony": "3.2.7"
+		"contao/manager-plugin": "<2.0 || >=3.0"
 	},
 	"autoload": {
 		"psr-4": {

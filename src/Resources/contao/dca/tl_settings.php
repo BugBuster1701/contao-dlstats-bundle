@@ -35,23 +35,23 @@ $GLOBALS['TL_DCA']['tl_settings']['subpalettes']['dlstats']		= 'dlstatdets,dlsta
  */
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstats'] = array
 (
-	'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstats'],
-	'inputType'	=> 'checkbox',
-	'eval'		=> array('submitOnChange'=>true)
+        'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstats'],
+        'inputType'	=> 'checkbox',
+        'eval'		=> array('submitOnChange'=>true)
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatdets'] = array
 (
-	'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstatdets'],
-	'inputType'	=> 'checkbox',
-    'eval'      => array('tl_class'=>'w50')
+        'label'         => &$GLOBALS['TL_LANG']['tl_settings']['dlstatdets'],
+        'inputType'     => 'checkbox',
+        'eval'          => array('tl_class'=>'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatDisableBotdetection'] = array
 (
         'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection'],
         'inputType'	=> 'checkbox',
-        'eval'      => array('tl_class'=>'w50')
+        'eval'          => array('tl_class'=>'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatAnonymizeIP4'] = array
@@ -92,25 +92,25 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatLastDownloads'] = array
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetProtected'] = array
 (
-	'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected'],
-	'inputType'	=> 'checkbox',
-	'eval'		=> array('submitOnChange'=>true, 'tl_class'=>'clr')
+        'label'		=> &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetProtected'],
+        'inputType'	=> 'checkbox',
+        'eval'		=> array('submitOnChange'=>true, 'tl_class'=>'clr')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetGroups'] = array
 (
         'label'		 => &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetGroups'],
         'inputType'	 => 'checkbox',
-        'foreignKey' => 'tl_user_group.name',
-        'eval'       => array('multiple'=>true, 'tl_class'=>'dlstats_left20')
+        'foreignKey'     => 'tl_user_group.name',
+        'eval'           => array('multiple'=>true, 'tl_class'=>'dlstats_left20')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['dlstatStatresetAdmins'] = array
 (
         'label'		 => &$GLOBALS['TL_LANG']['tl_settings']['dlstatStatresetAdmins'],
         'inputType'	 => 'checkbox',
-        'eval'       => array('disabled'=>true, 'tl_class'=>'dlstats_left20'),
-        'load_callback' => array
+        'eval'           => array('disabled'=>true, 'tl_class'=>'dlstats_left20'),
+        'load_callback'  => array
         (
             function ($data) { return '1'; }
         )

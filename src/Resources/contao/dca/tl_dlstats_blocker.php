@@ -52,8 +52,8 @@ $GLOBALS['TL_DCA']['tl_dlstats_blocker'] = array
                         'sql'       => "varchar(40) NOT NULL default '0.0.0.0'"
                 ),
                 'dlstats_filename' => array
-        		(
-        			'sql'           => "varchar(255) NOT NULL default ''"
-        		)
+                (
+                        'sql'           => "varchar(255) NOT NULL default ''"
+                )
         )
 );

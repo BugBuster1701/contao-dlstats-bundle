@@ -170,7 +170,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
 
             while ($objDetails->next())
             {
-                if ($objDetails->username == '')
+                if (empty($objDetails->username))
                 {
                     $un = "&nbsp;";
                 }
