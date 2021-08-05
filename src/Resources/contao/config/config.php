@@ -20,7 +20,7 @@
  */
 
 \define('DLSTATS_VERSION', '1.3');
-\define('DLSTATS_BUILD', '3');
+\define('DLSTATS_BUILD', '4');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings
