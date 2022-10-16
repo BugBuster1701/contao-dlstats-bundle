@@ -77,6 +77,9 @@ class ModuleDlstatsTag extends \Frontend
 		{
 			$arrTag[2] = substr($arrTag[2], strpos($arrTag[2], 'file=') + 5);
 		}
+		// Remove an existing file parameter  (see Contao #5683)
+		$arrTag[2] = preg_replace('/(&(amp;)?|\?)cid=\d+/', '', $arrTag[2]);
+
 		if ($arrTag[1] == 'totaldownloads')
 		{
 			$objDlstats = \Database::getInstance()->prepare("SELECT 
