@@ -428,12 +428,12 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         $objCalendarDayDownloads = \Database::getInstance()
                                     ->prepare("SELECT dl.`id`
                                                     , FROM_UNIXTIME(det.`tstamp`,GET_FORMAT(DATE,'ISO')) as datum
-                                                    , count(dl.`filename`) as downloads
                                                     , dl.`filename`
+                                                    , count(dl.`filename`) as downloads
                                                 FROM `tl_dlstats` dl
                                                 INNER JOIN `tl_dlstatdets` det on dl.id = det.pid
                                                 WHERE FROM_UNIXTIME(det.`tstamp`,GET_FORMAT(DATE,'ISO')) >=?
-                                                GROUP BY dl.`id`, datum
+                                                GROUP BY dl.`id`, datum, dl.`filename`
                                                 ORDER BY datum DESC, `filename`")
                                     ->execute($CalendarDays);
 
