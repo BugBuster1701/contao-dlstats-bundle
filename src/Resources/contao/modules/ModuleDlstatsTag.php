@@ -66,9 +66,11 @@ class ModuleDlstatsTag extends \Frontend
 		{
 			\System::getContainer()
     			->get('monolog.logger.contao')
-    			->log(LogLevel::ERROR,
+    			->log(
+    			    LogLevel::ERROR,
     			    $GLOBALS['TL_LANG']['tl_dlstats']['no_key'],
-    			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR)));
+    			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR))
+    			);
 
 			return false; // da fehlt was
 		}
@@ -100,9 +102,11 @@ class ModuleDlstatsTag extends \Frontend
 		// Tag is wrong 
 		\System::getContainer()
     		->get('monolog.logger.contao')
-    		->log(LogLevel::ERROR,
+    		->log(
+    		    LogLevel::ERROR,
     		    $GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'],
-    		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR)));
+    		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR))
+    		);
 
 		return false; // wrong tag
 	} //function

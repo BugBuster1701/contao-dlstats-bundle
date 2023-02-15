@@ -94,10 +94,11 @@ class Dlstats extends DlstatsHelper
 		else
 		{
 			$q = \Database::getInstance()->prepare("INSERT IGNORE INTO `tl_dlstats` %s")
-                                         ->set(array('tstamp' => time(), 
+                                         ->set(
+                                             array('tstamp' => time(), 
                                                      'filename' => $this->_filename, 
                                                      'downloads' => 1)
-                                              )
+                                         )
                                          ->execute();
 			$this->_statId = $q->insertId;
 		} // if
@@ -141,7 +142,8 @@ class Dlstats extends DlstatsHelper
 			}
 
     		\Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
-            						->set(array('tstamp'    => time(), 
+            						->set(
+            						    array('tstamp'    => time(), 
             						            'pid'       => $this->_statId, 
             						            'ip'        => $this->dlstatsAnonymizeIP(), 
             						            'domain'    => $this->dlstatsAnonymizeDomain(), 
@@ -150,17 +152,18 @@ class Dlstats extends DlstatsHelper
             						            'page_id'   => $pageId,
             						            'browser_lang' => $this->dlstatsGetLang()
             						            )
-            						        )
+            						)
                                     ->execute();
 	    }
 	    else
 	    {
 	        //Minimum details for year & month statistic
 	        \Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
-                                    ->set(array('tstamp'    => time(), 
+                                    ->set(
+                                        array('tstamp'    => time(), 
                                                 'pid'       => $this->_statId
                                                )
-                                         )
+                                    )
                                     ->execute();
 	    }
 	}

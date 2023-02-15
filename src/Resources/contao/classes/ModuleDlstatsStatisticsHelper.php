@@ -31,7 +31,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
      * Current object instance
      * @var object
      */
-    protected static $instance = null;
+    protected static $instance;
 
     /**
      * Constructor

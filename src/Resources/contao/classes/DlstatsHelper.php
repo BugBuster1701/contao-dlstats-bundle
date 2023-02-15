@@ -228,7 +228,7 @@ class DlstatsHelper extends \Controller
 	{
 	    $array = \Environment::get('httpAcceptLanguage');
 
-	    $this->_lang = str_replace('-', '_', ($array[0] ?? '') );
+	    $this->_lang = str_replace('-', '_', ($array[0] ?? ''));
 
 	    if(empty($this->_lang) || \strlen($this->_lang) < 2)
 	    {
