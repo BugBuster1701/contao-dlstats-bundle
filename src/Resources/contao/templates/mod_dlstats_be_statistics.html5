@@ -247,7 +247,7 @@
 	<hr>
 	<div class="tl_listing_container list_view">
 		<form method="post" class="info" id="dlstatsdetail_statistik" action="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=getfilterstatistik">
-		<input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN; ?>">
+		<input type="hidden" name="REQUEST_TOKEN" value="<?= $this->requestToken ?>">
 		<table class="tl_listing">
 			<tbody>
 				<tr>

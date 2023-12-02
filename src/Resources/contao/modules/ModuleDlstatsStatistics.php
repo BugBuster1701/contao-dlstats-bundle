@@ -105,8 +105,9 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         $this->Template->status_counting = $this->getStatusCounting();
         $this->Template->status_detailed = $this->getStatusDetailed();
         $this->Template->status_anonymization = $this->getStatusAnonymization();
-        $this->Template->boolDetails = $this->boolDetails;
-        $this->Template->messages    = \Message::generateUnwrapped() . \Backend::getSystemMessages();
+        $this->Template->boolDetails  = $this->boolDetails;
+        $this->Template->messages     = \Message::generateUnwrapped() . \Backend::getSystemMessages();
+        $this->Template->requestToken = \System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue();
 
         $this->Template->theme  = $this->getTheme();
 
