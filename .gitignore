@@ -2,10 +2,9 @@
 .settings/
 .buildpath
 .project
-# Transifex
-/.tx/
 #for development
 /vendor/
 src/vendor/
 src/composer.json
 composer.lock
+todo.txt

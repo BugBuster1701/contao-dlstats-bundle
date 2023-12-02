@@ -1,0 +1,192 @@
+<?xml version="1.0" ?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2020-05-11T22:49:19+02:00" original="tl_dlstatstatistics_stat" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="tl_dlstatstatistics_stat.aliasnotfound">
+        <source>Alias not found</source>
+        <target>Alias non trouvé</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.browserlang">
+        <source>Browser language</source>
+        <target>Langue du navigateur</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.clientside">
+        <source>Client side</source>
+        <target>Côté client</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.downloads">
+        <source>Downloads</source>
+        <target>Téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.downloads_top20">
+        <source>Downloads TOP %s</source>
+        <target>TOP Téléchargements %s</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.filename">
+        <source>Filename</source>
+        <target>Nom de fichier</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.filetype">
+        <source>File type</source>
+        <target>Type de fichier</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.hostalias">
+        <source>Host / Page alias</source>
+        <target>Alias hôte / page</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.ip">
+        <source>IP address / Domain</source>
+        <target>Adresse IP / domaine</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.last_20_downloads">
+        <source>The last %s downloads</source>
+        <target>Les derniers %s téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.last_30_calendar_days">
+        <source>Downloads per day in the last %s calendar days</source>
+        <target>Téléchargements par jour au cours des derniers jours %s du calendrier</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.last_download">
+        <source>Last Download</source>
+        <target>Dernier téléchargement</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.modname">
+        <source>dlstats Bundle</source>
+        <target>dlstats Bundle</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.name">
+        <source>Download statistics</source>
+        <target>Télécharger les statistiques</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.no_data">
+        <source>No statistic data available.</source>
+        <target>Aucune donnée statistique disponible.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.period">
+        <source>Period</source>
+        <target>Période</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.reset">
+        <source>Reset</source>
+        <target>Réinitialiser</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.serverside">
+        <source>Server side</source>
+        <target>Du côté serveur</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.showRecord">
+        <source>Show the details of the record</source>
+        <target>Afficher les détails de l'enregistrement</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.startdate">
+        <source>Detailed logging since</source>
+        <target>Enregistrement détaillé depuis</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_activated">
+        <source>activated</source>
+        <target>activé</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
+        <source>Anonymization</source>
+        <target>Anonymisation</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_counting">
+        <source>Counting downloads</source>
+        <target>Compter les téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_deactivated">
+        <source>deactivated</source>
+        <target>désactivé</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_detailed">
+        <source>Detailed logging</source>
+        <target>Enregistrement détaillé</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.total_dl">
+        <source>Downloads total</source>
+        <target>Nombre total de téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.total_dl_month">
+        <source>Number of downloads in the last 4 months</source>
+        <target>Nombre de téléchargements au cours des 4 derniers mois</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.tstamp">
+        <source>Date / Time</source>
+        <target>Date / heure</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.username">
+        <source>Member / Language</source>
+        <target>Membre / Langue</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.wrong_parameter">
+        <source>Faulty or incorrect parameter</source>
+        <target>Paramètre défectueux ou incorrect</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero">
+        <source>The statistic counters will be reset to zero.</source>
+        <target>Les compteurs statistiques seront remis à zéro.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero_confirm">
+        <source>Do you really want to reset the statistic counters?</source>
+        <target>Voulez-vous vraiment réinitialiser les compteurs de statistiques?</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero_confirm_single">
+        <source>Do you really want to delete this counter?</source>
+        <target>Voulez-vous vraiment supprimer ce compteur?</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero_single">
+        <source>Delete this counter.</source>
+        <target>Supprimer ce compteur.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.no_selection">
+        
+        <source>no selection.</source>
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.without_login">
+        
+        <source>without login</source>
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.detail_filter">
+        
+        <source>Detailed statistics with filter</source>
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.reset_not_allowed">
+        
+        <source>Reset the statistics is not allowed for this counter.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

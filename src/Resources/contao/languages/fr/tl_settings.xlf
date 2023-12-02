@@ -1,0 +1,130 @@
+<?xml version="1.0" ?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2020-05-11T22:56:58+02:00" original="tl_settings" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="tl_settings.dlstatAnonymizeIP4.0">
+        <source>Anonymization level for IPv4</source>
+        <target>Niveau d'anonymisation pour IPv4</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatAnonymizeIP4.1">
+        <source>Here, you can change the level of anonymization for IPv4. Anonymize IP addresses in Contao must be activated.</source>
+        <target>Ici, vous pouvez modifier le niveau d'anonymisation pour IPv4. Anonymiser les adresses IP dans Contao doit être activé.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatAnonymizeIP6.0">
+        <source>Anonymization level for IPv6</source>
+        <target>Niveau d'anonymisation pour IPv6</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatAnonymizeIP6.1">
+        <source>Here, you can change the level of anonymization for IPv6. Anonymize IP addresses in Contao must be activated.</source>
+        <target>Ici, vous pouvez modifier le niveau d'anonymisation pour IPv6. Anonymiser les adresses IP dans Contao doit être activé.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatDisableBotdetection.0">
+        <source>Disable Bot Detection filtering</source>
+        <target>Désactiver le filtrage de la détection de bot</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatDisableBotdetection.1">
+        <source>Disable the filtering of counting by the extension Bot Detection</source>
+        <target>Désactiver le filtrage du comptage par l'extension Bot Detection</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatLastDownloads.0">
+        <source>Number of items for the last downloads</source>
+        <target>Nombre d'éléments pour les derniers téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatLastDownloads.1">
+        <source>In the statistic the number of items for the last downloads</source>
+        <target>Dans la statistique, le nombre d'éléments pour les derniers téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatTopDownloads.0">
+        <source>Number of items for the TOP downloads</source>
+        <target>Nombre d'éléments pour les téléchargements TOP</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatTopDownloads.1">
+        <source>In the statistic the number of items for the TOP downloads</source>
+        <target>Dans la statistique, le nombre d'éléments pour les téléchargements TOP</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatdets.0">
+        <source>Enable detailed logging and statistic</source>
+        <target>Activer les statistiques détaillées</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatdets.1">
+        <source>Activate to additional logging for IP, Domain and Member name.</source>
+        <target>Cocher pour journaliser chaque téléchargement selon l'identifiant de connexion.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.0">
+        <source>Enable counting</source>
+        <target>Activer les statistiques des téléchargements</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.1">
+        <source>Activate to counting of downloads.</source>
+        <target>Cocher pour activer le compteur de téléchargements.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.anonip4.1">
+        <source>Octets: 1 (Contao Default)</source>
+        <target>Octets: 1 (valeur par défaut)</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.anonip4.2">
+        <source>Octets: 2</source>
+        <target>Octets: 2</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.anonip6.2">
+        <source>Groups: 2 (Contao Default)</source>
+        <target>Groupes: 2 (valeur par défaut)</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.anonip6.3">
+        <source>Groups: 3</source>
+        <target>Groupes: 3</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats.anonip6.4">
+        <source>Groups: 4</source>
+        <target>Groupes: 4</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstats_legend">
+        <source>Download statistics</source>
+        <target>Télécharger les statistiques</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatStatresetProtected.0">
+        
+        <source>Activation of the protection against the statistic reset</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatStatresetProtected.1">
+        
+        <source>Allow resetting the download statistic only certain user groups only.</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatStatresetAdmins.0">
+        
+        <source>Administrators</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatStatresetAdmins.1">
+        
+        <source>Administrators have unlimited access to the download statistic.</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatStatresetGroups.0">
+        
+        <source>Allowed user groups</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.dlstatStatresetGroups.1">
+        
+        <source>Here you can choose which groups will be allowed to resetting the download statistic.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

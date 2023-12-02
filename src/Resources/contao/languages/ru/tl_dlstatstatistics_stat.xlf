@@ -1,0 +1,196 @@
+<?xml version="1.0" ?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2020-05-11T22:49:19+02:00" original="tl_dlstatstatistics_stat" source-language="en" target-language="ru">
+    <body>
+      <trans-unit id="tl_dlstatstatistics_stat.aliasnotfound">
+        <source>Alias not found</source>
+        <target>Алиас не найден</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.browserlang">
+        <source>Browser language</source>
+        <target>Язык браузера</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.clientside">
+        <source>Client side</source>
+        <target>На стороне клиента</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.downloads">
+        <source>Downloads</source>
+        <target>Загрузок</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.downloads_top20">
+        <source>Downloads TOP %s</source>
+        <target>ТОП %s загрузок</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.filename">
+        <source>Filename</source>
+        <target>Имя файла</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.filetype">
+        <source>File type</source>
+        <target>Тип файла</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.hostalias">
+        <source>Host / Page alias</source>
+        <target>Хост / Алиас страницы</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.ip">
+        <source>IP address / Domain</source>
+        <target>IP-адрес / Домен</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.last_20_downloads">
+        <source>The last %s downloads</source>
+        <target>Последние %s загрузки</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.last_30_calendar_days">
+        <source>Downloads per day in the last %s calendar days</source>
+        <target>Загрузок в день за последние %s дня(ей)</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.last_download">
+        <source>Last Download</source>
+        <target>Последняя загрузка</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.modname">
+        <source>dlstats Bundle</source>
+        <target>Модуль статистики загрузок</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.name">
+        <source>Download statistics</source>
+        <target>Статистика загрузок</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.no_data">
+        <source>No statistic data available.</source>
+        <target>Нет статистики данных.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.period">
+        <source>Period</source>
+        <target>Период</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.reset">
+        <source>Reset</source>
+        <target>Сброс</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.serverside">
+        <source>Server side</source>
+        <target>На стороне сервера</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.showRecord">
+        <source>Show the details of the record</source>
+        <target>Показать подробные сведения о записи</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.startdate">
+        <source>Detailed logging since</source>
+        <target>Подробное журналирование с</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_activated">
+        <source>activated</source>
+        <target>включено</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
+        <source>Anonymization</source>
+        <target>Анонимизация</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_counting">
+        <source>Counting downloads</source>
+        <target>Подсчет загрузок</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_deactivated">
+        <source>deactivated</source>
+        <target>отключено</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.status_detailed">
+        <source>Detailed logging</source>
+        <target>Подробное журналирование</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.total_dl">
+        <source>Downloads total</source>
+        <target>Загрузок всего</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.total_dl_month">
+        <source>Number of downloads in the last 4 months</source>
+        <target>Количество загрузок за последние 4 месяца</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.tstamp">
+        <source>Date / Time</source>
+        <target>Дата / время</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.username">
+        <source>Member / Language</source>
+        <target>Пользователь / Язык</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.wrong_parameter">
+        <source>Faulty or incorrect parameter</source>
+        <target>Поврежден или неправильный параметр</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero">
+        <source>The statistic counters will be reset to zero.</source>
+        <target>Статистика загрузок будет обнулена.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero_confirm">
+        <source>Do you really want to reset the statistic counters?</source>
+        <target>Вы хотите сбросить статистику загрузок?</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero_confirm_single">
+        <source>Do you really want to delete this counter?</source>
+        <target>Вы хотите сбросить эту статистику?</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.zero_single">
+        <source>Delete this counter.</source>
+        <target>Удалить эту статистику.</target>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.no_selection">
+        
+        <source>no selection.</source>
+        <target>нет выбора.</target>
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.without_login">
+        
+        <source>without login</source>
+        <target>без логина</target>
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.detail_filter">
+        
+        <source>Detailed statistics with filter</source>
+        <target>Подробная статистика с фильтром</target>
+      </trans-unit>
+      <trans-unit id="tl_dlstatstatistics_stat.reset_not_allowed">
+        
+        <source>Reset the statistics is not allowed for this counter.</source>
+        <target>Сброс статистики для этого счетчика не допускается.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
