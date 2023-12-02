@@ -19,6 +19,9 @@
  * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
  */
 
+use Contao\System;
+use Symfony\Component\HttpFoundation\Request;
+
 \define('DLSTATS_VERSION', '1.3');
 \define('DLSTATS_BUILD', '7');
 
@@ -51,7 +54,9 @@ $GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\Modul
 /**
  * CSS
  */
-if (\defined('TL_MODE') && TL_MODE == 'BE')
+if (System::getContainer()->get('contao.routing.scope_matcher')
+    ->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? Request::create(''))
+    )
 {
     $GLOBALS['TL_CSS'][] = 'bundles/bugbusterdlstats/dlstatssystem_be.css';
 }
