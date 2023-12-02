@@ -134,7 +134,7 @@ class Dlstats extends DlstatsHelper
 			}
 			else 
 			{
-				if (FE_USER_LOGGED_IN)
+				if (\System::getContainer()->get('contao.security.token_checker')->hasFrontendUser())
 				{
 					$this->import('FrontendUser', 'User');
 					$username = $this->User->username;
