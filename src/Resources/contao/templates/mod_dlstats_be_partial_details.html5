@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="<?= $this->language ?>">
 <head>
-<meta charset="utf-8">
-<base href="<?= $this->Environment->base ?>"></base>
-<title>Contao Open Source CMS - Contao Open Source CMS <?= VERSION ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="system/themes/<?= $this->getTheme(); ?>/basic.css" media="screen">
-<link rel="stylesheet" type="text/css" href="system/themes/<?= $this->getTheme(); ?>/main.css" media="screen">
-<link rel="stylesheet" type="text/css" href="bundles/bugbusterdlstats/style.css" media="all">
+	<meta charset="<?= $this->charset ?>">
+	<title>Contao Open Source CMS - Contao Open Source CMS <?= VERSION ?></title>
+	<link rel="stylesheet" type="text/css" href="<?= $this->asset('basic.css', 'system/themes/'.$this->theme) ?>">
+	<link rel="stylesheet" type="text/css" href="<?= $this->asset('main.css', 'system/themes/'.$this->theme) ?>">
+	<link rel="stylesheet" type="text/css" href="bundles/bugbusterdlstats/style.css" media="all">
 </head>
 <body id="top">
 <div id="container">

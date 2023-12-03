@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="<?= $this->language ?>">
 <head>
-<?php
-  $ASSETS_URL = $container->get('contao.assets.assets_context')->getStaticUrl();
-?>
   <meta charset="<?= $this->charset ?>">
   <title><?= $this->title ?> - Contao Open Source CMS <?= VERSION ?></title>
-  <base href="<?= $this->base ?>">
   <meta name="generator" content="Contao Open Source CMS">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
   <meta name="referrer" content="origin">
-
-  <link rel="stylesheet" href="<?= $ASSETS_URL ?>system/themes/<?= $this->theme ?>/fonts.css">
-  <link rel="stylesheet" href="<?= $ASSETS_URL ?>system/themes/<?= $this->theme ?>/basic.css">
-  <link rel="stylesheet" href="<?= $ASSETS_URL ?>system/themes/<?= $this->theme ?>/main.css">
+  <link rel="stylesheet" type="text/css" href="<?= $this->asset('fonts.css', 'system/themes/'.$this->theme) ?>">
+	<link rel="stylesheet" type="text/css" href="<?= $this->asset('basic.css', 'system/themes/'.$this->theme) ?>">
+	<link rel="stylesheet" type="text/css" href="<?= $this->asset('main.css', 'system/themes/'.$this->theme) ?>">
   <?= $this->stylesheets ?>
 
   <script><?= $this->getLocaleString() ?></script>
-  <script src="<?= $ASSETS_URL ?>assets/mootools/js/mootools.min.js"></script>
-  <script src="<?= $ASSETS_URL ?>bundles/contaocore/mootao.min.js"></script>
-  <script src="<?= $ASSETS_URL ?>bundles/contaocore/core.min.js"></script>
+  <script src="<?= $this->asset('js/mootools.min.js', 'contao-components/mootools') ?>"></script>
+  <script src="<?= $this->asset('mootao.min.js', 'contao_core') ?>"></script>
+  <script src="<?= $this->asset('core.min.js', 'contao_core') ?>"></script>
   <script><?= $this->getDateString() ?></script>
   <?= $this->javascripts ?>
 
 </head>
-<body class="<?= $this->ua ?> popup">
+<body class="popup">
 
   <div id="container" class="cf">
 	<div id="tl_messages">
