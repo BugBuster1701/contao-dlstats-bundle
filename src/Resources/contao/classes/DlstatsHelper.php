@@ -20,7 +20,6 @@
 
 namespace BugBuster\DLStats;
 use BugBuster\BotDetection\ModuleBotDetection;
-use Jean85\PrettyVersions;
 
 /**
  * Class DlstatsHelper
