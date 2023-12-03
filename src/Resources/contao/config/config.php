@@ -22,8 +22,8 @@
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
 
-\define('DLSTATS_VERSION', '1.3');
-\define('DLSTATS_BUILD', '7');
+\define('DLSTATS_VERSION', '1.4');
+\define('DLSTATS_BUILD', '0');
 
 /**
  * Defaults, you can overwrite this in Backend -> System -> Settings
