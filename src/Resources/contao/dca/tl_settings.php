@@ -22,8 +22,8 @@
  * Add to palette
  */
 $GLOBALS['TL_DCA']['tl_settings']['palettes']['__selector__'][]	= 'dlstats'; 
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default']	   .= ';{dlstats_legend},dlstats'; 
-$GLOBALS['TL_DCA']['tl_settings']['subpalettes']['dlstats']		= 'dlstatdets,dlstatDisableBotdetection
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default']        .= ';{dlstats_legend},dlstats'; 
+$GLOBALS['TL_DCA']['tl_settings']['subpalettes']['dlstats']	= 'dlstatdets,dlstatDisableBotdetection
                                                                     ,dlstatAnonymizeIP4,dlstatAnonymizeIP6
                                                                     ,dlstatTopDownloads,dlstatLastDownloads
                                                                     ,dlstatStatresetProtected

@@ -27,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_dlstats'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'			=> 'Table',
+		'dataContainer'			=> Contao\DC_Table::class,
 		'ctable'				=> array('tl_dlstatdets'),
 		'closed'				=> true,
         'sql' => array
