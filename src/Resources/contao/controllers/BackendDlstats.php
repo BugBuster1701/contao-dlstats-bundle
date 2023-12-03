@@ -12,6 +12,13 @@ namespace BugBuster\DLStats;
 use BugBuster\DLStats\ModuleDlstatsStatisticsHelper;
 use Contao\CoreBundle\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
+use Contao\System;
+use Contao\Backend;
+use Contao\BackendTemplate;
+use Contao\Environment;
+use Contao\StringUtil;
+use Contao\Input;
+use Contao\Config;
 
 /**
  * Back end dlstats wizard.
@@ -32,18 +39,17 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 	 */
 	public function __construct()
 	{
-		$this->import('BackendUser', 'User');
 		parent::__construct();
 
 		//$this->User->authenticate(); //deprecated
-		if (false === \System::getContainer()->get('contao.security.token_checker')->hasBackendUser()) 
+		if (false === System::getContainer()->get('contao.security.token_checker')->hasBackendUser()) 
 		{
 			throw new AccessDeniedException('Access denied');
 		}
 
-		\System::loadLanguageFile('default');
-		\System::loadLanguageFile('modules');
-		\System::loadLanguageFile('tl_dlstatstatistics_stat');
+		System::loadLanguageFile('default');
+		System::loadLanguageFile('modules');
+		System::loadLanguageFile('tl_dlstatstatistics_stat');
 	}
 
 	/**
@@ -54,26 +60,26 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 	public function run()
 	{
 		/** @var BackendTemplate|object $objTemplate */
-		$objTemplate            = new \BackendTemplate('mod_dlstats_be_stat_details');
-		$objTemplate->theme     = \Backend::getTheme();
-		$objTemplate->base      = \Environment::get('base');
+		$objTemplate            = new BackendTemplate('mod_dlstats_be_stat_details');
+		$objTemplate->theme     = Backend::getTheme();
+		$objTemplate->base      = Environment::get('base');
 		$objTemplate->language  = $GLOBALS['TL_LANGUAGE'];
-		$objTemplate->title     = \StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['systemMessages']);
-		$objTemplate->charset   = \Config::get('characterSet');
+		$objTemplate->title     = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['systemMessages']);
+		$objTemplate->charset   = Config::get('characterSet');
 
-		if (\is_null(\Input::get('action', true)) ||
-		     \is_null(\Input::get('dlstatsid', true)))
+		if (\is_null(Input::get('action', true)) ||
+		     \is_null(Input::get('dlstatsid', true)))
 		{
 		    $objTemplate->messages = '<p class="tl_error">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'].'</p>';
 
 		    return $objTemplate->getResponse();
 		}
 
-		switch (\Input::get('action', true))
+		switch (Input::get('action', true))
 		{
 		    case 'TopLastDownloads':
-		        $DetailFunction = 'getDlstatsDetails'.\Input::get('action', true);
-		        $objTemplate->messages = $this->$DetailFunction(\Input::get('action', true), \Input::get('dlstatsid', true));
+		        $DetailFunction = 'getDlstatsDetails'.Input::get('action', true);
+		        $objTemplate->messages = $this->$DetailFunction(Input::get('action', true), Input::get('dlstatsid', true));
 		        break;
 		    default:
 		        $objTemplate->messages = '<p class="tl_error">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'].'</p>';

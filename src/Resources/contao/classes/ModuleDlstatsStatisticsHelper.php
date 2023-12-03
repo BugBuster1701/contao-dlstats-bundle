@@ -19,13 +19,19 @@
 
 namespace BugBuster\DLStats;
 
+use Contao\BackendModule;
+use Contao\BackendTemplate;
+use Contao\Date;
+use Contao\System;
+use Contao\Database;
+
 /**
  * Class ModuleDlstatsStatisticsHelper
  *
  * @copyright  Glen Langer 2012..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
-class ModuleDlstatsStatisticsHelper extends \BackendModule
+class ModuleDlstatsStatisticsHelper extends BackendModule
 {
     /**
      * Current object instance
@@ -38,9 +44,8 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
      */
     public function __construct()
     {
-        $this->import('BackendUser', 'User');
         parent::__construct();
-        \System::loadLanguageFile('default'); // for $GLOBALS['TL_LANG']['MONTHS'][..]
+        System::loadLanguageFile('default'); // for $GLOBALS['TL_LANG']['MONTHS'][..]
     }
 
     protected function compile()
@@ -63,7 +68,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
 
     protected function getDlstats($dlstatsid)
     {
-        $objDlstats = \Database::getInstance()->prepare("SELECT *
+        $objDlstats = Database::getInstance()->prepare("SELECT *
                                                  FROM `tl_dlstats`
                                                  WHERE `id`=?")
                                               ->execute($dlstatsid);
@@ -76,7 +81,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
     protected function getDlstatsMonth($dlstatsid)
     {
         $arrMonth = array();
-        $objMonth = \Database::getInstance()->prepare("SELECT 
+        $objMonth = Database::getInstance()->prepare("SELECT 
                                                         FROM_UNIXTIME(tstamp, '%Y-%m') AS YM
                                                         , COUNT(`id`) AS SUMDL
                                                       FROM
@@ -106,7 +111,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         $arrDlstats      = $this->getDlstats($dlstatsid);
         $arrDlstatsMonth = $this->getDlstatsMonth($dlstatsid);
 
-        $this->TemplatePartial = new \BackendTemplate('mod_dlstats_be_partial_details');
+        $this->TemplatePartial = new BackendTemplate('mod_dlstats_be_partial_details');
 
         $this->TemplatePartial->DlstatsDetailList  = '<div class="tl_header" style="width:800px">'."\n";
 
@@ -118,7 +123,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
 		</tr>
 		<tr>
 			<td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_download'].':</span> </td>
-			<td>'.\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $arrDlstats['tstamp']).'</td>
+			<td>'.Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $arrDlstats['tstamp']).'</td>
 			<td><span class="tl_label" style="padding-left: 16px; margin-right: 6px;">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl'].':</span></td>
 			<td>'.$arrDlstats['downloads'].'</td>
 		</tr>
@@ -156,7 +161,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
 </div>
 ';
         $this->TemplatePartial->DlstatsDetailList .= '<div class="dlstatdetailcontent" style="">';
-        $objDetails = \Database::getInstance()->prepare("SELECT `tstamp` , `ip` , `domain` , `username`, `page_host`, `page_id`, `browser_lang`
+        $objDetails = Database::getInstance()->prepare("SELECT `tstamp` , `ip` , `domain` , `username`, `page_host`, `page_id`, `browser_lang`
                                                          FROM `tl_dlstatdets`
                                                          WHERE `pid`=?
                                                          ORDER BY `id` DESC")
@@ -165,7 +170,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         $intRows = $objDetails->numRows;
         if ($intRows>0)
         {
-            $languages = \Contao\System::getLanguages(); 
+            $languages = System::getLanguages(); 
             $languages['unknown'] = 'unknown language';
 
             while ($objDetails->next())
@@ -188,7 +193,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
                 }
 
                 $this->TemplatePartial->DlstatsDetailList .=  '<div class="dlstatdetaillist">
-	<span class="dlstats-timestamp dlstats-left">'.\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objDetails->tstamp).'</span>
+	<span class="dlstats-timestamp dlstats-left">'.Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objDetails->tstamp).'</span>
 	<span class="dlstats-ip        dlstats-left">'.$objDetails->ip.'<br>'.$objDetails->domain.'</span>
 	<span class="dlstats-hostalias dlstats-left">'.$objDetails->page_host.'<br>'.$page_alias.'</span>
 	<span class="dlstats-username  dlstats-left"><span class="dlstats-wb">'.$un.'</span><br>'.$objDetails->browser_lang.'</span>
@@ -208,7 +213,7 @@ class ModuleDlstatsStatisticsHelper extends \BackendModule
         {
             return '';
         }
-        $objAlias = \Database::getInstance()->prepare("SELECT
+        $objAlias = Database::getInstance()->prepare("SELECT
                                                          `alias`
                                                        FROM
                                                          `tl_page`
