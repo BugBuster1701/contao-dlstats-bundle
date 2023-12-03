@@ -41,7 +41,6 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 	{
 		parent::__construct();
 
-		//$this->User->authenticate(); //deprecated
 		if (false === System::getContainer()->get('contao.security.token_checker')->hasBackendUser()) 
 		{
 			throw new AccessDeniedException('Access denied');
