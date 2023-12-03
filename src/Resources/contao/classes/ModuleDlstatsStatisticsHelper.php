@@ -19,6 +19,7 @@
 
 namespace BugBuster\DLStats;
 
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\BackendModule;
 use Contao\BackendTemplate;
 use Contao\Date;
@@ -112,6 +113,8 @@ class ModuleDlstatsStatisticsHelper extends BackendModule
         $arrDlstatsMonth = $this->getDlstatsMonth($dlstatsid);
 
         $this->TemplatePartial = new BackendTemplate('mod_dlstats_be_partial_details');
+        
+        $this->TemplatePartial->contaoversion = ContaoCoreBundle::getVersion();
 
         $this->TemplatePartial->DlstatsDetailList  = '<div class="tl_header" style="width:800px">'."\n";
 

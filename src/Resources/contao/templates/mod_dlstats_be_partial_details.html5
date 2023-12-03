@@ -2,7 +2,7 @@
 <html lang="<?= $this->language ?>">
 <head>
 	<meta charset="<?= $this->charset ?>">
-	<title>Contao Open Source CMS - Contao Open Source CMS <?= VERSION ?></title>
+	<title>Contao Open Source CMS - Contao Open Source CMS <?= $this->contaoversion ?></title>
 	<link rel="stylesheet" type="text/css" href="<?= $this->asset('basic.css', 'system/themes/'.$this->theme) ?>">
 	<link rel="stylesheet" type="text/css" href="<?= $this->asset('main.css', 'system/themes/'.$this->theme) ?>">
 	<link rel="stylesheet" type="text/css" href="bundles/bugbusterdlstats/style.css" media="all">

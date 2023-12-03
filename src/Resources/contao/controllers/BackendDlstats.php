@@ -11,6 +11,7 @@ namespace BugBuster\DLStats;
 
 use BugBuster\DLStats\ModuleDlstatsStatisticsHelper;
 use Contao\CoreBundle\Exception\AccessDeniedException;
+use Contao\CoreBundle\ContaoCoreBundle;
 use Symfony\Component\HttpFoundation\Response;
 use Contao\System;
 use Contao\Backend;
@@ -65,6 +66,7 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 		$objTemplate->language  = $GLOBALS['TL_LANGUAGE'];
 		$objTemplate->title     = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['systemMessages']);
 		$objTemplate->charset   = Config::get('characterSet');
+		$objTemplate->contaoversion = ContaoCoreBundle::getVersion();
 
 		if (\is_null(Input::get('action', true)) ||
 		     \is_null(Input::get('dlstatsid', true)))
