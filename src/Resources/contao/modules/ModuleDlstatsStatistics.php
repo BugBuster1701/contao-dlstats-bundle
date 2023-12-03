@@ -18,6 +18,13 @@
 
 namespace BugBuster\DLStats;
 
+use Contao\System;
+use Contao\Database;
+use Contao\Input;
+use Contao\Message;
+use Contao\Backend;
+use Contao\Date;
+
 /**
  * Class ModuleDlstatsStatistics
  *
@@ -76,21 +83,21 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
             $this->boolAllowReset = $this->isUserInDownloadStatGroups($GLOBALS['TL_CONFIG']['dlstatStatresetGroups']);
         }
 
-        if (\Input::get('act', true)=='zero')
+        if (Input::get('act', true)=='zero')
         {
             $this->setZero();
         }
-        if (\Input::get('act', true)=='delete')
+        if (Input::get('act', true)=='delete')
         {
             $this->deleteCounter();
         }
-        if ((int) \Input::post('filenameid', true) > 0)
+        if ((int) Input::post('filenameid', true) > 0)
         {
-            $this->filenameid = (int) \Input::post('filenameid', true);
+            $this->filenameid = (int) Input::post('filenameid', true);
         }
-        if (\strlen(\Input::post('username', true)) > 0)
+        if (\strlen(Input::post('username', true)) > 0)
         {
-            $this->username = \Input::post('username', true);
+            $this->username = Input::post('username', true);
         }
     }
 
@@ -106,8 +113,8 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         $this->Template->status_detailed = $this->getStatusDetailed();
         $this->Template->status_anonymization = $this->getStatusAnonymization();
         $this->Template->boolDetails  = $this->boolDetails;
-        $this->Template->messages     = \Message::generateUnwrapped() . \Backend::getSystemMessages();
-        $this->Template->requestToken = \System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue();
+        $this->Template->messages     = Message::generateUnwrapped() . Backend::getSystemMessages();
+        $this->Template->requestToken = System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue();
 
         $this->Template->theme  = $this->getTheme();
 
@@ -156,8 +163,8 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
 	    {
 	        return;
 	    }
-        \Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstatdets")->execute();
-        \Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstats")->execute();
+        Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstatdets")->execute();
+        Database::getInstance()->prepare("TRUNCATE TABLE tl_dlstats")->execute();
 
         return;
     }
@@ -171,14 +178,14 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
 	    {
 	        return;
 	    }
-        if (\is_null(\Input::get('dlstatsid', true)))
+        if (\is_null(Input::get('dlstatsid', true)))
         {
             return;
         }
-        \Database::getInstance()->prepare("DELETE FROM tl_dlstatdets WHERE pid=?")
-                                ->execute(\Input::get('dlstatsid', true));
-        \Database::getInstance()->prepare("DELETE FROM tl_dlstats    WHERE  id=?")
-                                ->execute(\Input::get('dlstatsid', true));
+        Database::getInstance()->prepare("DELETE FROM tl_dlstatdets WHERE pid=?")
+                                ->execute(Input::get('dlstatsid', true));
+        Database::getInstance()->prepare("DELETE FROM tl_dlstats    WHERE  id=?")
+                                ->execute(Input::get('dlstatsid', true));
 
         return;
     }
@@ -241,7 +248,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected function getMonth()
     {
         $arrMonth = array();
-        $objMonth = \Database::getInstance()->prepare("SELECT
+        $objMonth = Database::getInstance()->prepare("SELECT
                                                          FROM_UNIXTIME(`tstamp`,'%Y-%m')  AS YM
                                                        , COUNT(`id`) AS SUMDL
                                                        FROM `tl_dlstatdets`
@@ -271,7 +278,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected function getYear()
     {
         $arrYear = array();
-        $objYear = \Database::getInstance()->prepare("SELECT
+        $objYear = Database::getInstance()->prepare("SELECT
                                                         FROM_UNIXTIME(`tstamp`,'%Y')  AS Y
                                                       , COUNT(`id`) AS SUMDL
                                                       FROM `tl_dlstatdets`
@@ -300,7 +307,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected function getTotalDownloads()
     {
         $totalDownloads = 0;
-        $objTODL = \Database::getInstance()->prepare("SELECT
+        $objTODL = Database::getInstance()->prepare("SELECT
                                                       SUM( `downloads` ) AS TOTALDOWNLOADS
                                                       FROM `tl_dlstats`
                                                       WHERE 1")
@@ -321,14 +328,14 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected function getStartDate()
     {
         $StartDate = false;
-        $objStartDate = \Database::getInstance()->prepare("SELECT
+        $objStartDate = Database::getInstance()->prepare("SELECT
                                                            MIN(`tstamp`) AS YMD
                                                            FROM `tl_dlstatdets`
                                                            WHERE 1")
                                                 ->execute();
         if ($objStartDate->YMD !== null)
         {
-            $StartDate = \Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], $objStartDate->YMD);
+            $StartDate = Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], $objStartDate->YMD);
 
         }
 
@@ -343,7 +350,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected function getTopDownloads($limit=20)
     {
         $arrTopDownloads = array();
-        $objTopDownloads = \Database::getInstance()->prepare("SELECT `tstamp`, `filename`, `downloads`, `id`
+        $objTopDownloads = Database::getInstance()->prepare("SELECT `tstamp`, `filename`, `downloads`, `id`
                                                               FROM `tl_dlstats`
                                                               ORDER BY `downloads` DESC")
                                                    ->limit($limit)
@@ -354,7 +361,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
             while ($objTopDownloads->next())
             {
                 $c4d = $this->check4details($objTopDownloads->id);
-                $arrTopDownloads[] = array($objTopDownloads->filename, $this->getFormattedNumber($objTopDownloads->downloads, 0), \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objTopDownloads->tstamp), $objTopDownloads->id, $c4d, $objTopDownloads->downloads //no formatted number for sorting
+                $arrTopDownloads[] = array($objTopDownloads->filename, $this->getFormattedNumber($objTopDownloads->downloads, 0), Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objTopDownloads->tstamp), $objTopDownloads->id, $c4d, $objTopDownloads->downloads //no formatted number for sorting
                                           , $objTopDownloads->tstamp //for sorting
                                           );
             }
@@ -374,7 +381,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         $oldDate = '01.01.1970';
         $viewDate = false;
         $arrLastDownloads = array();
-        $objLastDownloads = \Database::getInstance()->prepare("SELECT `tstamp`, `filename`, `downloads`, `id`
+        $objLastDownloads = Database::getInstance()->prepare("SELECT `tstamp`, `filename`, `downloads`, `id`
                                                                FROM `tl_dlstats`
                                                                ORDER BY `tstamp` DESC, `filename`")
                                                     ->limit($limit)
@@ -385,13 +392,13 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
             while ($objLastDownloads->next())
             {
                 $viewDate = false;
-                if ($oldDate != \Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], $objLastDownloads->tstamp))
+                if ($oldDate != Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], $objLastDownloads->tstamp))
                 {
-                    $newDate  = \Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], $objLastDownloads->tstamp);
+                    $newDate  = Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], $objLastDownloads->tstamp);
                     $viewDate = $newDate;
                 }
                 $c4d = $this->check4details($objLastDownloads->id);
-                $arrLastDownloads[] = array(\Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objLastDownloads->tstamp), $objLastDownloads->filename, $this->getFormattedNumber($objLastDownloads->downloads, 0), $viewDate, $objLastDownloads->id, $c4d, $objLastDownloads->downloads // for sorting
+                $arrLastDownloads[] = array(Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objLastDownloads->tstamp), $objLastDownloads->filename, $this->getFormattedNumber($objLastDownloads->downloads, 0), $viewDate, $objLastDownloads->id, $c4d, $objLastDownloads->downloads // for sorting
                                            , $objLastDownloads->tstamp // for sorting
                                            );
                 $oldDate = $newDate;
@@ -408,7 +415,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
      */
     protected function check4details($id)
     {
-        $objC4D = \Database::getInstance()->prepare("SELECT count(`id`)  AS num
+        $objC4D = Database::getInstance()->prepare("SELECT count(`id`)  AS num
                                                      FROM `tl_dlstatdets`
                                                      WHERE `pid`=?")
                                           ->execute($id);
@@ -426,7 +433,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     {
         $arrCalendarDayDownloads = array();
         $CalendarDays = date('Y-m-d', mktime(0, 0, 0, date("m"), date("d")-$limit, date("Y")));
-        $objCalendarDayDownloads = \Database::getInstance()
+        $objCalendarDayDownloads = Database::getInstance()
                                     ->prepare("SELECT dl.`id`
                                                     , FROM_UNIXTIME(det.`tstamp`,GET_FORMAT(DATE,'ISO')) as datum
                                                     , dl.`filename`
@@ -440,7 +447,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
 
         while ($objCalendarDayDownloads->next())
         {
-            $viewDate = \Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], strtotime($objCalendarDayDownloads->datum));
+            $viewDate = Date::parse($GLOBALS['TL_CONFIG']['dateFormat'], strtotime($objCalendarDayDownloads->datum));
             $c4d = $this->check4details($objCalendarDayDownloads->id);
             $arrCalendarDayDownloads[] = array(
                                       $viewDate, $objCalendarDayDownloads->filename, $this->getFormattedNumber($objCalendarDayDownloads->downloads, 0), $objCalendarDayDownloads->id, $c4d, $objCalendarDayDownloads->downloads, strtotime($objCalendarDayDownloads->datum)
@@ -544,7 +551,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     protected function getAllUsernames()
     {
         $Usernames = array('---00---');
-        $objUsernames = \Database::getInstance()->prepare("SELECT
+        $objUsernames = Database::getInstance()->prepare("SELECT
                                                            DISTINCT `username` AS usernames
                                                            FROM `tl_dlstatdets`
                                                            WHERE 1
@@ -567,7 +574,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     {
         $Filenames = array();
         $Filenames[] = array('filenameid' => 0, 'filename' => '--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---');
-        $objFilenames = \Database::getInstance()->prepare("SELECT
+        $objFilenames = Database::getInstance()->prepare("SELECT
                                                             `id`,`filename` AS filenames
                                                            FROM `tl_dlstats`
                                                            WHERE 1
@@ -619,11 +626,11 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
                 INNER JOIN  `tl_dlstatdets` on `tl_dlstats`.`id`= `tl_dlstatdets`.`pid`
                 WHERE 1 ".$where_user." ".$where_file." 
                 ORDER BY 1,2,3";
-        $objAllDownloads = \Database::getInstance()->prepare($sql)
+        $objAllDownloads = Database::getInstance()->prepare($sql)
                                                    ->execute();
         while ($objAllDownloads->next())
         {
-            $viewDate = \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objAllDownloads->tstamp);
+            $viewDate = Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objAllDownloads->tstamp);
             $AllDownloads[] = array($viewDate, $objAllDownloads->filename, $objAllDownloads->username, $objAllDownloads->tstamp);
         }
 

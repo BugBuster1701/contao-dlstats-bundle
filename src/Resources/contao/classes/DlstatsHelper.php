@@ -19,6 +19,10 @@
  */
 
 namespace BugBuster\DLStats;
+use Contao\Controller;
+use Contao\System;
+use Contao\Environment;
+use Contao\Database;
 use BugBuster\BotDetection\ModuleBotDetection;
 
 /**
@@ -28,7 +32,7 @@ use BugBuster\BotDetection\ModuleBotDetection;
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  */
-class DlstatsHelper extends \Controller
+class DlstatsHelper extends Controller
 {
 
 	/**
@@ -168,7 +172,7 @@ class DlstatsHelper extends \Controller
 	{
 		if (false === self::$_BackendUser)
 		{
-			$objTokenChecker = \System::getContainer()->get('contao.security.token_checker');
+			$objTokenChecker = System::getContainer()->get('contao.security.token_checker');
 			if ($objTokenChecker->hasBackendUser())
 			{
 				self::$_BackendUser = true;
@@ -192,7 +196,7 @@ class DlstatsHelper extends \Controller
 	 */
 	public function checkBot()
 	{
-	    $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
+	    $bundles = array_keys(System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
 
 		if (!\in_array('BugBusterBotdetectionBundle', $bundles))
 		{
@@ -225,7 +229,7 @@ class DlstatsHelper extends \Controller
 	 */
 	public function dlstatsSetLang()
 	{
-	    $array = \Environment::get('httpAcceptLanguage');
+	    $array = Environment::get('httpAcceptLanguage');
 
 	    $this->_lang = str_replace('-', '_', ($array[0] ?? ''));
 
@@ -598,7 +602,7 @@ class DlstatsHelper extends \Controller
 	 */
 	protected function dlstatsGetUserIP()
 	{
-        $UserIP = \Environment::get('ip');
+        $UserIP = Environment::get('ip');
         if (strpos($UserIP, ',') !== false) //first IP
         {
             $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
@@ -611,7 +615,7 @@ class DlstatsHelper extends \Controller
             $HTTPXFF = $_SERVER['HTTP_X_FORWARDED_FOR'];
             $_SERVER['HTTP_X_FORWARDED_FOR'] = '';
 
-            $UserIP = \Environment::get('ip');
+            $UserIP = Environment::get('ip');
             if (strpos($UserIP, ',') !== false) //first IP
             {
                 $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
@@ -652,7 +656,7 @@ class DlstatsHelper extends \Controller
 	        'dlstats_ip'       => $IPHash,
 	        'dlstats_filename' => $filename
 	    );
-	    \Database::getInstance()
+	    Database::getInstance()
             	    ->prepare("INSERT IGNORE INTO tl_dlstats_blocker %s")
             	    ->set($arrSet)
             	    ->execute();
@@ -670,7 +674,7 @@ class DlstatsHelper extends \Controller
 	    }
 
 	    //Delete All Old Blocker Entries (>10s)
-	    \Database::getInstance()
+	    Database::getInstance()
             	    ->prepare("DELETE FROM
                                     tl_dlstats_blocker
                                 WHERE
@@ -680,7 +684,7 @@ class DlstatsHelper extends \Controller
 
 	    $IPHash = bin2hex(sha1($UserIP, true)); // sha1 20 Zeichen, bin2hex 40 zeichen
 	    //Test ob Blocking gesetzt ist
-	    $objBlockingIP = \Database::getInstance()
+	    $objBlockingIP = Database::getInstance()
                             ->prepare("SELECT
                                             id
                                         FROM

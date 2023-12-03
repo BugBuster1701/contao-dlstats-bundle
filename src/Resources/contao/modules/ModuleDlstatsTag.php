@@ -18,6 +18,10 @@
  */
 
 namespace BugBuster\DLStats;
+
+use Contao\System;
+use Contao\Database;
+use Contao\StringUtil;
 use Contao\CoreBundle\Monolog\ContaoContext;
 use Psr\Log\LogLevel;
 
@@ -28,7 +32,7 @@ use Psr\Log\LogLevel;
  * @author     Glen Langer 
  * @license    LGPL 
  */
-class ModuleDlstatsTag extends \Frontend
+class ModuleDlstatsTag extends \Contao\Frontend
 {
 
 	/**
@@ -53,7 +57,7 @@ class ModuleDlstatsTag extends \Frontend
 	 */
 	public function dlstatsReplaceInsertTags($strTag)
 	{
-		$arrTag = \StringUtil::trimsplit('::', $strTag);
+		$arrTag = StringUtil::trimsplit('::', $strTag);
 		if ($arrTag[0] != 'dlstats')
 		{
 			if ($arrTag[0] != 'cache_dlstats')
@@ -64,7 +68,7 @@ class ModuleDlstatsTag extends \Frontend
 		$this->loadLanguageFile('tl_dlstats');
 		if (!isset($arrTag[2]))
 		{
-			\System::getContainer()
+			System::getContainer()
     			->get('monolog.logger.contao')
     			->log(
     			    LogLevel::ERROR,
@@ -84,7 +88,7 @@ class ModuleDlstatsTag extends \Frontend
 
 		if ($arrTag[1] == 'totaldownloads')
 		{
-			$objDlstats = \Database::getInstance()->prepare("SELECT 
+			$objDlstats = Database::getInstance()->prepare("SELECT 
                                                                     `downloads`
                                                              FROM
                                                                     `tl_dlstats`
@@ -100,7 +104,7 @@ class ModuleDlstatsTag extends \Frontend
 			return $objDlstats->downloads;
 		}
 		// Tag is wrong 
-		\System::getContainer()
+		System::getContainer()
     		->get('monolog.logger.contao')
     		->log(
     		    LogLevel::ERROR,

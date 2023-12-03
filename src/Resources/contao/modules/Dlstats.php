@@ -23,7 +23,12 @@
  */
 
 namespace BugBuster\DLStats;
+
 use BugBuster\DLStats\DlstatsHelper; 
+use Contao\System;
+use Contao\Environment;
+use Contao\Database;
+use Contao\FrontendUser;
 
 /**
  * Class Dlstats
@@ -83,17 +88,17 @@ class Dlstats extends DlstatsHelper
 	 */
 	protected function logDLStats()
 	{
-		$q = \Database::getInstance()->prepare("SELECT id FROM `tl_dlstats` WHERE `filename`=?")
+		$q = Database::getInstance()->prepare("SELECT id FROM `tl_dlstats` WHERE `filename`=?")
                                      ->execute($this->_filename);
 		if ($q->next())
 		{
 			$this->_statId = $q->id;
-			\Database::getInstance()->prepare("UPDATE `tl_dlstats` SET `tstamp`=?, `downloads`=`downloads`+1 WHERE `id`=?")
+			Database::getInstance()->prepare("UPDATE `tl_dlstats` SET `tstamp`=?, `downloads`=`downloads`+1 WHERE `id`=?")
                                     ->execute(time(), $this->_statId);
 		}
 		else
 		{
-			$q = \Database::getInstance()->prepare("INSERT IGNORE INTO `tl_dlstats` %s")
+			$q = Database::getInstance()->prepare("INSERT IGNORE INTO `tl_dlstats` %s")
                                          ->set(
                                              array('tstamp' => time(), 
                                                      'filename' => $this->_filename, 
@@ -113,7 +118,7 @@ class Dlstats extends DlstatsHelper
 	{
 	    //Host / Page ID ermitteln
 	    $pageId = $GLOBALS['objPage']->id; // ID der grad aufgerufenden Seite.
-	    $pageHost = \Environment::get('host'); // Host der grad aufgerufenden Seite.
+	    $pageHost = Environment::get('host'); // Host der grad aufgerufenden Seite.
 
 	    if (isset($GLOBALS['TL_CONFIG']['dlstatdets']) 
 	           && (bool) $GLOBALS['TL_CONFIG']['dlstatdets'] === true
@@ -122,15 +127,15 @@ class Dlstats extends DlstatsHelper
 	        //Maximum details for year & month statistic
             $username = '';
 
-			$container = \System::getContainer();
+			$container = System::getContainer();
 			$authorizationChecker = $container->get('security.authorization_checker');
 			if ($authorizationChecker->isGranted('ROLE_MEMBER'))
 			{
-				$user = \FrontendUser::getInstance();
+				$user = FrontendUser::getInstance();
 				$username = $user->username;
 			}
 
-    		\Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
+    		Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
             						->set(
             						    array('tstamp'    => time(), 
             						            'pid'       => $this->_statId, 
@@ -147,7 +152,7 @@ class Dlstats extends DlstatsHelper
 	    else
 	    {
 	        //Minimum details for year & month statistic
-	        \Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
+	        Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
                                     ->set(
                                         array('tstamp'    => time(), 
                                                 'pid'       => $this->_statId
