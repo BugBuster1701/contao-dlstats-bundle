@@ -122,23 +122,12 @@ class Dlstats extends DlstatsHelper
 	        //Maximum details for year & month statistic
             $username = '';
 
-			if (true === $this->isContao48())
+			$container = \System::getContainer();
+			$authorizationChecker = $container->get('security.authorization_checker');
+			if ($authorizationChecker->isGranted('ROLE_MEMBER'))
 			{
-				$container = \System::getContainer();
-				$authorizationChecker = $container->get('security.authorization_checker');
-				if ($authorizationChecker->isGranted('ROLE_MEMBER'))
-				{
-					$this->import('FrontendUser', 'User');
-					$username = $this->User->username;
-				}
-			}
-			else 
-			{
-				if (\System::getContainer()->get('contao.security.token_checker')->hasFrontendUser())
-				{
-					$this->import('FrontendUser', 'User');
-					$username = $this->User->username;
-				}
+				$user = \FrontendUser::getInstance();
+				$username = $user->username;
 			}
 
     		\Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
