@@ -69,7 +69,7 @@ class ModuleDlstatsTag extends \Frontend
     			->log(
     			    LogLevel::ERROR,
     			    $GLOBALS['TL_LANG']['tl_dlstats']['no_key'],
-    			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR))
+    			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', ContaoContext::ERROR))
     			);
 
 			return false; // da fehlt was
@@ -105,7 +105,7 @@ class ModuleDlstatsTag extends \Frontend
     		->log(
     		    LogLevel::ERROR,
     		    $GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'],
-    		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', TL_ERROR))
+    		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', ContaoContext::ERROR))
     		);
 
 		return false; // wrong tag
