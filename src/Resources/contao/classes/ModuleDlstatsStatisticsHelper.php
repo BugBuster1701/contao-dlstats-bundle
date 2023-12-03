@@ -170,7 +170,8 @@ class ModuleDlstatsStatisticsHelper extends BackendModule
         $intRows = $objDetails->numRows;
         if ($intRows>0)
         {
-            $languages = System::getLanguages(); 
+            $container = System::getContainer();
+            $languages = $container->get('contao.intl.locales')->getLocales();
             $languages['unknown'] = 'unknown language';
 
             while ($objDetails->next())
