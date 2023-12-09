@@ -228,17 +228,14 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
     /**
      * Get Status Anonymization
      * @return string
+     * 
+     * @deprecated delete the feature, anonymize is enabled (since Contao 4.6 no longer deactivatable.)
      */
     protected function getStatusAnonymization()
     {
-        if (isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp'])
-         && (bool) $GLOBALS['TL_CONFIG']['privacyAnonymizeIp'] === true
-        )
-        {
-            return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_activated'];
-        }
-
-        return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'];
+        return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_activated'];
+        // Anonymize is enabled (since Contao 4.6 no longer deactivatable.)
+        //return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'];
     }
 
     /**
