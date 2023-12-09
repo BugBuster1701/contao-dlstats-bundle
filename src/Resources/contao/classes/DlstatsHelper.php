@@ -503,7 +503,7 @@ class DlstatsHelper extends Controller
 	}
 
 	/**
-	 * dlstatsAnonymizeIP - Anonymize the last byte(s) of visitors IP addresses, if enabled
+	 * dlstatsAnonymizeIP - Anonymize the last byte(s) of visitors IP addresses
 	 * 
 	 * @return mixed string = IP Address anonymized, false for "no IP"
 	 */
@@ -513,13 +513,7 @@ class DlstatsHelper extends Controller
 		{
 			return '0.0.0.0';
 		}
-		if (isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp']) && 
-           (bool) $GLOBALS['TL_CONFIG']['privacyAnonymizeIp'] === false)
-		{
-			// Anonymize is disabled
-			return ($this->IP === false) ? '0.0.0.0' : $this->IP;
-		}
-		// Anonymization is enabled, set default anonymization power
+		// Anonymize is enabled (since Contao 4.6 no longer deactivatable.)
 		if (!isset($GLOBALS['TL_CONFIG']['dlstatAnonymizeIP4']))
 		{
 		    $GLOBALS['TL_CONFIG']['dlstatAnonymizeIP4'] = 1;
@@ -561,7 +555,7 @@ class DlstatsHelper extends Controller
 	}
 
 	/**
-	 * dlstatsAnonymizeDomain - Anonymize the Domain of visitors, if enabled
+	 * dlstatsAnonymizeDomain - Anonymize the Domain of visitors
 	 *
 	 * @return string Domain anonymized, if DNS entry exists
 	 */
@@ -571,15 +565,7 @@ class DlstatsHelper extends Controller
 		{
 			return '';
 		}
-		if (isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp']) && 
-           (bool) $GLOBALS['TL_CONFIG']['privacyAnonymizeIp'] === false)
-		{
-			// Anonymize is disabled
-			$domain = gethostbyaddr($this->IP);
-
-			return ($domain == $this->IP) ? '' : $domain;
-		}
-		// Anonymize is enabled
+		// Anonymize is enabled (since Contao 4.6 no longer deactivatable.)
 		$domain = gethostbyaddr($this->IP);
 		if ($domain != $this->IP) // bei Fehler/keiner Aufloesung kommt IP zurueck
 		{
