@@ -95,7 +95,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         {
             $this->filenameid = (int) Input::post('filenameid', true);
         }
-        if (\strlen(Input::post('username', true)) > 0)
+        if (\strlen(Input::post('username', true) ?? '') > 0)
         {
             $this->username = Input::post('username', true);
         }
