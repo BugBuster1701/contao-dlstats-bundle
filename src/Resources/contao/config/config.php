@@ -45,10 +45,9 @@ $GLOBALS['BE_MOD']['system']['dlstats'] = array
 
 /**
  * -------------------------------------------------------------------------
- * HOOKS
+ * HOOKS TODO ReplaceInsertTagsListener
  * -------------------------------------------------------------------------
  */
-$GLOBALS['TL_HOOKS']['postDownload'][]          = array('BugBuster\DLStats\Dlstats',          'logDownload');
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
 
 /**
