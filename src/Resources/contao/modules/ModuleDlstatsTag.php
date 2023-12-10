@@ -1,16 +1,14 @@
 <?php
 
-/**
- * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
+/*
+ * This file is part of a BugBuster Contao Bundle.
  *
- * Modul Dlstats Tag - Frontend for InsertTags
- *
- * PHP version 5
- * @copyright  Glen Langer 2011..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @license    LGPL
- * @filesource
- * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
+ * @package    Contao Download Statistics Bundle (Dlstats)
+ * @link       https://github.com/BugBuster1701/contao-dlstats-bundle
+ *
+ * @license    LGPL-3.0-or-later
  */
 
 /**
@@ -19,30 +17,29 @@
 
 namespace BugBuster\DLStats;
 
-use Contao\System;
-use Contao\Database;
-use Contao\StringUtil;
 use Contao\CoreBundle\Monolog\ContaoContext;
+use Contao\Database;
+use Contao\Frontend;
+use Contao\StringUtil;
+use Contao\System;
 use Psr\Log\LogLevel;
 
 /**
- * Class ModuleDlstatsTag 
+ * Class ModuleDlstatsTag
  *
  * @copyright  Glen Langer 2011..2018
- * @author     Glen Langer 
- * @license    LGPL 
+ * @license    LGPL
  */
-class ModuleDlstatsTag extends \Contao\Frontend
+class ModuleDlstatsTag extends Frontend
 {
-
 	/**
 	 * replaceInsertTags
-	 * 
+	 *
 	 * From TL 2.8 you can use prefix "cache_". Thus the InserTag will be not cached. (when "cache" is enabled)
-	 * 
+	 *
 	 *       dlstats::totaldownloads::filename - Total downloads for filename
 	 * cache_dlstats::totaldownloads::filename - Total downloads for filename (not cached)
-	 * 
+	 *
 	 * <code>
 	 * {{cache_dlstats::totaldownloads::tl_files/cdc2010.pdf}}
 	 * {{cache_dlstats::totaldownloads::CDC_2010.html?file=tl_files/cdc2010.pdf}}
@@ -51,7 +48,7 @@ class ModuleDlstatsTag extends \Contao\Frontend
 	 * // in the ce_downloads template:
 	 * {{cache_dlstats::totaldownloads::<?php echo $file['href']; ?>}}
 	 * </code>
-	 * 
+	 *
 	 * @param  string $strTag Insert-Tag
 	 * @return mixed  integer on downloads, false on wrong Insert-Tag or wrong parameters
 	 */
@@ -69,12 +66,12 @@ class ModuleDlstatsTag extends \Contao\Frontend
 		if (!isset($arrTag[2]))
 		{
 			System::getContainer()
-    			->get('monolog.logger.contao')
-    			->log(
-    			    LogLevel::ERROR,
-    			    $GLOBALS['TL_LANG']['tl_dlstats']['no_key'],
-    			    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', ContaoContext::ERROR))
-    			);
+				->get('monolog.logger.contao')
+				->log(
+					LogLevel::ERROR,
+					$GLOBALS['TL_LANG']['tl_dlstats']['no_key'],
+					array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', ContaoContext::ERROR))
+				);
 
 			return false; // da fehlt was
 		}
@@ -88,13 +85,13 @@ class ModuleDlstatsTag extends \Contao\Frontend
 
 		if ($arrTag[1] == 'totaldownloads')
 		{
-			$objDlstats = Database::getInstance()->prepare("SELECT 
+			$objDlstats = Database::getInstance()->prepare("SELECT
                                                                     `downloads`
                                                              FROM
                                                                     `tl_dlstats`
                                                              WHERE
                                                                     `filename` = ?")
-                                    ->execute(urldecode($arrTag[2]));
+									->execute(urldecode($arrTag[2]));
 			if ($objDlstats->numRows < 1)
 			{
 				return 0;
@@ -103,15 +100,15 @@ class ModuleDlstatsTag extends \Contao\Frontend
 
 			return $objDlstats->downloads;
 		}
-		// Tag is wrong 
+		// Tag is wrong
 		System::getContainer()
-    		->get('monolog.logger.contao')
-    		->log(
-    		    LogLevel::ERROR,
-    		    $GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'],
-    		    array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', ContaoContext::ERROR))
-    		);
+			->get('monolog.logger.contao')
+			->log(
+				LogLevel::ERROR,
+				$GLOBALS['TL_LANG']['tl_dlstats']['wrong_key'],
+				array('contao' => new ContaoContext('ModuleDlstatsTag ReplaceInsertTags ', ContaoContext::ERROR))
+			);
 
 		return false; // wrong tag
-	} //function
+	} // function
 } // class

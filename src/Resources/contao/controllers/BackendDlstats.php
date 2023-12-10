@@ -1,43 +1,42 @@
 <?php
 
-/**
- * @copyright  Glen Langer 2018..2020 <http://contao.ninja>
+/*
+ * This file is part of a BugBuster Contao Bundle.
+ *
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @license    LGPL-3.0+
- * @see	       https://github.com/BugBuster1701/contao-dlstats-bundle
+ * @package    Contao Download Statistics Bundle (Dlstats)
+ * @link       https://github.com/BugBuster1701/contao-dlstats-bundle
+ *
+ * @license    LGPL-3.0-or-later
  */
 
 namespace BugBuster\DLStats;
 
-use BugBuster\DLStats\ModuleDlstatsStatisticsHelper;
-use Contao\CoreBundle\Exception\AccessDeniedException;
-use Contao\CoreBundle\ContaoCoreBundle;
-use Symfony\Component\HttpFoundation\Response;
-use Contao\System;
 use Contao\Backend;
 use Contao\BackendTemplate;
-use Contao\Environment;
-use Contao\StringUtil;
-use Contao\Input;
 use Contao\Config;
+use Contao\CoreBundle\ContaoCoreBundle;
+use Contao\CoreBundle\Exception\AccessDeniedException;
+use Contao\Environment;
+use Contao\Input;
+use Contao\StringUtil;
+use Contao\System;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Back end dlstats wizard.
- *
- * @author     Glen Langer (BugBuster)
  */
 class BackendDlstats extends ModuleDlstatsStatisticsHelper
 {
-
 	/**
 	 * Initialize the controller
-	 *
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 
-		if (false === System::getContainer()->get('contao.security.token_checker')->hasBackendUser()) 
+		if (false === System::getContainer()->get('contao.security.token_checker')->hasBackendUser())
 		{
 			throw new AccessDeniedException('Access denied');
 		}
@@ -63,23 +62,24 @@ class BackendDlstats extends ModuleDlstatsStatisticsHelper
 		$objTemplate->charset   = Config::get('characterSet');
 		$objTemplate->contaoversion = ContaoCoreBundle::getVersion();
 
-		if (\is_null(Input::get('action', true)) ||
-		     \is_null(Input::get('dlstatsid', true)))
-		{
-		    $objTemplate->messages = '<p class="tl_error">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'].'</p>';
+		if (
+			null === Input::get('action', true)
+			 || null === Input::get('dlstatsid', true)
+		) {
+			$objTemplate->messages = '<p class="tl_error">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'] . '</p>';
 
-		    return $objTemplate->getResponse();
+			return $objTemplate->getResponse();
 		}
 
 		switch (Input::get('action', true))
 		{
-		    case 'TopLastDownloads':
-		        $DetailFunction = 'getDlstatsDetails'.Input::get('action', true);
-		        $objTemplate->messages = $this->$DetailFunction(Input::get('action', true), Input::get('dlstatsid', true));
-		        break;
-		    default:
-		        $objTemplate->messages = '<p class="tl_error">'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'].'</p>';
-		        break;
+			case 'TopLastDownloads':
+				$DetailFunction = 'getDlstatsDetails' . Input::get('action', true);
+				$objTemplate->messages = $this->$DetailFunction(Input::get('action', true), Input::get('dlstatsid', true));
+				break;
+			default:
+				$objTemplate->messages = '<p class="tl_error">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['wrong_parameter'] . '</p>';
+				break;
 		}
 
 		return $objTemplate->getResponse();
