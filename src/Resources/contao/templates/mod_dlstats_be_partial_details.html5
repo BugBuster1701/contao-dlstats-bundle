@@ -5,7 +5,7 @@
 	<title>Contao Open Source CMS - Contao Open Source CMS <?= $this->contaoversion ?></title>
 	<link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/basic.css', 'system/themes/'.$this->theme) ?>">
 	<link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/main.css', 'system/themes/'.$this->theme) ?>">
-	<link rel="stylesheet" type="text/css" href="bundles/bugbusterdlstats/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/bundles/bugbusterdlstats/style.css" media="all">
 </head>
 <body id="top">
 <div id="container">
