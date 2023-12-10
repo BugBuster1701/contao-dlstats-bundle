@@ -76,21 +76,17 @@ class DownloadResponseListener extends DlstatsHelper
 
         /** @var \Symfony\Component\HttpKernel\Event\Response $response */
         $file = $response->getFile();
-        // $response->getFile() gibt dir ein Symfony\Component\HttpFoundation\File\File Objekt zurück. 
-        // Damit kommst du an den absoluten Pfad. Den musst du nun zu einem relativen Pfad umwandeln, 
-        // damit du damit den entsprechenden Eintrag aus tl_files suchen kannst. Dazu musst du dir den kernel.project_dir Parameter injecten und dann 
-        // mit Hilfe von \Symfony\Component\Filesystem\Path::makeRelative($file->getPathname(), $this->projectDir); 
-        // den relativen Pfad erzeugen, welchen du dann in deinem Datenbank Query nutzen kannst. 
+        // $response->getFile() gibt ein Symfony\Component\HttpFoundation\File\File Objekt zurück. 
+        // absoluten Pfad zu einem relativen Pfad umwandeln, damit den entsprechenden Eintrag aus tl_files suchen
+        // Dazu kernel.project_dir Parameter injecten und dann mit Hilfe von 
+        // \Symfony\Component\Filesystem\Path::makeRelative($file->getPathname(), $this->projectDir); 
+        // den relativen Pfad erzeugen
         $this->_filename = \Symfony\Component\Filesystem\Path::makeRelative($file->getPathname(), $this->projectDir);
-        //dump($this->_filename);
-        // $dbResult = $this->connection->executeQuery('SELECT * FROM tl_files WHERE path=$?')->fetchAllAssociative($relativePath);
-        // $filesRecord = $this->connection->fetchAssociative("SELECT * FROM tl_files WHERE path = ?", [$relativePath]);  
-        // $this->connection->update(…)  
-
-        // Darüberhinaus solltest du noch ein early out einbauen für den Fall, dass der Dateipfad nicht mit dem 
-        // Parameter contao.upload_path beginnt ("files"). Weil solche Responses kann es ja auch für Dateien außerhalb von files/ geben.
-        // Wie kann ich den contao.upload_path denn abfragen?
-        // Genau so injecten wie kernel.project_dir. Für die Prüfung kannst du dann Path::isBasePath nutzen. 
+        // TODO?
+        // Darüberhinaus ein early out einbauen für den Fall, dass der Dateipfad nicht mit dem 
+        // Parameter contao.upload_path beginnt ("files"). 
+        // Solche Responses kann es ja auch für Dateien außerhalb von files/ geben.
+        // contao.upload_path injecten wie kernel.project_dir. Für die Prüfung dann Path::isBasePath nutzen
 
         if (isset($GLOBALS['TL_CONFIG']['dlstats']) && 
            (bool) $GLOBALS['TL_CONFIG']['dlstats'] === true)
@@ -111,32 +107,12 @@ class DownloadResponseListener extends DlstatsHelper
 	 */
 	protected function logDLStats()
 	{
-        System::getContainer()
-        ->get('monolog.logger.contao')
-        ->log(LogLevel::INFO,
-            'DownloadResponseListener logDLStats',
-            ['contao' => new ContaoContext('DownloadResponseListener logDLStats ', ContaoContext::GENERAL)])
-      ;
-		// $q = Database::getInstance()->prepare("SELECT id FROM `tl_dlstats` WHERE `filename`=?")
-        //                             ->execute($this->_filename);
-		// if ($q->next())
-		// {
-		// 	$this->_statId = $q->id;
-		// 	Database::getInstance()->prepare("UPDATE `tl_dlstats` SET `tstamp`=?, `downloads`=`downloads`+1 WHERE `id`=?")
-        //                             ->execute(time(), $this->_statId);
-		// }
-		// else
-		// {
-		// 	$q = Database::getInstance()->prepare("INSERT IGNORE INTO `tl_dlstats` %s")
-        //                                  ->set(
-        //                                      array('tstamp' => time(), 
-        //                                              'filename' => $this->_filename, 
-        //                                              'downloads' => 1)
-        //                                  )
-        //                                  ->execute();
-		// 	$this->_statId = $q->insertId;
-		// } // if
-
+    //     System::getContainer()
+    //     ->get('monolog.logger.contao')
+    //     ->log(LogLevel::INFO,
+    //         'DownloadResponseListener logDLStats',
+    //         ['contao' => new ContaoContext('DownloadResponseListener logDLStats ', ContaoContext::GENERAL)])
+    //   ;
         $q = $this->connection->fetchAssociative("SELECT id FROM `tl_dlstats` WHERE `filename`=?", [$this->_filename]);
         if ($q !== false)
         {
@@ -170,14 +146,13 @@ class DownloadResponseListener extends DlstatsHelper
 	 */
 	protected function logDLStatDetails()
 	{
-        System::getContainer()
-        ->get('monolog.logger.contao')
-        ->log(LogLevel::INFO,
-            'DownloadResponseListener logDLStatDetails',
-            ['contao' => new ContaoContext('DownloadResponseListener logDLStatDetails ', ContaoContext::GENERAL)])
-      ;
+    //     System::getContainer()
+    //     ->get('monolog.logger.contao')
+    //     ->log(LogLevel::INFO,
+    //         'DownloadResponseListener logDLStatDetails',
+    //         ['contao' => new ContaoContext('DownloadResponseListener logDLStatDetails ', ContaoContext::GENERAL)])
+    //   ;
 	    //Host / Page ID ermitteln
-	    //$pageId = $GLOBALS['objPage']->id; // ID der grad aufgerufenden Seite.
         $objPage = System::getContainer()->get('request_stack')->getCurrentRequest()->get('pageModel');
         $pageId = $objPage->id;
 	    $pageHost = Environment::get('host'); // Host der grad aufgerufenden Seite.
@@ -198,19 +173,6 @@ class DownloadResponseListener extends DlstatsHelper
 				$username = $user->username;
 			}
 
-    		// Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
-            // 						->set(
-            // 						    array('tstamp'    => time(), 
-            // 						            'pid'       => $this->_statId, 
-            // 						            'ip'        => $this->dlstatsAnonymizeIP(), 
-            // 						            'domain'    => $this->dlstatsAnonymizeDomain(), 
-            // 						            'username'  => $username,
-            // 						            'page_host' => $pageHost,
-            // 						            'page_id'   => $pageId,
-            // 						            'browser_lang' => $this->dlstatsGetLang()
-            // 						            )
-            // 						)
-            //                         ->execute();
             $data = [
                 'tstamp'    => time(), 
                 'pid'       => $this->_statId, 
@@ -226,13 +188,6 @@ class DownloadResponseListener extends DlstatsHelper
 	    else
 	    {
 	        //Minimum details for year & month statistic
-	        // Database::getInstance()->prepare("INSERT INTO `tl_dlstatdets` %s")
-            //                         ->set(
-            //                             array('tstamp'    => time(), 
-            //                                     'pid'       => $this->_statId
-            //                                    )
-            //                         )
-            //                         ->execute();
             $data = [
                 'tstamp'    => time(), 
                 'pid'       => $this->_statId,
