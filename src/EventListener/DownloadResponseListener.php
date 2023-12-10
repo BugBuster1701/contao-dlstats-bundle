@@ -74,12 +74,12 @@ class DownloadResponseListener extends DlstatsHelper
         if (!$event->isMainRequest() || !($response = $event->getResponse()) instanceof BinaryFileResponse) {
             return;
         }
-        System::getContainer()
-            ->get('monolog.logger.contao')
-            ->log(LogLevel::INFO,
-                'DownloadResponseListener invoke: MainRequest',
-                ['contao' => new ContaoContext('DownloadResponseListener MainRequest ', ContaoContext::GENERAL)])
-        ;
+        // System::getContainer()
+        //     ->get('monolog.logger.contao')
+        //     ->log(LogLevel::INFO,
+        //         'DownloadResponseListener invoke: MainRequest',
+        //         ['contao' => new ContaoContext('DownloadResponseListener MainRequest ', ContaoContext::GENERAL)])
+        // ;
 
         /** @var Response $response */
         $file = $response->getFile();
@@ -127,7 +127,7 @@ class DownloadResponseListener extends DlstatsHelper
                 'tl_dlstats',
                 [
                     'tstamp' => time(),
-                    'downloads' => 'downloads' + 1,
+                    'downloads' => `downloads` + 1,
                 ],
                 [
                     'id' => $this->_statId,
