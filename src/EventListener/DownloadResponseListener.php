@@ -19,12 +19,12 @@ namespace BugBuster\DlstatsBundle\EventListener;
 
 use BugBuster\DLStats\DlstatsHelper;
 use Contao\CoreBundle\Framework\ContaoFramework;
-use Contao\CoreBundle\Monolog\ContaoContext;
+// use Contao\CoreBundle\Monolog\ContaoContext;
 use Contao\Environment;
 use Contao\FrontendUser;
 use Contao\System;
 use Doctrine\DBAL\Connection;
-use Psr\Log\LogLevel;
+// use Psr\Log\LogLevel;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Event\Response;
@@ -123,15 +123,10 @@ class DownloadResponseListener extends DlstatsHelper
         $q = $this->connection->fetchAssociative('SELECT id FROM `tl_dlstats` WHERE `filename`=?', [$this->_filename]);
         if (false !== $q) {
             $this->_statId = $q['id'];
-            $this->connection->update(
-                'tl_dlstats',
-                [
-                    'tstamp' => time(),
-                    'downloads' => `downloads` + 1,
-                ],
-                [
-                    'id' => $this->_statId,
-                ],
+            $this->connection->executeQuery('UPDATE `tl_dlstats`
+                                            SET `tstamp`=?, `downloads`=`downloads`+1
+                                            WHERE `id`=?',
+                [time(), $this->_statId],
             );
         } else {
             $data = [
