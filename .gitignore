@@ -8,3 +8,5 @@ src/vendor/
 src/composer.json
 composer.lock
 todo.txt
+#ECS
+tools/ecs/vendor/
