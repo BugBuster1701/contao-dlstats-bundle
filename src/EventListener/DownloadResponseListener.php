@@ -22,9 +22,10 @@ use Contao\CoreBundle\Framework\ContaoFramework;
 // use Contao\CoreBundle\Monolog\ContaoContext;
 use Contao\Environment;
 use Contao\FrontendUser;
-use Contao\System;
+use Contao\PageModel;
 use Doctrine\DBAL\Connection;
 // use Psr\Log\LogLevel;
+use Symfony\Bundle\SecurityBundle\Security; // deprecated ab 6.2 ist Symfony\Component\Security\Core\Security;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Event\Response;
@@ -33,11 +34,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class DownloadResponseListener extends DlstatsHelper
 {
-    private $connection;
-
     private $projectDir;
-
-    private $framework;
 
     /**
      * tl_dlstats.id.
@@ -53,11 +50,13 @@ class DownloadResponseListener extends DlstatsHelper
      */
     private $_filename = '';
 
-    public function __construct(Connection $connection, KernelInterface $kernel, ContaoFramework $framework)
-    {
-        $this->connection = $connection;
+    public function __construct(
+        private readonly Connection $connection,
+        private readonly KernelInterface $kernel,
+        private readonly ContaoFramework $framework,
+        private readonly Security $security,
+    ) {
         $this->projectDir = $kernel->getProjectDir();
-        $this->framework = $framework;
         $this->framework->initialize();
 
         parent::__construct(); // DlstatsHelper check methods
@@ -72,6 +71,18 @@ class DownloadResponseListener extends DlstatsHelper
     public function __invoke(ResponseEvent $event): void
     {
         if (!$event->isMainRequest() || !($response = $event->getResponse()) instanceof BinaryFileResponse) {
+            return;
+        }
+        /** @var PageModel $pageModel */
+        $pageModel = $event->getRequest()->attributes->get('pageModel');
+        if (!$pageModel instanceof PageModel) {
+            // e.g. /favicon.ico
+            // System::getContainer()
+            //     ->get('monolog.logger.contao')
+            //     ->log(LogLevel::INFO,
+            //     'DownloadResponseListener invoke: kein PageModel',
+            //     ['contao' => new ContaoContext('DownloadResponseListener MainRequest ', ContaoContext::GENERAL)])
+            // ;
             return;
         }
         // System::getContainer()
@@ -104,7 +115,7 @@ class DownloadResponseListener extends DlstatsHelper
                 && false === $this->checkMultipleDownload($this->_filename)
             ) {
                 $this->logDLStats();
-                $this->logDLStatDetails();
+                $this->logDLStatDetails($pageModel);
             }
         }
     }
@@ -142,7 +153,7 @@ class DownloadResponseListener extends DlstatsHelper
     /**
      * Helper function log details.
      */
-    protected function logDLStatDetails(): void
+    protected function logDLStatDetails(PageModel $pageModel): void
     {
         //     System::getContainer()
         //     ->get('monolog.logger.contao')
@@ -151,8 +162,7 @@ class DownloadResponseListener extends DlstatsHelper
         //         ['contao' => new ContaoContext('DownloadResponseListener logDLStatDetails ', ContaoContext::GENERAL)])
         //   ;
         // Host / Page ID ermitteln
-        $objPage = System::getContainer()->get('request_stack')->getCurrentRequest()->get('pageModel');
-        $pageId = $objPage->id;
+        $pageId = $pageModel->id;
         $pageHost = Environment::get('host'); // Host der grad aufgerufenden Seite.
 
         if (
@@ -161,13 +171,11 @@ class DownloadResponseListener extends DlstatsHelper
         ) {
             // Maximum details for year & month statistic
             $username = '';
-            // TODO: https://docs.contao.org/dev/reference/services/#security-helper
 
-            $container = System::getContainer();
-            $authorizationChecker = $container->get('security.authorization_checker');
-            if ($authorizationChecker->isGranted('ROLE_MEMBER')) {
-                $user = FrontendUser::getInstance();
-                $username = $user->username;
+            if ($this->security->isGranted('ROLE_MEMBER')) {
+                if (($user = $this->security->getUser()) instanceof FrontendUser) {
+                    $username = $user;
+                }
             }
 
             $data = [
