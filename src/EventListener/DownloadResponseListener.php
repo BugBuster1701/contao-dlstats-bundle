@@ -20,9 +20,9 @@ namespace BugBuster\DlstatsBundle\EventListener;
 use BugBuster\DLStats\DlstatsHelper;
 use Contao\CoreBundle\Framework\ContaoFramework;
 // use Contao\CoreBundle\Monolog\ContaoContext;
-use Contao\Environment;
 use Contao\FrontendUser;
 use Contao\PageModel;
+// use Contao\System;
 use Doctrine\DBAL\Connection;
 // use Psr\Log\LogLevel;
 use Symfony\Bundle\SecurityBundle\Security; // deprecated ab 6.2 ist Symfony\Component\Security\Core\Security;
@@ -85,10 +85,11 @@ class DownloadResponseListener extends DlstatsHelper
             // ;
             return;
         }
+        $pageHost = $event->getRequest()->getHost();
         // System::getContainer()
         //     ->get('monolog.logger.contao')
         //     ->log(LogLevel::INFO,
-        //         'DownloadResponseListener invoke: MainRequest',
+        //         'DownloadResponseListener invoke: ' . $pageHost,
         //         ['contao' => new ContaoContext('DownloadResponseListener MainRequest ', ContaoContext::GENERAL)])
         // ;
 
@@ -115,7 +116,7 @@ class DownloadResponseListener extends DlstatsHelper
                 && false === $this->checkMultipleDownload($this->_filename)
             ) {
                 $this->logDLStats();
-                $this->logDLStatDetails($pageModel);
+                $this->logDLStatDetails($pageModel, $pageHost);
             }
         }
     }
@@ -153,7 +154,7 @@ class DownloadResponseListener extends DlstatsHelper
     /**
      * Helper function log details.
      */
-    protected function logDLStatDetails(PageModel $pageModel): void
+    protected function logDLStatDetails(PageModel $pageModel, $pageHost): void
     {
         //     System::getContainer()
         //     ->get('monolog.logger.contao')
@@ -163,7 +164,6 @@ class DownloadResponseListener extends DlstatsHelper
         //   ;
         // Host / Page ID ermitteln
         $pageId = $pageModel->id;
-        $pageHost = Environment::get('host'); // Host der grad aufgerufenden Seite.
 
         if (
             isset($GLOBALS['TL_CONFIG']['dlstatdets'])
