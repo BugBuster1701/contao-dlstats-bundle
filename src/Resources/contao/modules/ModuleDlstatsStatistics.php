@@ -83,11 +83,10 @@ class ModuleDlstatsStatistics extends BackendModule
 		}
 
 		if (
-			isset($GLOBALS['TL_CONFIG']['dlstatStatresetProtected'], $GLOBALS['TL_CONFIG']['dlstatStatresetGroups'])
-
+			isset($GLOBALS['TL_CONFIG']['dlstatStatresetProtected'])
 		 && (int) $GLOBALS['TL_CONFIG']['dlstatStatresetProtected'] >0
 		) {
-			$this->boolAllowReset = $this->isUserInDownloadStatGroups($GLOBALS['TL_CONFIG']['dlstatStatresetGroups']);
+			$this->boolAllowReset = $this->isUserInDownloadStatGroups($GLOBALS['TL_CONFIG']['dlstatStatresetGroups'] ?? '');
 		}
 
 		if (Input::get('act', true)=='zero')
