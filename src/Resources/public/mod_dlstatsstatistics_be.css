@@ -86,7 +86,7 @@ table th.sort-up:after {
 /* Limit Toggler */
 .dlstats_toggler {
 	border-bottom: 0 none;
-	padding: 0;
+	/* padding: 0; */
 }
 
 .dlstats_toggler .limit_toggler button span {

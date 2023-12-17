@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2017-06-05T23:49:02+02:00" original="modules" source-language="en" target-language="hi">
+    <body>
+      <trans-unit id="MOD.dlstats.0">
+        <source>Download Statistics</source>
+        <target>आंकड़े डालें</target>
+        
+      </trans-unit>
+      <trans-unit id="MOD.dlstats.1">
+        <source>Download statistics.</source>
+        <target>आंकड़े डालें।</target>
+        
+      </trans-unit>
+      <trans-unit id="FMD.testip.0">
+        <source>IP Debug Module</source>
+        <target>आईपी दोषमार्जन मापांक</target>
+        
+      </trans-unit>
+      <trans-unit id="FMD.testip.1">
+        <source>IP Debug Module, display the IP key values​​.</source>
+        <target>आईपी दोषमार्जन मापांक, आईपी ​​कुंजी मान प्रदर्शित करें।</target>
+        
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

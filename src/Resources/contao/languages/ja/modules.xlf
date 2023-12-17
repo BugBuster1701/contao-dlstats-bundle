@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2017-06-05T23:49:02+02:00" original="modules" source-language="en" target-language="ja">
+    <body>
+      <trans-unit id="MOD.dlstats.0">
+        <source>Download Statistics</source>
+        <target>ダウンロードの統計</target>
+        
+      </trans-unit>
+      <trans-unit id="MOD.dlstats.1">
+        <source>Download statistics.</source>
+        <target>ダウンロード統計です。</target>
+        
+      </trans-unit>
+      <trans-unit id="FMD.testip.0">
+        <source>IP Debug Module</source>
+        <target>IPデバッグモジュール</target>
+        
+      </trans-unit>
+      <trans-unit id="FMD.testip.1">
+        <source>IP Debug Module, display the IP key values​​.</source>
+        <target>IPデバッグモジュールは、IPのキーの値を表示します。</target>
+        
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

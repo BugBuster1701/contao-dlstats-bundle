@@ -4,12 +4,12 @@
 <table>
 <tbody>
 	<tr><td><strong>Key</strong></td><td><strong>Value</strong></td></tr>
-	<tr><td>SERVER HTTP_X_FORWARDED_FOR&nbsp;</td><td><?php echo $this->env_forward_for; ?></td></tr>
-	<tr><td>SERVER REMOTE_ADDR</td><td><?php echo $this->env_remote_addr; ?></td></tr>
-	<tr><td>TL_CONFIG proxyServerIps</td><td><?php echo $this->env_proxy_server_ips; ?></td></tr>
-	<tr><td>Contao Environment IP</td><td><?php echo $this->env_ip; ?></td></tr>
-	<tr><td>Dlstats IP Version</td><td><?php echo $this->ip_version; ?></td></tr>
-	<tr><td>Dlstats IP</td><td><?php echo $this->ip_by_dlstats; ?></td></tr>
+	<tr><td>SERVER HTTP_X_FORWARDED_FOR&nbsp;</td><td><?= $this->env_forward_for; ?></td></tr>
+	<tr><td>SERVER REMOTE_ADDR</td><td><?= $this->env_remote_addr; ?></td></tr>
+	<tr><td>TL_CONFIG proxyServerIps</td><td><?= $this->env_proxy_server_ips; ?></td></tr>
+	<tr><td>Contao Environment IP</td><td><?= $this->env_ip; ?></td></tr>
+	<tr><td>Dlstats IP Version</td><td><?= $this->ip_version; ?></td></tr>
+	<tr><td>Dlstats IP</td><td><?= $this->ip_by_dlstats; ?></td></tr>
 </tbody>
 </table>
 <!-- indexer::continue -->

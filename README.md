@@ -1,4 +1,4 @@
-# Contao 4 dlstats Bundle
+# Contao 5 dlstats Bundle
 
 [![Latest Stable Version](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/v/stable)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) [![Total Downloads](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/downloads)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) [![Latest Unstable Version](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/v/unstable)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) [![License](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/license)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) 
 
@@ -7,7 +7,7 @@
 
 ## About
 
-Contao 4 dlstats Bundle - Counts the number of file downloads 
+Contao 5 dlstats Bundle - Counts the number of file downloads 
 
 
 ## Installation

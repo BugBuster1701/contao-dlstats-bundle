@@ -3,13 +3,16 @@
 declare(strict_types=1);
 
 /*
- * This file is part of a BugBuster Contao Bundle
+ * This file is part of a BugBuster Contao Bundle.
  *
- * @copyright  Glen Langer 2008..2023<http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao Download Statistics Bundle (Dlstats)
+ * @link       https://github.com/BugBuster1701/contao-dlstats-bundle
+ *
  * @license    LGPL-3.0-or-later
- * @see        https://github.com/BugBuster1701/contao-dlstats-bundle
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
  */
 
 namespace BugBuster\DlstatsBundle\ContaoManager;
@@ -28,9 +31,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPluginInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getBundles(ParserInterface $parser)
     {
         return [
@@ -40,14 +40,11 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPlu
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel)
     {
         return $resolver
-            ->resolve(__DIR__.'/../Resources/config/routing.yml')
-            ->load(__DIR__.'/../Resources/config/routing.yml')
+            ->resolve(__DIR__.'/../../config/routing.yml')
+            ->load(__DIR__.'/../../config/routing.yml')
         ;
     }
 
@@ -57,7 +54,7 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPlu
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig): void
     {
         // $loader->load(__DIR__ . '/../Resources/config/parameters.yml');
-        $loader->load(__DIR__.'/../Resources/config/services.yml');
+        $loader->load(__DIR__.'/../../config/services.yml');
         // $loader->load(__DIR__ . '/../Resources/config/listener.yml');
     }
 }

@@ -1,0 +1,43 @@
+[main]
+host = https://app.transifex.com
+
+[o:bugbuster:p:contao-dlstats-bundle:r:master-modules]
+file_filter            = src/Resources/contao/languages/<lang>/modules.xlf
+source_file            = src/Resources/contao/languages/en/modules.xlf
+type                   = XLIFF
+minimum_perc           = 0
+resource_name          = master-modules
+replace_edited_strings = false
+keep_translations      = false
+source_lang            = en
+
+[o:bugbuster:p:contao-dlstats-bundle:r:master-tl_dlstats]
+file_filter            = src/Resources/contao/languages/<lang>/tl_dlstats.xlf
+source_file            = src/Resources/contao/languages/en/tl_dlstats.xlf
+source_lang            = en
+type                   = XLIFF
+minimum_perc           = 0
+resource_name          = master-tl_dlstats
+replace_edited_strings = false
+keep_translations      = false
+
+[o:bugbuster:p:contao-dlstats-bundle:r:master-tl_dlstatstatistics_stat]
+file_filter            = src/Resources/contao/languages/<lang>/tl_dlstatstatistics_stat.xlf
+source_file            = src/Resources/contao/languages/en/tl_dlstatstatistics_stat.xlf
+source_lang            = en
+type                   = XLIFF
+minimum_perc           = 0
+resource_name          = master-tl_dlstatstatistics_stat
+replace_edited_strings = false
+keep_translations      = false
+
+[o:bugbuster:p:contao-dlstats-bundle:r:master-tl_settings]
+file_filter            = src/Resources/contao/languages/<lang>/tl_settings.xlf
+source_file            = src/Resources/contao/languages/en/tl_settings.xlf
+source_lang            = en
+type                   = XLIFF
+minimum_perc           = 0
+resource_name          = master-tl_settings
+replace_edited_strings = false
+keep_translations      = false
+

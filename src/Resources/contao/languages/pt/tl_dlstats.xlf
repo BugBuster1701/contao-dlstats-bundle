@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file datatype="php" date="2017-06-05T23:49:02+02:00" original="tl_dlstats" source-language="en" target-language="pt">
+    <body>
+      <trans-unit id="tl_dlstats.no_key">
+        <source>No path/filename is specified (parameter 2)</source>
+        
+      </trans-unit>
+      <trans-unit id="tl_dlstats.wrong_key">
+        <source>Faulty or incorrect tag name (parameter 1)</source>
+        
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

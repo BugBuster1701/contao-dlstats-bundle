@@ -1,8 +1,0 @@
-services:
-    _defaults: { autowire: true, autoconfigure: true, public: false }
-
-    BugBuster\DlstatsBundle\Controller\DlstatsController:
-        public: true
-        calls:
-            - method: setContainer
-              arguments: [ '@service_container' ]
