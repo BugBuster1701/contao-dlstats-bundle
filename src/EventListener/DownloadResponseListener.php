@@ -182,13 +182,19 @@ class DownloadResponseListener extends DlstatsHelper
         // Host / Page ID ermitteln
         $pageId = $pageModel->id;
         $details = (bool) ($GLOBALS['TL_CONFIG']['dlstatdets'] ?? false);
+        
+        $q = $this->connection->fetchAssociative('SELECT id FROM `tl_dlstats` WHERE `filename`=?', [$this->_filename]);
+        $this->_statId = $q['id'];
 
         if ($details) {
+            $this->logMonolog($Uniqid, __METHOD__, __LINE__, 'DownloadResponseListener logDLStatDetails true');
             // Maximum details for year & month statistic
             $username = '';
 
             if ($this->security->isGranted('ROLE_MEMBER')) {
+                $this->logMonolog($Uniqid, __METHOD__, __LINE__, 'DownloadResponseListener logDLStatDetails ROLE_MEMBER');
                 if (($user = $this->security->getUser()) instanceof FrontendUser) {
+                    $this->logMonolog($Uniqid, __METHOD__, __LINE__, 'DownloadResponseListener logDLStatDetails FE-User: '.$user);
                     $username = $user;
                 }
             }
