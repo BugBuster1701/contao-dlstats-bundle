@@ -182,7 +182,7 @@ class DownloadResponseListener extends DlstatsHelper
         // Host / Page ID ermitteln
         $pageId = $pageModel->id;
         $details = (bool) ($GLOBALS['TL_CONFIG']['dlstatdets'] ?? false);
-        
+
         $q = $this->connection->fetchAssociative('SELECT id FROM `tl_dlstats` WHERE `filename`=?', [$this->_filename]);
         $this->_statId = $q['id'];
 
