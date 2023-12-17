@@ -36,13 +36,6 @@ $GLOBALS['BE_MOD']['system']['dlstats'] = array
 );
 
 /*
- * -------------------------------------------------------------------------
- * HOOKS TODO ReplaceInsertTagsListener
- * -------------------------------------------------------------------------
- */
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('BugBuster\DLStats\ModuleDlstatsTag', 'dlstatsReplaceInsertTags');
-
-/*
  * CSS
  */
 if (

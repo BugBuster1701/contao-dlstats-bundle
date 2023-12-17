@@ -7,3 +7,9 @@ services:
         public: true
         tags:
             - { name: kernel.event_listener, event: kernel.response}
+
+    bugbuster.dlstats.insert_tags_listener:
+        class: "BugBuster\\DlstatsBundle\\EventListener\\ReplaceInsertTagsListener"
+        public: true
+        tags:
+            - { name: contao.hook, hook: replaceInsertTags }
