@@ -5,7 +5,7 @@
       <tr>
         <td><span class="tl_label"><?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_counting']; ?>:</span><?= $this->status_counting; ?></td>
         <td style="text-align: center;"><span class="tl_label"><?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_detailed']; ?>:</span><?= $this->status_detailed; ?></td>
-        <td style="<?= $this->boolDetails ? 'text-align: center;' : 'visibility:hidden;' ?>"><span class="tl_label"><?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_anonymization']; ?>:</span><?= $this->status_anonymization; ?></td>
+        <td><span class="tl_label">&nbsp;</span></td>
     </tr>
     </tbody>
   </table>

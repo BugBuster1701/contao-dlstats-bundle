@@ -106,11 +106,6 @@
         <target>有効</target>
         
       </trans-unit>
-      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
-        <source>Anonymization</source>
-        <target>匿名化</target>
-        
-      </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.status_counting">
         <source>Counting downloads</source>
         <target>ダウンロードの計数</target>
@@ -174,21 +169,25 @@
       <trans-unit id="tl_dlstatstatistics_stat.no_selection">
         
         <source>no selection.</source>
+        
         <target>選択なし</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.without_login">
         
         <source>without login</source>
+        
         <target>ログインせず</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.detail_filter">
         
         <source>Detailed statistics with filter</source>
+        
         <target>フィルター可能な詳細な統計</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.reset_not_allowed">
         
         <source>Reset the statistics is not allowed for this counter.</source>
+        
         <target>このカウンターには統計のリセットは許可していません。</target>
       </trans-unit>
     </body>

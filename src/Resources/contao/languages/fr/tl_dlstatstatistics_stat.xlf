@@ -106,11 +106,6 @@
         <target>activé</target>
         
       </trans-unit>
-      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
-        <source>Anonymization</source>
-        <target>Anonymisation</target>
-        
-      </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.status_counting">
         <source>Counting downloads</source>
         <target>Compter les téléchargements</target>

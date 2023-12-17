@@ -106,11 +106,6 @@
         <target>включено</target>
         
       </trans-unit>
-      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
-        <source>Anonymization</source>
-        <target>Анонимизация</target>
-        
-      </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.status_counting">
         <source>Counting downloads</source>
         <target>Подсчет загрузок</target>
@@ -174,21 +169,25 @@
       <trans-unit id="tl_dlstatstatistics_stat.no_selection">
         
         <source>no selection.</source>
+        
         <target>нет выбора.</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.without_login">
         
         <source>without login</source>
+        
         <target>без логина</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.detail_filter">
         
         <source>Detailed statistics with filter</source>
+        
         <target>Подробная статистика с фильтром</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.reset_not_allowed">
         
         <source>Reset the statistics is not allowed for this counter.</source>
+        
         <target>Сброс статистики для этого счетчика не допускается.</target>
       </trans-unit>
     </body>

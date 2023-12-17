@@ -7,8 +7,8 @@
         
       </trans-unit>
       <trans-unit id="tl_settings.dlstatAnonymizeIP4.1">
-        <source>Here, you can change the level of anonymization for IPv4. Anonymize IP addresses in Contao must be activated.</source>
-        <target>Ici, vous pouvez modifier le niveau d'anonymisation pour IPv4. Anonymiser les adresses IP dans Contao doit être activé.</target>
+        <source>Here, you can change the level of anonymization for IPv4.</source>
+        <target>Ici, vous pouvez modifier le niveau d'anonymisation pour IPv4.</target>
         
       </trans-unit>
       <trans-unit id="tl_settings.dlstatAnonymizeIP6.0">
@@ -17,8 +17,8 @@
         
       </trans-unit>
       <trans-unit id="tl_settings.dlstatAnonymizeIP6.1">
-        <source>Here, you can change the level of anonymization for IPv6. Anonymize IP addresses in Contao must be activated.</source>
-        <target>Ici, vous pouvez modifier le niveau d'anonymisation pour IPv6. Anonymiser les adresses IP dans Contao doit être activé.</target>
+        <source>Here, you can change the level of anonymization for IPv6.</source>
+        <target>Ici, vous pouvez modifier le niveau d'anonymisation pour IPv6.</target>
         
       </trans-unit>
       <trans-unit id="tl_settings.dlstatDisableBotdetection.0">

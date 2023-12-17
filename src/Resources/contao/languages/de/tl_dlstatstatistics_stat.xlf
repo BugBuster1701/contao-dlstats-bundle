@@ -106,11 +106,6 @@
         <target>aktiviert</target>
         
       </trans-unit>
-      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
-        <source>Anonymization</source>
-        <target>Anonymisierung</target>
-        
-      </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.status_counting">
         <source>Counting downloads</source>
         <target>Downloads zählen</target>
@@ -174,21 +169,25 @@
       <trans-unit id="tl_dlstatstatistics_stat.no_selection">
         
         <source>no selection.</source>
+        
         <target>keine Auswahl</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.without_login">
         
         <source>without login</source>
+        
         <target>ohne Login</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.detail_filter">
         
         <source>Detailed statistics with filter</source>
+        
         <target>Detailstatistik mit Filter</target>
       </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.reset_not_allowed">
         
         <source>Reset the statistics is not allowed for this counter.</source>
+        
         <target>Das Zurücksetzen der Statistik ist für diesen Zähler nicht erlaubt.</target>
       </trans-unit>
     </body>

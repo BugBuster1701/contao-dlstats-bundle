@@ -118,7 +118,6 @@ class ModuleDlstatsStatistics extends BackendModule
 		$this->Template->href   = $this->getReferer(true);
 		$this->Template->status_counting = $this->getStatusCounting();
 		$this->Template->status_detailed = $this->getStatusDetailed();
-		$this->Template->status_anonymization = $this->getStatusAnonymization();
 		$this->Template->boolDetails  = $this->boolDetails;
 		$this->Template->messages     = Message::generateUnwrapped() . Backend::getSystemMessages();
 		$this->Template->requestToken = System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue();
@@ -225,19 +224,6 @@ class ModuleDlstatsStatistics extends BackendModule
 		$this->boolDetails = false;
 
 		return '<span class="">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'] . '</span>';
-	}
-
-	/**
-	 * Get Status Anonymization
-	 * @return string
-	 *
-	 * @deprecated delete the feature, anonymize is enabled (since Contao 4.6 no longer deactivatable.)
-	 */
-	protected function getStatusAnonymization()
-	{
-		return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_activated'];
-		// Anonymize is enabled (since Contao 4.6 no longer deactivatable.)
-		// return $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['status_deactivated'];
 	}
 
 	/**

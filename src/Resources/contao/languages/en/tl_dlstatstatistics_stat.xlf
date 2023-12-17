@@ -85,10 +85,6 @@
         <source>activated</source>
         
       </trans-unit>
-      <trans-unit id="tl_dlstatstatistics_stat.status_anonymization">
-        <source>Anonymization</source>
-        
-      </trans-unit>
       <trans-unit id="tl_dlstatstatistics_stat.status_counting">
         <source>Counting downloads</source>
         
