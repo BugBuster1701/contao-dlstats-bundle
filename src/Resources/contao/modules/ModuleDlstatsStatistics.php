@@ -70,10 +70,9 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         }
 
         if (isset($GLOBALS['TL_CONFIG']['dlstatStatresetProtected'])
-         && isset($GLOBALS['TL_CONFIG']['dlstatStatresetGroups'])
          && (int) ($GLOBALS['TL_CONFIG']['dlstatStatresetProtected']) >0)
         {
-            $this->boolAllowReset = $this->isUserInDownloadStatGroups($GLOBALS['TL_CONFIG']['dlstatStatresetGroups']);
+            $this->boolAllowReset = $this->isUserInDownloadStatGroups($GLOBALS['TL_CONFIG']['dlstatStatresetGroups'] ?? '');
         }
 
         if (\Input::get('act', true)=='zero')
@@ -88,7 +87,7 @@ class ModuleDlstatsStatistics extends \Contao\BackendModule
         {
             $this->filenameid = (int) \Input::post('filenameid', true);
         }
-        if (\strlen(\Input::post('username', true)) > 0)
+        if (\strlen(\Input::post('username', true) ?? '') > 0)
         {
             $this->username = \Input::post('username', true);
         }
