@@ -9,3 +9,5 @@
 src/vendor/
 src/composer.json
 composer.lock
+/tools/
+todo.txt

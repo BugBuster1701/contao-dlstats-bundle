@@ -20,7 +20,6 @@
 
 namespace BugBuster\DLStats;
 use BugBuster\BotDetection\ModuleBotDetection;
-use Jean85\PrettyVersions;
 
 /**
  * Class DlstatsHelper
@@ -29,7 +28,7 @@ use Jean85\PrettyVersions;
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  */
-class DlstatsHelper extends \Controller
+class DlstatsHelper extends \Contao\Controller
 {
 
 	/**
@@ -169,7 +168,7 @@ class DlstatsHelper extends \Controller
 	{
 		if (false === self::$_BackendUser)
 		{
-			$objTokenChecker = \System::getContainer()->get('contao.security.token_checker');
+			$objTokenChecker = \Contao\System::getContainer()->get('contao.security.token_checker');
 			if ($objTokenChecker->hasBackendUser())
 			{
 				self::$_BackendUser = true;
@@ -193,7 +192,7 @@ class DlstatsHelper extends \Controller
 	 */
 	public function checkBot()
 	{
-	    $bundles = array_keys(\System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
+	    $bundles = array_keys(\Contao\System::getContainer()->getParameter('kernel.bundles')); // old \ModuleLoader::getActive()
 
 		if (!\in_array('BugBusterBotdetectionBundle', $bundles))
 		{
@@ -226,7 +225,7 @@ class DlstatsHelper extends \Controller
 	 */
 	public function dlstatsSetLang()
 	{
-	    $array = \Environment::get('httpAcceptLanguage');
+	    $array = \Contao\Environment::get('httpAcceptLanguage');
 
 	    $this->_lang = str_replace('-', '_', ($array[0] ?? ''));
 
@@ -510,12 +509,7 @@ class DlstatsHelper extends \Controller
 		{
 			return '0.0.0.0';
 		}
-		if (isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp']) && 
-           (bool) $GLOBALS['TL_CONFIG']['privacyAnonymizeIp'] === false)
-		{
-			// Anonymize is disabled
-			return ($this->IP === false) ? '0.0.0.0' : $this->IP;
-		}
+
 		// Anonymization is enabled, set default anonymization power
 		if (!isset($GLOBALS['TL_CONFIG']['dlstatAnonymizeIP4']))
 		{
@@ -568,14 +562,7 @@ class DlstatsHelper extends \Controller
 		{
 			return '';
 		}
-		if (isset($GLOBALS['TL_CONFIG']['privacyAnonymizeIp']) && 
-           (bool) $GLOBALS['TL_CONFIG']['privacyAnonymizeIp'] === false)
-		{
-			// Anonymize is disabled
-			$domain = gethostbyaddr($this->IP);
 
-			return ($domain == $this->IP) ? '' : $domain;
-		}
 		// Anonymize is enabled
 		$domain = gethostbyaddr($this->IP);
 		if ($domain != $this->IP) // bei Fehler/keiner Aufloesung kommt IP zurueck
@@ -599,7 +586,7 @@ class DlstatsHelper extends \Controller
 	 */
 	protected function dlstatsGetUserIP()
 	{
-        $UserIP = \Environment::get('ip');
+        $UserIP = \Contao\Environment::get('ip');
         if (strpos($UserIP, ',') !== false) //first IP
         {
             $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
@@ -612,7 +599,7 @@ class DlstatsHelper extends \Controller
             $HTTPXFF = $_SERVER['HTTP_X_FORWARDED_FOR'];
             $_SERVER['HTTP_X_FORWARDED_FOR'] = '';
 
-            $UserIP = \Environment::get('ip');
+            $UserIP = \Contao\Environment::get('ip');
             if (strpos($UserIP, ',') !== false) //first IP
             {
                 $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
@@ -653,7 +640,7 @@ class DlstatsHelper extends \Controller
 	        'dlstats_ip'       => $IPHash,
 	        'dlstats_filename' => $filename
 	    );
-	    \Database::getInstance()
+	    \Contao\Database::getInstance()
             	    ->prepare("INSERT IGNORE INTO tl_dlstats_blocker %s")
             	    ->set($arrSet)
             	    ->execute();
@@ -671,7 +658,7 @@ class DlstatsHelper extends \Controller
 	    }
 
 	    //Delete All Old Blocker Entries (>10s)
-	    \Database::getInstance()
+	    \Contao\Database::getInstance()
             	    ->prepare("DELETE FROM
                                     tl_dlstats_blocker
                                 WHERE
@@ -681,7 +668,7 @@ class DlstatsHelper extends \Controller
 
 	    $IPHash = bin2hex(sha1($UserIP, true)); // sha1 20 Zeichen, bin2hex 40 zeichen
 	    //Test ob Blocking gesetzt ist
-	    $objBlockingIP = \Database::getInstance()
+	    $objBlockingIP = \Contao\Database::getInstance()
                             ->prepare("SELECT
                                             id
                                         FROM
@@ -704,46 +691,22 @@ class DlstatsHelper extends \Controller
 	 * Check if contao/core-bundle >= 4.8.0
 	 * 
 	 * @return boolean
+	 * @deprecated 1.3.7
 	 */
 	protected function isContao48()
 	{
-	    //Thanks fritzmg for this hint
-	    // get the Contao version
-	    try {
-	        $version = PrettyVersions::getVersion('contao/core-bundle');
-	    } catch (\OutOfBoundsException $e) {
-	        $version = PrettyVersions::getVersion('contao/contao');
-	    }
-	    // check for Contao >=4.8
-	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.8'))
-	    {
-	        return true;
-	    }
-
-	    return false;
+        return true;
 	}
 
 	/**
 	 * Check if contao/core-bundle >= 4.5.0
 	 * 
 	 * @return boolean
+	 * @deprecated 1.3.7
 	 */
 	protected function isContao45()
 	{
-	    //Thanks fritzmg for this hint
-	    // get the Contao version
-	    try {
-	        $version = PrettyVersions::getVersion('contao/core-bundle');
-	    } catch (\OutOfBoundsException $e) {
-	        $version = PrettyVersions::getVersion('contao/contao');
-	    }
-	    // check for Contao >=4.5
-	    if (\Composer\Semver\Semver::satisfies($version->getShortVersion(), '>=4.5'))
-	    {
-	        return true;
-	    }
-
-	    return false;
+        return true;
 	}
 
 }

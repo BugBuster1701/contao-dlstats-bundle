@@ -22,8 +22,7 @@
 		"php": "^7.2 || ^8.0",
 		"contao/core-bundle": "~4.9",
 		"bugbuster/contao-botdetection-bundle":">=1.7.0,<2",
-		"composer/semver": "^3.0",
-		"jean85/pretty-package-versions": "^1.5"
+		"composer/semver": "^3.0"
 	},
 	"require-dev": {
 		"contao/manager-plugin": "^2.0",
@@ -60,5 +59,12 @@
 			}
 		},
 		"contao-manager-plugin": "BugBuster\\DlstatsBundle\\ContaoManager\\Plugin"
+	},
+	"config": {
+		"allow-plugins": {
+			"contao-components/installer": true,
+			"php-http/discovery": true,
+			"contao/manager-plugin": true
+		}
 	}
 }
