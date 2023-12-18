@@ -12,9 +12,9 @@
  */
 
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['0']        = 'IPv4の匿名化のレベル';
-$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'IPv4の匿名化のレベルを調整できます。ContaoでIPアドレスの匿名化を有効にしなければなりません。';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'IPv4の匿名化のレベルを調整できます。';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['0']        = 'IPv6の匿名化のレベル';
-$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['1']        = 'IPv6の匿名化のレベルを調整できます。ContaoでIPアドレスの匿名化を有効にしなければなりません。';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['1']        = 'IPv6の匿名化のレベルを調整できます。';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['0'] = 'Bot検出のフィルタリングを無効';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['1'] = 'Bot検出の機能拡張による計数のフィルタリングを無効にします。';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatLastDownloads']['0']       = '最近のダウンロードの上位の回数';

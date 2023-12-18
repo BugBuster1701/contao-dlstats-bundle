@@ -12,9 +12,9 @@
  */
 
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['0']        = 'Уровень анонимности для IPv4';
-$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'Вы можете изменить уровень анонимности для IPv4. Функция \'Анонимизировать IP-адреса\' в панели настроек Contao должна быть включена.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'Вы можете изменить уровень анонимности для IPv4.';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['0']        = 'Уровень анонимности для IPv6';
-$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['1']        = 'Вы можете изменить уровень анонимности для IPv6. Функция \'Анонимизировать IP-адреса\' в панели настроек Contao должна быть включена.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['1']        = 'Вы можете изменить уровень анонимности для IPv6.';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['0'] = 'Отключить фильтрацию обнаружения ботов';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['1'] = 'Отключить фильтрацию обнаружения ботов модулем Bot Detection';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatLastDownloads']['0']       = 'Количество элементов в последних загрузках';

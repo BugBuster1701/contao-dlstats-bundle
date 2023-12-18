@@ -12,9 +12,9 @@
  */
 
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['0']        = 'Niveau d\'anonymisation pour IPv4';
-$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'Ici, vous pouvez modifier le niveau d\'anonymisation pour IPv4. Anonymiser les adresses IP dans Contao doit être activé.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP4']['1']        = 'Ici, vous pouvez modifier le niveau d\'anonymisation pour IPv4.';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['0']        = 'Niveau d\'anonymisation pour IPv6';
-$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['1']        = 'Ici, vous pouvez modifier le niveau d\'anonymisation pour IPv6. Anonymiser les adresses IP dans Contao doit être activé.';
+$GLOBALS['TL_LANG']['tl_settings']['dlstatAnonymizeIP6']['1']        = 'Ici, vous pouvez modifier le niveau d\'anonymisation pour IPv6.';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['0'] = 'Désactiver le filtrage de la détection de bot';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatDisableBotdetection']['1'] = 'Désactiver le filtrage du comptage par l\'extension Bot Detection';
 $GLOBALS['TL_LANG']['tl_settings']['dlstatLastDownloads']['0']       = 'Nombre d\'éléments pour les derniers téléchargements';
