@@ -1,4 +1,4 @@
-# Installation of Contao 5 dlstats Bundle
+# Installation of Contao 4/5 dlstats Bundle
 
 There are two types of installation.
 
@@ -19,3 +19,5 @@ Installation in a Composer-based Contao 5.2+ Managed-Edition:
 
 * `composer require "bugbuster/contao-dlstats-bundle"`
 * `php bin/console contao:migrate`
+
+(for Contao 4.13 use "... contao-dlstats-bundle:^1.3")

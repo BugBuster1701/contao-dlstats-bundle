@@ -1,13 +1,20 @@
-# Contao 5 dlstats Bundle
+# Contao 4/5 dlstats Bundle
 
-[![Latest Stable Version](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/v/stable)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) [![Total Downloads](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/downloads)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) [![Latest Unstable Version](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/v/unstable)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) [![License](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/license)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) 
+[![Latest Stable Version](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/v/stable)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) 
+![Contao Version](https://img.shields.io/badge/Contao-5.2+-orange) ![Contao Version](https://img.shields.io/badge/Contao-4.13-orange) 
+[![Total Downloads](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/downloads)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) 
+[![License](https://poser.pugx.org/bugbuster/contao-dlstats-bundle/license)](https://packagist.org/packages/bugbuster/contao-dlstats-bundle) 
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/20f2df7c7d964091aacbbc859c5672b1)](https://www.codacy.com/manual/BugBuster1701/contao-dlstats-bundle?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BugBuster1701/contao-dlstats-bundle&amp;utm_campaign=Badge_Grade)
 
 
 ## About
 
-Contao 5 dlstats Bundle - Counts the number of file downloads 
+Contao 4/5 dlstats Bundle - Counts the number of file downloads 
+
+
+## Notice
+For Contao 4.13 please install version 1.3.x.
 
 
 ## Installation
