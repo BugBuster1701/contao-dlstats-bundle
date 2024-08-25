@@ -20,21 +20,20 @@ namespace BugBuster\DlstatsBundle\Controller;
 use BugBuster\DLStats\BackendDlstats;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 /**
  * Handles the dlstats back end routes.
- *
- * #[Route('/dlstats', defaults: ['_scope' => 'backend', '_token_check' => true])]
  */
+#[Route('/dlstats', defaults: ['_scope' => 'backend', '_token_check' => true])]
 class DlstatsController extends AbstractController
 {
     /**
      * Renders the alerts content.
      *
      * @return Response
-     *
-     * #[Route('/details', name: 'dlstats_backend_details')]
      */
+    #[Route('/details', name: 'dlstats_backend_details')]
     public function detailsAction()
     {
         $this->container->get('contao.framework')->initialize();
