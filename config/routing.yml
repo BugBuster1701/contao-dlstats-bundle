@@ -1,4 +1,4 @@
 dlstats_backend_details:
     resource: "@BugBusterDlstatsBundle/Controller"
-    type: annotation
+    type: attribute
 
