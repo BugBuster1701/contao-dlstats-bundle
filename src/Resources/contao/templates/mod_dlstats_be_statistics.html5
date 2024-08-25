@@ -268,7 +268,7 @@
 		</tr>
 		<tr>
 			<td style="padding-left: 2px;" class="tl_file_list">
-				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" style="display: none;" name="filenameid">
+				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" data-controller="contao--chosen" style="display: none;" name="filenameid">
 					<?php foreach ($this->arrFilenames as $arrFilename): ?>
 						<?php if ($arrFilename['filenameid'] == $this->filenameid) : ?>
 					<option selected="selected" value="<?= $arrFilename['filenameid']; ?>"><?= $arrFilename['filename']; ?></option>
@@ -279,7 +279,7 @@
 				</select>
 			</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
-				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" style="display: none;" name="username">
+				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" data-controller="contao--chosen" style="display: none;" name="username">
 					<?php foreach ($this->arrUsernames as $arrUsername): ?>
 						<?php $value = $arrUsername; ?>
 						<?php if ('---00---' == $arrUsername) {
