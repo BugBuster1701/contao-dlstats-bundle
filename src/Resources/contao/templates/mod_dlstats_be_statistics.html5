@@ -45,7 +45,7 @@
 		    <td style="padding-left: 2px; text-align: center;" class="tl_file_list">&nbsp;</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
 			<?php if ($this->allow_reset) : ?>
-				<a href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=zero" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm']; ?>')) return false; Backend.getScrollOffset();"><img src="bundles/bugbusterdlstats/down0.gif" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" height="16" width="16"></a>
+				<a href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=zero" data-turbo="false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm']; ?>')) return false; Backend.getScrollOffset();"><img src="bundles/bugbusterdlstats/arrow-down-0.svg" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" height="16" width="16"></a>
 			<?php else: ?>
 				<img src="system/themes/<?= $this->theme ?>/icons/error.svg" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']; ?>" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']; ?>" width="16" height="16">
 			<?php endif; ?>
@@ -129,9 +129,9 @@
 					    <td style="padding-left: 2px;     text-align: center; word-break:break-all; word-wrap:break-word;" class="tl_file_list"><?= pathinfo($TopDownloads[0], PATHINFO_EXTENSION); ?></td>
 					    <td class="tl_file_list">&nbsp;</td>
 					    <td data-sort='<?= $TopDownloads[5]; ?>' style="padding-left: 2px; text-align: right;"  class="tl_file_list"><?= $TopDownloads[1]; ?>&nbsp;</td>
-					    <td class="tl_file_list" style="padding: 0 0 0 2px; text-align: left;"><?php if ($TopDownloads[4] > 0 && $this->boolDetails) : ?><a onclick="Backend.openModalIframe({'width':880,'height':600,'title':'Details','url':this.href});return false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>"  href="<?= $this->route('dlstats_backend_details') ?>?action=TopLastDownloads&amp;dlstatsid=<?= $TopDownloads[3]; ?>"><img width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"></a><?php else: ?><img class="mod_dlstatstatistics_grey" width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"><?php endif; ?>
+					    <td class="tl_file_list" style="padding: 0 0 0 2px; text-align: left;"><?php if ($TopDownloads[4] > 0 && $this->boolDetails) : ?><a data-turbo="false" onclick="Backend.openModalIframe({'width':880,'height':600,'title':'Details','url':this.href});return false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>"  href="<?= $this->route('dlstats_backend_details') ?>?action=TopLastDownloads&amp;dlstatsid=<?= $TopDownloads[3]; ?>"><img width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"></a><?php else: ?><img class="mod_dlstatstatistics_grey" width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"><?php endif; ?>
 					    <?php if ($TopDownloads[4] > 0 && $this->allow_reset) : ?>
-					    	<a onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']; ?>')) return false; Backend.getScrollOffset();" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=delete&amp;dlstatsid=<?= $TopDownloads[3]; ?>"><img height="16" width="14" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" src="system/themes/<?= $this->theme; ?>/icons/delete.svg"></a>
+					    	<a data-turbo="false" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']; ?>')) return false; Backend.getScrollOffset();" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=delete&amp;dlstatsid=<?= $TopDownloads[3]; ?>"><img height="16" width="14" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" src="system/themes/<?= $this->theme; ?>/icons/delete.svg"></a>
 					    <?php endif; ?></td>
 					    <td data-sort='<?= $TopDownloads[6]; ?>' style="padding-left: 2px; text-align: center;" class="tl_file_list"><?= $TopDownloads[2]; ?></td>
 					</tr>
@@ -178,9 +178,9 @@
 						<td style="padding-left: 2px;     text-align: center; word-break:break-all; word-wrap:break-word;" class="tl_file_list"><?= pathinfo($LastDownloads[1], PATHINFO_EXTENSION); ?></td>
 					    <td class="tl_file_list">&nbsp;</td>
 					    <td data-sort='<?= $LastDownloads[6]; ?>' style="padding-left: 2px; text-align: right;"  class="tl_file_list"><?= $LastDownloads[2]; ?>&nbsp;</td>
-						<td class="tl_file_list" style="padding: 0 0 0 2px; text-align: left;"><?php if ($LastDownloads[5] > 0 && $this->boolDetails) : ?><a onclick="Backend.openModalIframe({'width':880,'height':600,'title':'Details','url':this.href});return false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>"  href="<?= $this->route('dlstats_backend_details') ?>?action=TopLastDownloads&amp;dlstatsid=<?= $LastDownloads[4]; ?>"><img width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"></a><?php else: ?><img class="mod_dlstatstatistics_grey" width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"><?php endif; ?>
+						<td class="tl_file_list" style="padding: 0 0 0 2px; text-align: left;"><?php if ($LastDownloads[5] > 0 && $this->boolDetails) : ?><a data-turbo="false" onclick="Backend.openModalIframe({'width':880,'height':600,'title':'Details','url':this.href});return false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>"  href="<?= $this->route('dlstats_backend_details') ?>?action=TopLastDownloads&amp;dlstatsid=<?= $LastDownloads[4]; ?>"><img width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"></a><?php else: ?><img class="mod_dlstatstatistics_grey" width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"><?php endif; ?>
 					    <?php if ($LastDownloads[5] > 0 && $this->allow_reset) : ?>
-					    	<a onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']; ?>')) return false; Backend.getScrollOffset();" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=delete&amp;dlstatsid=<?= $LastDownloads[4]; ?>"><img height="16" width="14" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" src="system/themes/<?= $this->theme; ?>/icons/delete.svg"></a>
+					    	<a data-turbo="false" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']; ?>')) return false; Backend.getScrollOffset();" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=delete&amp;dlstatsid=<?= $LastDownloads[4]; ?>"><img height="16" width="14" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" src="system/themes/<?= $this->theme; ?>/icons/delete.svg"></a>
 					    <?php endif; ?></td>
 					    <td data-sort='<?= $LastDownloads[7]; ?>' style="padding-left: 2px; text-align: center;" class="tl_file_list"><?= $LastDownloads[0]; ?></td>
 					</tr>
@@ -222,9 +222,9 @@
 					    <td style="padding-left: 2px; text-align: center; word-break:break-all; word-wrap:break-word;" class="tl_file_list"><?= pathinfo($CalendarDayDownloads[1], PATHINFO_EXTENSION); ?></td>
 					    <td class="tl_file_list">&nbsp;</td>
 					    <td style="padding-left: 2px; text-align: right;" class="tl_file_list" data-sort='<?= $CalendarDayDownloads[5]; ?>'><?= $CalendarDayDownloads[2]; ?>&nbsp;</td>
-						<td class="tl_file_list" style="padding: 0 0 0 2px; text-align: left;"><?php if ($CalendarDayDownloads[4] > 0 && $this->boolDetails) : ?><a onclick="Backend.openModalIframe({'width':880,'height':600,'title':'Details','url':this.href});return false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>"  href="<?= $this->route('dlstats_backend_details') ?>?action=TopLastDownloads&amp;dlstatsid=<?= $CalendarDayDownloads[3]; ?>"><img width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"></a><?php else: ?><img class="mod_dlstatstatistics_grey" width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"><?php endif; ?>
+						<td class="tl_file_list" style="padding: 0 0 0 2px; text-align: left;"><?php if ($CalendarDayDownloads[4] > 0 && $this->boolDetails) : ?><a data-turbo="false" onclick="Backend.openModalIframe({'width':880,'height':600,'title':'Details','url':this.href});return false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>"  href="<?= $this->route('dlstats_backend_details') ?>?action=TopLastDownloads&amp;dlstatsid=<?= $CalendarDayDownloads[3]; ?>"><img width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"></a><?php else: ?><img class="mod_dlstatstatistics_grey" width="14" height="16" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['showRecord']; ?>" src="system/themes/<?= $this->theme; ?>/icons/show.svg"><?php endif; ?>
 					    <?php if ($CalendarDayDownloads[4] > 0 && $this->allow_reset) : ?>
-					    	<a onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']; ?>')) return false; Backend.getScrollOffset();" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=delete&amp;dlstatsid=<?= $CalendarDayDownloads[3]; ?>"><img height="16" width="14" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" src="system/themes/<?= $this->theme; ?>/icons/delete.svg"></a>
+					    	<a data-turbo="false" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm_single']; ?>')) return false; Backend.getScrollOffset();" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=delete&amp;dlstatsid=<?= $CalendarDayDownloads[3]; ?>"><img height="16" width="14" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_single']; ?>" src="system/themes/<?= $this->theme; ?>/icons/delete.svg"></a>
 					    <?php endif; ?></td>
    						<td style="padding-left: 2px; text-align: left;" class="tl_file_list" data-sort='<?= $CalendarDayDownloads[6]; ?>'><?= $CalendarDayDownloads[0]; ?></td>
 					</tr>
@@ -246,7 +246,7 @@
 	<?php if ($this->boolDetails) :?>
 	<hr>
 	<div class="tl_listing_container list_view">
-		<form method="post" class="info" id="dlstatsdetail_statistik" action="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=getfilterstatistik">
+		<form method="post" class="info" id="dlstatsdetail_statistik" data-turbo="false" action="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=getfilterstatistik">
 		<input type="hidden" name="REQUEST_TOKEN" value="<?= $this->requestToken ?>">
 		<table class="tl_listing">
 			<tbody>
@@ -261,12 +261,14 @@
 			<th style="width: 50%;   padding-left: 2px;"                     class="tl_folder_tlist"><?= $GLOBALS['TL_LANG']['MSC']['filePath'].' + '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['filename']; ?></th>
 			<th style="width: 160px; padding-left: 2px; text-align: center;" class="tl_folder_tlist"><?= $GLOBALS['TL_LANG']['MSC']['username']; ?></th>
 			<th style="width: 80px;  padding-left: 2px; text-align: center;" class="tl_folder_tlist"><?= $GLOBALS['TL_LANG']['MSC']['reload']; ?></th>
-			<th style="width: 160px; padding-left: 2px; text-align: center;" class="tl_folder_tlist"><?php if (0 < count($this->alldownloads)) { echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads']; } ?></th>
+			<th style="width: 160px; padding-left: 2px; text-align: center;" class="tl_folder_tlist"><?php if (0 < count($this->alldownloads)) {
+			echo $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'];
+			} ?></th>
 			<th style="              padding-left: 2px; text-align: center;" class="tl_folder_tlist">&nbsp;</th>
 		</tr>
 		<tr>
 			<td style="padding-left: 2px;" class="tl_file_list">
-				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" style="display: none;" name="filenameid">
+				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" data-controller="contao--chosen" style="display: none;" name="filenameid">
 					<?php foreach ($this->arrFilenames as $arrFilename): ?>
 						<?php if ($arrFilename['filenameid'] == $this->filenameid) : ?>
 					<option selected="selected" value="<?= $arrFilename['filenameid']; ?>"><?= $arrFilename['filename']; ?></option>
@@ -277,17 +279,17 @@
 				</select>
 			</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
-				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" style="display: none;" name="username">
+				<select class="tl_select tl_chosen" data-action="focus->contao--scroll-offset#store" data-controller="contao--chosen" style="display: none;" name="username">
 					<?php foreach ($this->arrUsernames as $arrUsername): ?>
 						<?php $value = $arrUsername; ?>
 						<?php if ('---00---' == $arrUsername) {
-						$value = $arrUsername;
-						$arrUsername = '--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---';
-						} ?>
+                        $value = $arrUsername;
+                        $arrUsername = '--- '.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['no_selection'].' ---';
+                        } ?>
 						<?php if ('---anonym---' == $arrUsername) {
-						$value = $arrUsername;
-						$arrUsername = '>'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['without_login'].'<';
-						} ?>
+                        $value = $arrUsername;
+                        $arrUsername = '>'.$GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['without_login'].'<';
+                        } ?>
 						<?php if ($value == $this->username) : ?>
 					<option selected="selected" value="<?= $value; ?>"><?= $arrUsername; ?></option>
 						<?php else: ?>
@@ -302,7 +304,9 @@
 					title="<?= \Contao\StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>"
 					src="system/themes/<?= $this->theme; ?>/icons/sync.svg"
 					name="filter"></td>
-			<td style="padding-left: 2px; text-align: center;" class="tl_file_list"><?php if (0 < count($this->alldownloads)) { echo count($this->alldownloads); } ?></td>
+			<td style="padding-left: 2px; text-align: center;" class="tl_file_list"><?php if (0 < count($this->alldownloads)) {
+			echo count($this->alldownloads);
+			} ?></td>
 			<td style="padding-left: 2px; text-align: left;" class="tl_file_list">&nbsp;</td>
 		</tr>
 		</tbody>

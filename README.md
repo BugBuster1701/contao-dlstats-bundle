@@ -14,6 +14,7 @@ Contao 4/5 dlstats Bundle - Counts the number of file downloads
 
 
 ## Notice
+For Contao 5.3 please install version 1.4.x.<br>
 For Contao 4.13 please install version 1.3.x.
 
 

@@ -3,7 +3,7 @@
 /*
  * This file is part of a BugBuster Contao Bundle.
  *
- * @copyright  Glen Langer 2023 <http://contao.ninja>
+ * @copyright  Glen Langer 2024 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao Download Statistics Bundle (Dlstats)
  * @link       https://github.com/BugBuster1701/contao-dlstats-bundle
@@ -14,7 +14,7 @@
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
 
-define('DLSTATS_VERSION', '1.5');
+define('DLSTATS_VERSION', '1.6');
 define('DLSTATS_BUILD', '0');
 
 /*
