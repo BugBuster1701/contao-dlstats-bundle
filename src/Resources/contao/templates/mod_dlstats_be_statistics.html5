@@ -45,7 +45,7 @@
 		    <td style="padding-left: 2px; text-align: center;" class="tl_file_list">&nbsp;</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
 			<?php if ($this->allow_reset) : ?>
-				<a href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=zero" data-turbo="false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm']; ?>')) return false; Backend.getScrollOffset();"><img src="bundles/bugbusterdlstats/down0.gif" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" height="16" width="16"></a>
+				<a href="<?= $this->route('contao_backend') ?>?do=dlstats&amp;act=zero" data-turbo="false" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" onclick="if (!confirm('<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero_confirm']; ?>')) return false; Backend.getScrollOffset();"><img src="bundles/bugbusterdlstats/arrow-down-0.svg" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['zero']; ?>" height="16" width="16"></a>
 			<?php else: ?>
 				<img src="system/themes/<?= $this->theme ?>/icons/error.svg" alt="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']; ?>" title="<?= $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['reset_not_allowed']; ?>" width="16" height="16">
 			<?php endif; ?>

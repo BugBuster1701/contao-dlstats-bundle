@@ -1,0 +1,20 @@
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  version="1.1" 
+  width="1080" 
+  height="1080" 
+  viewBox="0 0 1080 1080" 
+  xml:space="preserve"
+>
+<rect x="0" y="0" width="100%" height="100%" fill="transparent"></rect>
+<g transform="matrix(1 0 0 1 540 540)" id="98db00fd-35b9-4a1e-b850-19955503dc8c"  >
+	<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+</g>
+<g transform="matrix(9.05 0 0 12.67 369.37 550.87)"  >
+	<path style="stroke: rgb(201,71,61); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(201,71,61); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-50, -50)" d="M 81.123 47.531 C 83.818 50.271 83.818 54.8 81.123 57.405 L 54.954 83.574 C 52.214 86.315 47.82 86.315 45.081 83.574 L 18.91 57.405 C 16.169 54.712 16.169 50.271 18.91 47.531 C 22.689 43.988 33.082 51.784 42.436 55.42 L 42.436 18.999 C 42.436 16.448 44.513 14.37 47.064 14.37 L 54.055 14.37 C 56.607 14.37 58.684 16.448 58.684 18.999 L 58.684 54.947 C 67.518 51.216 76.967 44.319 81.123 47.531 z" stroke-linecap="round" />
+</g>
+<g transform="matrix(11.11 0 0 11.11 852.07 792.14)" style="filter: url(#SVGID_89);" id="116bf429-6235-4f8b-9d82-94cec7c0c5bb"  >
+	<text xml:space="preserve" font-family="Lato" font-size="55" font-style="normal" font-weight="700" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(201,71,61); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-15.95" y="17.28" >0</tspan></text>
+</g>
+</svg>
