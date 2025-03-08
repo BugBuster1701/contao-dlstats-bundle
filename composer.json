@@ -19,7 +19,7 @@
 		"forum":"https://community.contao.org/de/forumdisplay.php?119"
 	},
 	"require":{
-		"php": ">=8.3.0,<8.4.0",
+		"php": ">=8.3.0,<8.5.0",
 		"contao/core-bundle": ">=5.4.0,<5.7.0",
 		"bugbuster/contao-botdetection-bundle":"^1.14",
 		"monolog/monolog": "^3.5.0",
