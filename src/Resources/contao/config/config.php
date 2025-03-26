@@ -15,7 +15,7 @@ use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
 
 define('DLSTATS_VERSION', '1.6');
-define('DLSTATS_BUILD', '1');
+define('DLSTATS_BUILD', '2');
 
 /*
  * Defaults, you can overwrite this in Backend -> System -> Settings
