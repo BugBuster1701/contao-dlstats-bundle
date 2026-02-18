@@ -80,6 +80,7 @@
 
 .dlstats-file_list {
     word-break: break-word;
+    border-bottom: 1px solid #eaeaec;
 }
 
 .dlstats-content {
