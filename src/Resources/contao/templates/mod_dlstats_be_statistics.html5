@@ -299,7 +299,7 @@
 				</select>
 			</td>
 			<td style="padding-left: 2px; text-align: center;" class="tl_file_list">
-				<input class="tl_submit_panel" type="image" style="min-width: 20px;"
+				<input class="tl_submit_panel" type="image" style="min-width: 20px;border: 0 none !important;"
 					value="<?= \Contao\StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>"
 					title="<?= \Contao\StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showOnly']); ?>"
 					src="system/themes/<?= $this->theme; ?>/icons/sync.svg"
