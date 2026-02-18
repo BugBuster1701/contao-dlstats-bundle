@@ -7,9 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
   <meta name="referrer" content="origin">
   <link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/fonts.css', 'system/themes/'.$this->theme) ?>">
-	<link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/basic.css', 'system/themes/'.$this->theme) ?>">
-	<link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/main.css', 'system/themes/'.$this->theme) ?>">
-  <?= $this->stylesheets ?>
+	<?= $this->stylesheets ?>
 
   <script><?= $this->getLocaleString() ?></script>
   <script src="<?= $this->asset('js/mootools.min.js', 'contao-components/mootools') ?>"></script>

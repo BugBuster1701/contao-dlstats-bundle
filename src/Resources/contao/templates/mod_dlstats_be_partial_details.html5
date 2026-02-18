@@ -3,19 +3,17 @@
 <head>
 	<meta charset="<?= $this->charset ?>">
 	<title>Contao Open Source CMS - Contao Open Source CMS <?= $this->contaoversion ?></title>
-	<link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/basic.css', 'system/themes/'.$this->theme) ?>">
-	<link rel="stylesheet" type="text/css" href="<?= $this->asset('styles/main.css', 'system/themes/'.$this->theme) ?>">
 	<link rel="stylesheet" type="text/css" href="/bundles/bugbusterdlstats/style.css" media="all">
 </head>
 <body id="top">
-<div id="container">
-	<div id="main" style="width:840px;">
-		<div class="dlstatdetailcontent" style="margin-left:10px;margin-right:10px;">
-			<!-- DlstatsDetails::start -->
-			<?= $this->DlstatsDetailList; ?>
-			<!-- DlstatsDetails::stop -->
-		</div><!-- dlstatdetailcontent -->
-	</div><!-- main -->
-</div><!-- container -->
+	<div id="container">
+		<div id="main" style="width:840px;">
+			<div class="dlstatdetailcontent" style="margin-left:10px;margin-right:10px;">
+				<!-- DlstatsDetails::start -->
+				<?= $this->DlstatsDetailList; ?>
+				<!-- DlstatsDetails::stop -->
+			</div><!-- dlstatdetailcontent -->
+		</div><!-- main -->
+	</div><!-- container -->
 </body>
 </html>
