@@ -135,7 +135,7 @@ class ModuleDlstatsStatisticsHelper extends BackendModule
         <tr><td style="line-height: 6px;" colspan="4">&nbsp;</td></tr>
 	    <tr>
             <td><span class="dlstats-label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'] . ':&nbsp;<span title="' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl_month'] . '"><sup style="font-weight:normal;">(?)</sup></span></span></td>
-			<td class="dlstats-label" style="width:     120px; padding-left:  2px; text-align: left;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period'] . ':</td>
+			<td class="dlstats-label" style="min-width: 120px; padding-left:  2px; text-align: left;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period'] . ':</td>
 			<td class="dlstats-label" style="min-width: 120px; padding-right: 6px; text-align: right;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'] . ':</td>
             <td>&nbsp;</td>
 		</tr>
