@@ -20,6 +20,8 @@ Installation in a Composer-based Contao 5.2+ Managed-Edition:
 * `composer require "bugbuster/contao-dlstats-bundle"`
 * `php bin/console contao:migrate`
 
+(for Contao 5.7 use "... contao-dlstats-bundle:^1.6")
+
 (for Contao 5.3 use "... contao-dlstats-bundle:^1.4")
 
 (for Contao 4.13 use "... contao-dlstats-bundle:^1.3")

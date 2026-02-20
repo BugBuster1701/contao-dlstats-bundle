@@ -118,25 +118,25 @@ class ModuleDlstatsStatisticsHelper extends BackendModule
 
 		$this->TemplatePartial->contaoversion = ContaoCoreBundle::getVersion();
 
-		$this->TemplatePartial->DlstatsDetailList  = '<div class="tl_header" style="width:800px">' . "\n";
+		$this->TemplatePartial->DlstatsDetailList  = '<div class="dlstats-header" style="width:800px">' . "\n";
 
-		$this->TemplatePartial->DlstatsDetailList .= '<table class="tl_header_table">
+		$this->TemplatePartial->DlstatsDetailList .= '<table class="dlstats-header_table">
 	<tbody>
 		<tr>
-			<td><span class="tl_label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['filename'] . ':</span> </td>
+			<td><span class="dlstats-label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['filename'] . ':</span> </td>
 			<td colspan="3">' . $arrDlstats['filename'] . '</td>
 		</tr>
 		<tr>
-			<td><span class="tl_label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_download'] . ':</span> </td>
+			<td><span class="dlstats-label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['last_download'] . ':</span> </td>
 			<td>' . Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $arrDlstats['tstamp']) . '</td>
-			<td><span class="tl_label" style="padding-left: 16px; margin-right: 6px;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl'] . ':</span></td>
+			<td><span class="dlstats-label" style="padding-left: 16px; margin-right: 6px;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl'] . ':</span></td>
 			<td>' . $arrDlstats['downloads'] . '</td>
 		</tr>
         <tr><td style="line-height: 6px;" colspan="4">&nbsp;</td></tr>
 	    <tr>
-            <td><span class="tl_label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'] . ':&nbsp;<span title="' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl_month'] . '"><sup style="font-weight:normal;">(?)</sup></span></span></td>
-			<td class="tl_label" style="width:     120px; padding-left:  2px; text-align: left;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period'] . ':</td>
-			<td class="tl_label" style="min-width: 120px; padding-right: 6px; text-align: right;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'] . ':</td>
+            <td><span class="dlstats-label">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'] . ':&nbsp;<span title="' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['total_dl_month'] . '"><sup style="font-weight:normal;">(?)</sup></span></span></td>
+			<td class="dlstats-label" style="min-width: 120px; padding-left:  2px; text-align: left;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['period'] . ':</td>
+			<td class="dlstats-label" style="min-width: 120px; padding-right: 6px; text-align: right;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['downloads'] . ':</td>
             <td>&nbsp;</td>
 		</tr>
 ';
@@ -145,8 +145,8 @@ class ModuleDlstatsStatisticsHelper extends BackendModule
 		{
 			$this->TemplatePartial->DlstatsDetailList .= '<tr>
 			    <td>&nbsp;</td>
-			    <td style="padding-left: 2px; text-align: left;"  class="tl_file_list">' . $Month[0] . '</td>
-			    <td style="padding-left: 2px; padding-right: 6px; text-align: right;" class="tl_file_list">' . $Month[1] . '</td>
+			    <td style="padding-left: 2px; text-align: left;"  class="dlstats-file_list">' . $Month[0] . '</td>
+			    <td style="padding-left: 2px; padding-right: 6px; text-align: right;" class="dlstats-file_list">' . $Month[1] . '</td>
                 <td>&nbsp;</td>
 			</tr>
 ';
@@ -157,7 +157,7 @@ class ModuleDlstatsStatisticsHelper extends BackendModule
 </div>
 ';
 
-		$this->TemplatePartial->DlstatsDetailList .= '<div class="tl_content" style="margin-top: 10px;width: 800px;">
+		$this->TemplatePartial->DlstatsDetailList .= '<div class="dlstats-content" style="margin-top: 10px;width: 800px;">
 	 <div class="dlstatdets">
 		<span class="dlstats-timestamp dlstats-left" style="font-weight: bold;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['tstamp'] . '</span>
 		<span class="dlstats-ip dlstats-left"        style="font-weight: bold;">' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['ip'] . '<span title="' . $GLOBALS['TL_LANG']['tl_dlstatstatistics_stat']['clientside'] . '"><sup style="font-weight:normal;">(?)</sup></span></span>
