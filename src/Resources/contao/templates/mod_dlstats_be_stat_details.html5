@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="<?= $this->asset('backend.css', 'system/themes/'.$this->theme) ?>" data-turbo-track="reload">
 	<link rel="stylesheet" href="<?= $this->asset('backend.css', 'contao_core') ?>" data-turbo-track="reload">
 	<?= $this->stylesheets ?>
+  <link rel="stylesheet" type="text/css" href="/bundles/bugbusterdlstats/style.css" media="all">
 
   <script><?= $this->getLocaleString() ?></script>
   <script src="<?= $this->asset('js/mootools.min.js', 'contao-components/mootools') ?>"></script>
@@ -20,9 +21,9 @@
 <body class="popup">
 
   <div id="container" class="cf">
-	<div id="tl_messages">
-	  <?= $this->messages ?>
-	</div>
+	  <div id="tl_messages">
+  	  <?= $this->messages ?>
+  	</div>
   </div>
 
 </body>
